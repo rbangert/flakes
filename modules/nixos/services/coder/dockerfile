@@ -1,0 +1,4 @@
+FROM ghcr.io/coder/coder:latest
+USER root
+RUN apk add cdrkit
+USER coder

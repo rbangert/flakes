@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+window=$(hyprctl --instance 0 activewindow -j | jq '.title' | grep -iE "foot")
+
+# case "$1" in
+# l)
+# 	keysym="C-l"
+# 	direction="-L"
+# 	;;
+# d)
+# 	keysym="-D"
+# 	;;
+# u)
+# 	keysym="-U"
+# 	;;
+# r)
+# 	keysym="-R"
+# 	;;
+# esac
+
+if [ -n "${window}" ]; then
+	hyprctl --instance 0 dispatch pass
+else
+	hyprctl --instance 0 dispatch movefocus ${1}
+fi
