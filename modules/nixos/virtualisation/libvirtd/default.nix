@@ -25,7 +25,6 @@ in {
       enable = true;
       onBoot = "start";
       onShutdown = "suspend";
-      allowedBridges = ["eno0"];
       qemu.ovmf.enable = true;
       qemu.swtpm.enable = true;
       qemu.swtpm.package = pkgs.swtpm;

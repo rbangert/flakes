@@ -30,8 +30,8 @@ with lib.rr-sv; {
     };
 
     services = {
+      openssh = enabled;
       syncthing = enabled;
-      taskserver = enabled;
       # TODO tailscale = enabled;
     };
 
@@ -83,7 +83,6 @@ with lib.rr-sv; {
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure keymap in X11
   services = {
     vscode-server.enable = true;
     xserver = {
@@ -99,9 +98,17 @@ with lib.rr-sv; {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
     ];
-    extraGroups = ["wheel" "audio" "docker" "podman" "libvirtd" "input" "networkmanager"];
+    extraGroups = [
+      "polkituser"
+      "wheel"
+      "audio"
+      "docker"
+      "podman"
+      "libvirtd"
+      "input"
+      "networkmanager"
+    ];
     packages = with pkgs; [
-      stig
       #dev
       charm
       gum

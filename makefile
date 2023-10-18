@@ -5,10 +5,13 @@
 ############################################################################
 
 local:
-	nixos-rebuild switch --flake . --use-remote-sudo
+	sudo nixos-rebuild switch --flake .#io
+
+local-up:
+	sudo nixos-rebuild switch --flake .#io --upgrade
 
 local-debug:
-	nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
+	nixos-rebuild switch --flake .#io --use-remote-sudo --show-trace --verbose
 
 update:
 	nix flake update
@@ -29,24 +32,8 @@ gc:
 #
 ############################################################################
 
-nixbook:
-	nixos-rebuild --flake .#nixbook --target-host nixbook --build-host devbox switch --use-remote-sudo
+algol: 
+	nixos-rebuild --flake .#algol --target-host algol --build-host algol switch --use-remote-sudo
 
-algol-debug: add-idols-ssh-key
-	nixos-rebuild --flake .#aquamarine --target-host aquamarine --build-host aquamarine switch --use-remote-sudo --show-trace --verbose
-
-ruby: add-idols-ssh-key
-	nixos-rebuild --flake .#ruby --target-host ruby --build-host ruby switch --use-remote-sudo
-
-ruby-debug: add-idols-ssh-key
-	nixos-rebuild --flake .#ruby --target-host ruby --build-host ruby switch --use-remote-sudo --show-trace --verbose
-
-kana: add-idols-ssh-key
-	nixos-rebuild --flake .#kana --target-host kana --build-host kana switch --use-remote-sudo
-
-kana-debug: add-idols-ssh-key
-	nixos-rebuild --flake .#kana --target-host kana --build-host kana switch --use-remote-sudo --show-trace --verbose
-
-idols: aqua ruby kana
-
-idols-debug: aqua-debug ruby-debug kana-debug
+algol-debug: 
+	nixos-rebuild --flake .#algol --target-host algol --build-host algol switch --use-remote-sudo --show-trace --verbose

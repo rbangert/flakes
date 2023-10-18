@@ -1,12 +1,11 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  ...
+{ inputs
+, pkgs
+, lib
+, ...
 }:
 with lib;
 with lib.rr-sv; {
-  imports = [./hardware.nix];
+  imports = [ ./hardware.nix ];
 
   rr-sv = {
     suites.common = enabled;
@@ -33,6 +32,7 @@ with lib.rr-sv; {
       emacs = enabled;
       git = enabled;
       nb = enabled;
+      ssh = enabled;
       neomutt = enabled;
       taskwarrior = enabled;
     };
@@ -43,6 +43,7 @@ with lib.rr-sv; {
     };
 
     services = {
+      openssh = enabled;
       taskserver = enabled;
     };
 
@@ -81,7 +82,7 @@ with lib.rr-sv; {
   };
 
   # Setup keyfile
-  boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};
+  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
   # Enable swap on luks
   boot.initrd.luks.devices."luks-cfa2a423-7810-4917-b4e0-f9fea138d7ac".device = "/dev/disk/by-uuid/cfa2a423-7810-4917-b4e0-f9fea138d7ac";
   boot.initrd.luks.devices."luks-cfa2a423-7810-4917-b4e0-f9fea138d7ac".keyFile = "/crypto_keyfile.bin";
@@ -109,8 +110,10 @@ with lib.rr-sv; {
     acpi
     tlp
     # essentials
+    nmap
     unzip
     neomutt
+    ventoy
     btop
     polkit
     yt-dlp
@@ -171,17 +174,19 @@ with lib.rr-sv; {
     tailscale
     librewolf
     brave
-    xxh
     gotify-cli
     gotify-desktop
+    gnome.gnome-boxes
     #shell
+    xxh
     navi
     # dev
     jetbrains.idea-community
     distrobox
     caddy
     devbox
-    vscode.fhs
+    vscode
+    teams-for-linux
     microsoft-edge
     firefox-devedition-bin
     fh
@@ -244,11 +249,6 @@ with lib.rr-sv; {
         autoLogin.user = "russ";
       };
     };
-    openssh = {
-      enable = true;
-      settings.PermitRootLogin = "no";
-      settings.PasswordAuthentication = false;
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -268,7 +268,7 @@ with lib.rr-sv; {
       enable = true;
       extraRules = [
         {
-          users = ["russ"];
+          users = [ "russ" ];
           keepEnv = true;
           persist = true;
         }

@@ -3,9 +3,11 @@
 
   inputs = {
     ## Core dependencies
-    fleek.url = "https://flakehub.com/f/ublue-os/fleek/0.10.4.tar.gz";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
     snowfall-lib.url = "github:snowfallorg/lib";
     snowfall-lib.inputs.nixpkgs.follows = "nixpkgs";
@@ -35,8 +37,7 @@
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+    fleek.url = "https://flakehub.com/f/ublue-os/fleek/0.10.4.tar.gz";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -73,7 +74,8 @@
           };
         };
       };
-    in lib.mkFlake {
+    in
+    lib.mkFlake {
       channels-config.allowUnfree = true;
 
       overlays = with inputs;

@@ -18,6 +18,7 @@ in
       w3m
       ack
       asciidoctor
+      ncdu
       silver-searcher
       catimg
       chafa

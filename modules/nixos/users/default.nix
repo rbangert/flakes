@@ -1,9 +1,8 @@
-{
-  options,
-  config,
-  pkgs,
-  lib,
-  ...
+{ options
+, config
+, pkgs
+, lib
+, ...
 }:
 with lib;
 with lib.rr-sv; let
@@ -19,32 +18,33 @@ with lib.rr-sv; let
       cp $src $out
     '';
 
-    passthru = {fileName = defaultIconFileName;};
+    passthru = { fileName = defaultIconFileName; };
   };
   propagatedIcon =
     pkgs.runCommandNoCC "propagated-icon"
-    {passthru = {fileName = cfg.icon.fileName;};}
-    ''
-      local target="$out/share/rr-sv-icons/user/${cfg.name}"
-      mkdir -p "$target"
+      { passthru = { fileName = cfg.icon.fileName; }; }
+      ''
+        local target="$out/share/rr-sv-icons/user/${cfg.name}"
+        mkdir -p "$target"
 
-      cp ${cfg.icon} "$target/${cfg.icon.fileName}"
-    '';
-in {
+        cp ${cfg.icon} "$target/${cfg.icon.fileName}"
+      '';
+in
+{
   options.rr-sv.user = with types; {
     name = mkOpt str "russ" "The name to use for the user account.";
     fullName = mkOpt str "Russell Bangert" "The full name of the user.";
     email = mkOpt str "russ@rr-sv.win" "The email of the user.";
     initialPassword =
       mkOpt str "password"
-      "The initial password to use when the user is first created.";
+        "The initial password to use when the user is first created.";
     icon =
       mkOpt (nullOr package) defaultIcon
-      "The profile picture to use for the user.";
-    extraGroups = mkOpt (listOf str) ["libvirtd" "wheel" "audio" "docker" "podman" "input" "networkmanager" "code-server"] "Groups for the user to be assigned.";
+        "The profile picture to use for the user.";
+    extraGroups = mkOpt (listOf str) [ "libvirtd" "wheel" "audio" "docker" "podman" "input" "networkmanager" "code-server" ] "Groups for the user to be assigned.";
     extraOptions =
-      mkOpt attrs {}
-      "Extra options passed to <option>users.users.<name></option>.";
+      mkOpt attrs { }
+        "Extra options passed to <option>users.users.<name></option>.";
   };
 
   config = {
@@ -81,15 +81,11 @@ in {
     users.users.${cfg.name} =
       {
         isNormalUser = true;
-
         inherit (cfg) name initialPassword;
-
         home = "/home/${cfg.name}";
         group = "users";
-
         shell = pkgs.zsh;
-
-        extraGroups = ["wheel"] ++ cfg.extraGroups;
+        extraGroups = [ "wheel" ] ++ cfg.extraGroups;
       }
       // cfg.extraOptions;
   };
