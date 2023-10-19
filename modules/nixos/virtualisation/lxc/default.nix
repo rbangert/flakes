@@ -21,9 +21,7 @@ in
     virtualisation.lxc = {
       enable = true;
     };
-
-    rr-sv.home.extraGroups = [ "lxd" "lxc" ];
   };
 }
-      
+
 

@@ -1,8 +1,7 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  ...
+{ inputs
+, pkgs
+, lib
+, ...
 }:
 with lib;
 with lib.rr-sv; {
@@ -24,8 +23,9 @@ with lib.rr-sv; {
       direnv = enabled;
     };
 
-    virtualization = {
+    virtualisation = {
       libvirtd = enabled;
+      lxc = enabled;
       podman = enabled;
     };
 
@@ -104,6 +104,7 @@ with lib.rr-sv; {
       "audio"
       "docker"
       "podman"
+      "lxd"
       "libvirtd"
       "input"
       "networkmanager"
@@ -153,7 +154,7 @@ with lib.rr-sv; {
       enable = true;
       extraRules = [
         {
-          users = ["russ"];
+          users = [ "russ" ];
           keepEnv = true;
           persist = true;
         }

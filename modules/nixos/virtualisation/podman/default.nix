@@ -3,10 +3,10 @@
 with lib;
 with lib.rr-sv;
 let
-  cfg = config.rr-sv.virtualization.podman;
+  cfg = config.rr-sv.virtualisation.podman;
 in
 {
-  options.rr-sv.virtualization.podman = with types; {
+  options.rr-sv.virtualisation.podman = with types; {
     enable = mkBoolOpt false "Whether or not to enable podman.";
   };
 

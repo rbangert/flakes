@@ -37,7 +37,7 @@ with lib.rr-sv; {
       taskwarrior = enabled;
     };
 
-    virtualization = {
+    virtualisation = {
       libvirtd = enabled;
       podman = enabled;
     };

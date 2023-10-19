@@ -1,15 +1,15 @@
-inputs @ {
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
+inputs @ { options
+, config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 with lib.rr-sv; let
-  cfg = config.rr-sv.virtualization.libvirtd;
-in {
-  options.rr-sv.virtualization.libvirtd = with types; {
+  cfg = config.rr-sv.virtualisation.libvirtd;
+in
+{
+  options.rr-sv.virtualisation.libvirtd = with types; {
     enable = mkBoolOpt false "Whether or not to enable libvirtd.";
   };
 
