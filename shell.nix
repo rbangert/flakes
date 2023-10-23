@@ -1,7 +1,5 @@
 # Shell for bootstrapping flake-enabled nix and other tooling
-{
-  pkgs ?
-  # If pkgs is not defined, instanciate nixpkgs from locked commit
+{ pkgs ? # If pkgs is not defined, instanciate nixpkgs from locked commit
   let
     lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
     nixpkgs = fetchTarball {
@@ -9,8 +7,8 @@
       sha256 = lock.narHash;
     };
   in
-    import nixpkgs {overlays = [];},
-  ...
+  import nixpkgs { overlays = [ ]; }
+, ...
 }: {
   default = pkgs.mkShell {
     shellHook = ''
@@ -34,6 +32,14 @@
       rnix-lsp
       nixfmt
       nixpkgs-fmt
+      nix-tree
+      nurl
+      alejandra
+      deploy-rs
+      nix-index
+      nix-prefetch-git
+      nix-output-monitor
+      #flake-checker
     ];
     NIX_CONFIG = "experimental-features = nix-command flakes";
   };

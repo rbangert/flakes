@@ -121,6 +121,7 @@ with lib.rr-sv; {
     xorg.xinit
     xorg.xsetroot
     qutebrowser
+    thunderbird
     chromium
     python311Packages.setproctitle
     xclip
@@ -144,6 +145,7 @@ with lib.rr-sv; {
     gpg-tui
     gpa
     killall
+    super-productivity
     ytmdl
     transmission
     arandr
@@ -167,6 +169,8 @@ with lib.rr-sv; {
     xfce.thunar
     obsidian
     mattermost-desktop
+    jitsi-meet-electron
+    inkscape
     discord
     element-desktop
     firefox
@@ -181,7 +185,7 @@ with lib.rr-sv; {
     xxh
     navi
     # dev
-    jetbrains.idea-community
+    vial
     distrobox
     caddy
     devbox

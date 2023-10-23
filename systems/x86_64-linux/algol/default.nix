@@ -110,6 +110,8 @@ with lib.rr-sv; {
       "networkmanager"
     ];
     packages = with pkgs; [
+      #system
+      btrfs-progs
       #dev
       charm
       gum

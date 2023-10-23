@@ -3,7 +3,8 @@
 with lib;
 with lib.rr-sv;
 let cfg = config.rr-sv.tools.emacs;
-in {
+in
+{
   options.rr-sv.tools.emacs = with types; {
     enable = mkBoolOpt true "Whether or not to manage emacs configuration.";
   };
@@ -50,6 +51,5 @@ in {
         extraPackages = epkgs: [ epkgs.vterm ];
       };
     };
-
   };
 }

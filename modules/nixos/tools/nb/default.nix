@@ -38,7 +38,6 @@ in
       python311Packages.pygments
       ranger
       readability-cli
-      sc-im
       vifm
       viu
       nb

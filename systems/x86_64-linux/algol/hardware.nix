@@ -13,10 +13,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "zfs" "ext4" ];
-  boot.zfs.forceImportRoot = false;
-  boot.zfs.extraPools = [ "zfspool" ];
-  networking.hostId = "fbe32fdd";
+  boot.supportedFilesystems = [ "ext4" "btrfs" ];
 
   fileSystems."/" =
     {
@@ -24,10 +21,22 @@
       fsType = "ext4";
     };
 
-  fileSystems."/home/russ/zfspool" =
+  fileSystems."/mnt/home" =
     {
-      device = "zfspool";
-      fsType = "zfs";
+      device = "/dev/disk/by-label/home";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/mnt/services" =
+    {
+      device = "/dev/disk/by-label/services";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/mnt/backup" =
+    {
+      device = "/dev/disk/by-label/backup";
+      fsType = "btrfs";
     };
 
   swapDevices = [ ];
