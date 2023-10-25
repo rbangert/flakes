@@ -38,7 +38,6 @@ with lib.rr-sv; {
     };
 
     system = {
-      boot = enabled;
       env = enabled;
       fonts = enabled;
       locale = enabled;
@@ -90,11 +89,12 @@ with lib.rr-sv; {
   };
 
   programs = {
+    nix-ld.enable = true;
+    mtr.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
-    nix-ld.dev.enable = true;
   };
 
   security = {

@@ -13,7 +13,9 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ext4" "btrfs" ];
+  boot.supportedFilesystems = [ "ext4" "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  networking.hostId = "edc44256";
 
   fileSystems."/" =
     {
@@ -24,19 +26,19 @@
   fileSystems."/mnt/home" =
     {
       device = "/dev/disk/by-label/home";
-      fsType = "btrfs";
+      fsType = "ext4";
     };
 
   fileSystems."/mnt/services" =
     {
       device = "/dev/disk/by-label/services";
-      fsType = "btrfs";
+      fsType = "ext4";
     };
 
   fileSystems."/mnt/backup" =
     {
       device = "/dev/disk/by-label/backup";
-      fsType = "btrfs";
+      fsType = "ext4";
     };
 
   swapDevices = [ ];

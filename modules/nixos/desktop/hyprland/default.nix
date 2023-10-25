@@ -1,14 +1,14 @@
-inputs @ {
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
+inputs @ { options
+, config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.desktop.hyprland;
-in {
+in
+{
   options.rr-sv.desktop.hyprland = with types; {
     enable = mkBoolOpt false "Whether or not to enable hyprland";
   };
@@ -22,6 +22,8 @@ in {
       swaylock-effects
       swayidle
       grim
+      gscreenshot
+      ksnip
       slurp
       swaybg
       brightnessctl
@@ -61,7 +63,7 @@ in {
       autostart.enable = true;
       portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+        extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
       };
     };
 
@@ -75,14 +77,14 @@ in {
 
     boot.plymouth = {
       enable = true;
-      themePackages = with pkgs; [rr-sv.catppuccin-plymouth];
+      themePackages = with pkgs; [ rr-sv.catppuccin-plymouth ];
       theme = "catppuccin-mocha";
     };
 
     services = {
       xserver = {
         enable = true;
-        excludePackages = [pkgs.xterm];
+        excludePackages = [ pkgs.xterm ];
         libinput.enable = true;
         displayManager.gdm = {
           enable = true;
@@ -105,15 +107,22 @@ in {
       };
       thunar = {
         enable = true;
-        plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
+        plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
       };
     };
 
     rr-sv.home = {
-      #configFile."hypr/hyprland.conf".source = ../../../../config/hypr/hyprland.conf;
+      configFile."hypr/hyprland.conf".source = ../../../../config/hypr/hyprland.conf;
       extraOptions = {
         services = {
-          dunst.enable = true;
+          dunst = {
+            enable = true;
+            iconTheme = {
+              package = pkgs.gnome3.adwaita-icon-theme;
+              name = "Adwaita";
+              size = "32x32";
+            };
+          };
           #   # TODO config kanshi: hotswap monitor configs
           # kanshi =  {
           #   enable = true;

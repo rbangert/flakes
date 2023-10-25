@@ -4,7 +4,8 @@ with lib;
 with lib.rr-sv;
 let cfg = config.rr-sv.desktop.dunst;
 
-in {
+in
+{
   options.rr-sv.desktop.dunst = with types; {
     enable = mkBoolOpt false "Whether or not to enable dunst";
   };
@@ -28,12 +29,12 @@ in {
             line_height = 0;
             format = "<b>%s</b>%b";
             alignment = "center";
-            icon_position = "off";
+            icon_position = "center";
             corner_radius = 12;
 
             frame_color = "#bd93f9";
             background = "#303241";
-            foreground = "#d9e0ee";
+            foreground = "#F38BA8";
             timeout = 10;
           };
         };

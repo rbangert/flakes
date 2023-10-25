@@ -6,8 +6,8 @@
 with lib;
 with lib.rr-sv; {
   imports = [
-    ./hardware.nix
-    #./disko-config.nix
+    #./hardware.nix
+    ./disko.nix
   ];
 
   rr-sv = {

@@ -124,6 +124,7 @@ with lib.rr-sv; {
     thunderbird
     chromium
     python311Packages.setproctitle
+    zoom-us
     xclip
     picom
     xdotool
@@ -180,7 +181,6 @@ with lib.rr-sv; {
     brave
     gotify-cli
     gotify-desktop
-    gnome.gnome-boxes
     #shell
     xxh
     navi
