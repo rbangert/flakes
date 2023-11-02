@@ -1,13 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  inputs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, modulesPath
+, inputs
+, ...
+}:
+let
   inherit (inputs) nixos-hardware;
-in {
+in
+{
   imports = with nixos-hardware.nixosModules; [
     (modulesPath + "/installer/scan/not-detected.nix")
     common-cpu-intel
@@ -19,11 +20,11 @@ in {
   services.thermald.enable = lib.mkDefault true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.kernelModules = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/70114134-484d-4f43-b616-aa0c23248edb";
@@ -38,7 +39,7 @@ in {
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/a85d7583-8e08-4c5f-81cb-546a791955e5";}
+    { device = "/dev/disk/by-uuid/a85d7583-8e08-4c5f-81cb-546a791955e5"; }
   ];
 
   networking.useDHCP = lib.mkDefault true;

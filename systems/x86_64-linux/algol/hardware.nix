@@ -5,40 +5,22 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "isci" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ext4" "zfs" ];
-  boot.zfs.forceImportRoot = false;
-  networking.hostId = "edc44256";
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/4b5beac6-fc56-488f-87e1-3db761987e1a";
+    { device = "/dev/disk/by-uuid/2ef2262a-6538-49f6-ad7e-c2b1d4c1337f";
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/home" =
-    {
-      device = "/dev/disk/by-label/home";
-      fsType = "ext4";
-    };
-
-  fileSystems."/mnt/services" =
-    {
-      device = "/dev/disk/by-label/services";
-      fsType = "ext4";
-    };
-
-  fileSystems."/mnt/backup" =
-    {
-      device = "/dev/disk/by-label/backup";
-      fsType = "ext4";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/E518-4061";
+      fsType = "vfat";
     };
 
   swapDevices = [ ];
@@ -48,11 +30,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0f0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0f1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

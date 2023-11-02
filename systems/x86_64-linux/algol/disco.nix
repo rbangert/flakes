@@ -1,3 +1,5 @@
+{ config, lib, pkgs, modulesPath, ... }:
+
 {
   disko.devices = {
     disk = {
@@ -90,7 +92,7 @@
           nix = {
             type = "zfs_fs";
             mountpoint = "/nix";
-            # options."com.sun:auto-snapshot" = "true";
+            options."com.sun:auto-snapshot" = "true";
           };
           home = {
             type = "zfs_fs";
@@ -101,15 +103,6 @@
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/persist";
-          };
-          zfs_testvolume = {
-            type = "zfs_volume";
-            size = "10M";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/ext4onzfs";
-            };
           };
           # encrypted = {
           #   type = "zfs_fs";

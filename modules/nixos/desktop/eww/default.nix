@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     rr-sv.home.extraOptions = {
 
-      home.packages = with pkgs; [ eww ];
+      home.packages = with pkgs; [ eww-wayland ];
       #xdg.configFile."eww/eww.yuck".source = ./eww.yuck;
       #xdg.configFile."eww/eww.css".source = ./eww.css;
 

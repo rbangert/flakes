@@ -138,6 +138,7 @@ with lib.rr-sv; {
     cht-sh
     dash
     dmenu
+    gimp
     bottom
     ranger
     signal-desktop
@@ -187,6 +188,13 @@ with lib.rr-sv; {
     # dev
     vial
     distrobox
+    gh
+    gh-dash
+    github-desktop
+    github-copilot
+    oh-my-git
+    lazygit
+    httrack
     caddy
     devbox
     vscode
@@ -227,6 +235,10 @@ with lib.rr-sv; {
     python311Packages.websockets
     python311Packages.packaging
     python311Packages.six
+    # inet tools
+    dig
+    whois
+    inetutils
   ];
 
   # TODO refactor io/default.nix

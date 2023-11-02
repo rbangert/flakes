@@ -6,16 +6,13 @@
 with lib;
 with lib.rr-sv; {
   imports = [
-    #./hardware.nix
-    ./disko.nix
+    ./hardware.nix
+    # ./disko.nix
   ];
 
   rr-sv = {
     shell = {
       zsh = enabled;
-      tmux = enabled;
-      starship = enabled;
-      atuin = enabled;
     };
 
     tools = {
@@ -24,14 +21,12 @@ with lib.rr-sv; {
     };
 
     virtualisation = {
-      libvirtd = enabled;
-      lxc = enabled;
       podman = enabled;
+      lxc = enabled;
     };
 
     services = {
       openssh = enabled;
-      syncthing = enabled;
       # TODO tailscale = enabled;
     };
 
@@ -46,7 +41,6 @@ with lib.rr-sv; {
 
     system = {
       env = enabled;
-      fonts = enabled;
       locale = enabled;
       time = enabled;
       xkb = enabled;
@@ -54,7 +48,7 @@ with lib.rr-sv; {
   };
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = false;
 
   networking = {
@@ -84,58 +78,48 @@ with lib.rr-sv; {
   };
 
   services = {
-    vscode-server.enable = true;
+    tailscale.enable = true;
     xserver = {
       layout = "us";
       xkbVariant = "";
     };
+    openssh = {
+      enable = true;
+      settings = { PasswordAuthentication = false; };
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.russ = {
-    isNormalUser = true;
-    description = "russ";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
-    ];
-    extraGroups = [
-      "polkituser"
-      "wheel"
-      "audio"
-      "docker"
-      "podman"
-      "lxd"
-      "libvirtd"
-      "input"
-      "networkmanager"
-    ];
-    packages = with pkgs; [
-      #system
-      btrfs-progs
-      #dev
-      charm
-      gum
-      nixfmt
-      nurl
-      nixpkgs-fmt
-      nixos-generators
-      ## neovim/lunarvim
-      diffuse
-      gccgo13
-      gnumake
-      python311Packages.pip
-      python311Packages.websockets
-      nodejs_20
-      cargo
-    ];
+
+  users.users = {
+    root = {
+      initialHashedPassword = "$6$ix1Uuo.tPzRokU0z$3oalZuzkbaUTou99VttgwgwNsExZx6KX0heKq3t0jDaWEpRBL5Jk71M8jM2CCIUjoK4SQfhFkNWa.ENZdGyJT.";
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
+      ];
+    };
+
+    russ = {
+      isNormalUser = true;
+      description = "russ";
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
+      ];
+      extraGroups = [
+        "polkituser"
+        "wheel"
+        "audio"
+        "docker"
+        "podman"
+        "lxd"
+        "libvirtd"
+        "input"
+        "networkmanager"
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-  ];
 
   programs = {
     nix-ld.enable = true;
@@ -144,8 +128,16 @@ with lib.rr-sv; {
       enable = true;
       enableSSHSupport = true;
     };
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+    };
   };
 
+  environment.systemPackages = with pkgs; [
+    btm
+  ];
   security = {
     sudo = {
       enable = true;
@@ -166,10 +158,6 @@ with lib.rr-sv; {
     unprivilegedUsernsClone = true;
   };
 
-  services = {
-    openssh.enable = true;
-    tailscale.enable = true;
-  };
 
   system.stateVersion = "23.05";
 }
