@@ -82,10 +82,7 @@ with lib.rr-sv; {
   };
 
   # Setup keyfile
-  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-cfa2a423-7810-4917-b4e0-f9fea138d7ac".device = "/dev/disk/by-uuid/cfa2a423-7810-4917-b4e0-f9fea138d7ac";
-  boot.initrd.luks.devices."luks-cfa2a423-7810-4917-b4e0-f9fea138d7ac".keyFile = "/crypto_keyfile.bin";
+ boot.initrd.luks.devices."luks-2e68c365-0b8b-414b-a01c-c3c4455a01de".device = "/dev/disk/by-uuid/2e68c365-0b8b-414b-a01c-c3c4455a01de";
 
   users.users.russ = {
     isNormalUser = true;
@@ -190,8 +187,6 @@ with lib.rr-sv; {
     distrobox
     gh
     gh-dash
-    github-desktop
-    github-copilot
     oh-my-git
     lazygit
     httrack
