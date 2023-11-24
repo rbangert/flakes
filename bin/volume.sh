@@ -84,7 +84,7 @@ mute)
 	amixer -D "$device" set Master 1+ toggle >/dev/null
 	if is_mute; then
 		# dunstify -t $notify_timeout -i "$icon_audio_muted" -r 2593 -u normal "Mute"
-		dunstify -t $notify_timeout -i "$icon_audio_muted" -r 2593 -u normal "$icon_audio_muted"
+		dunstify -t $notify_timeout -i "$icon_audio_muted" -r 2593 -u normal " "
 		echo $icon_audio_muted
 	else
 		send_notification

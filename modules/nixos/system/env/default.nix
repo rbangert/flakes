@@ -25,7 +25,7 @@ in {
       };
       variables = {
         QUTE_QT_WRAPPER = "PyQt6";
-        PATH = "$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/go/bin";
+        PATH = "$PATH:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
         EDITOR = "emacs";
         DOTS = "$HOME/p/dots";
         DOTDIR = "$HOME/p/dots";

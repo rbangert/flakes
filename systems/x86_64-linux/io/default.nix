@@ -120,6 +120,8 @@ with lib.rr-sv; {
     qutebrowser
     thunderbird
     chromium
+    at
+    ddcutil
     python311Packages.setproctitle
     zoom-us
     xclip
@@ -183,6 +185,7 @@ with lib.rr-sv; {
     xxh
     navi
     # dev
+    vscode
     vial
     distrobox
     gh
@@ -192,9 +195,6 @@ with lib.rr-sv; {
     httrack
     caddy
     devbox
-    vscode
-    teams-for-linux
-    microsoft-edge
     firefox-devedition-bin
     fh
     lazygit
@@ -250,6 +250,7 @@ with lib.rr-sv; {
   location.longitude = -107.14;
 
   services = {
+    atd.enable = true;
     tailscale.enable = true;
     picom.enable = true;
     xserver = {

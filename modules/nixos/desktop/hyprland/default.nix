@@ -84,6 +84,7 @@ in
     services = {
       xserver = {
         enable = true;
+        videoDrivers = [ "displaylink" "modesetting" ];
         excludePackages = [ pkgs.xterm ];
         libinput.enable = true;
         displayManager.gdm = {
@@ -144,6 +145,7 @@ in
             clock = true;
             font = "JetBrainsMono Nerd Font";
             font-size = 15;
+            grace = 10;
 
             line-uses-inside = true;
             disable-caps-lock-text = true;
