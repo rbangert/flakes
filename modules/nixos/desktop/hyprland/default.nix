@@ -145,7 +145,7 @@ in
             clock = true;
             font = "JetBrainsMono Nerd Font";
             font-size = 15;
-            grace = 10;
+            grace = 15;
 
             line-uses-inside = true;
             disable-caps-lock-text = true;

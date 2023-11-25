@@ -16,7 +16,7 @@ in {
     rr-sv.home.extraOptions = {
       home.packages = with pkgs; [rofi];
 
-      xdg.configFile."rofi".source = ../../../../config/rofi;
+      # xdg.configFile."rofi".source = ../../../../config/rofi;
     };
   };
 }

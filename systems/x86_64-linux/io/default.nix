@@ -174,7 +174,7 @@ with lib.rr-sv; {
     inkscape
     discord
     element-desktop
-    firefox
+    firefox-bin 
     tor
     tailscale
     librewolf
