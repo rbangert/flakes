@@ -1,10 +1,15 @@
-{ options, config, pkgs, lib, inputs, ... }:
-
-with lib;
-with lib.rr-sv;
-let cfg = config.rr-sv.tools.emacs;
-in
 {
+  options,
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+with lib;
+with lib.rr-sv; let
+  cfg = config.rr-sv.tools.emacs;
+in {
   options.rr-sv.tools.emacs = with types; {
     enable = mkBoolOpt true "Whether or not to manage emacs configuration.";
   };
@@ -23,14 +28,14 @@ in
       fd
       imagemagick
       clang
-      (mkIf (config.programs.gnupg.agent.enable) pinentry_emacs)
+      (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs)
       zstd
       ## Module dependencies
       # :vterm-module
       cmake
       libtool
       # :checkers spell
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      (aspellWithDicts (ds: with ds; [en en-computers en-science]))
       # :tools editorconfig
       editorconfig-core-c # per-project style config
       # :tools lookup & :lang org +roam
@@ -42,13 +47,13 @@ in
       fava
     ];
 
-    fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
+    fonts.fonts = [pkgs.emacs-all-the-icons-fonts];
 
     rr-sv.home.extraOptions = {
-      home.shellAliases = { "emc" = "emacsclient -c -a 'emacs'"; };
+      home.shellAliases = {"emc" = "emacsclient -c -a 'emacs'";};
       programs.emacs = {
         enable = true;
-        extraPackages = epkgs: [ epkgs.vterm ];
+        extraPackages = epkgs: [epkgs.vterm];
       };
     };
   };

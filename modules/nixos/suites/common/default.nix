@@ -1,15 +1,15 @@
-{ options
-, config
-, lib
-, pkgs
-, ...
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.suites.common;
-in
-{
-  options.rr-sv.suites.common = { enable = mkEnableOption "common"; };
+in {
+  options.rr-sv.suites.common = {enable = mkEnableOption "common";};
   config = mkIf cfg.enable {
     programs = {
       mtr.enable = true;
@@ -21,7 +21,7 @@ in
     services.openssh.enable = true;
 
     environment = {
-      defaultPackages = [ ];
+      defaultPackages = [];
       systemPackages = with pkgs; [
         ripgrep
         pamixer
@@ -54,8 +54,6 @@ in
         pkgs._1password
         rsync
         thefuck
-        python3
-        python310Packages.pip
         coreutils-full
       ];
     };

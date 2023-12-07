@@ -3,8 +3,8 @@
 bind r source-file ~/.config/tmux/tmux.conf
 
 # Set default terminal
-set -g default-terminal "screen-256color"
-set-option -sa terminal-features ',screen-256color:RGB'
+set -g default-terminal "tmux-256color"
+set-option -sa terminal-features ',tmux-256color:RGB'
 
 # Set scrollback buffer to 10000
 set -g history-limit 10000

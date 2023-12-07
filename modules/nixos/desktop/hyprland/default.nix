@@ -1,14 +1,14 @@
-inputs @ { options
-, config
-, lib
-, pkgs
-, ...
+inputs @ {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.desktop.hyprland;
-in
-{
+in {
   options.rr-sv.desktop.hyprland = with types; {
     enable = mkBoolOpt false "Whether or not to enable hyprland";
   };
@@ -39,7 +39,6 @@ in
       swaynotificationcenter
       wlr-randr
       ydotool
-      hyprland-share-picker
       wl-clipboard
       hyprland-protocols
       hyprpicker
@@ -63,7 +62,7 @@ in
       autostart.enable = true;
       portal = {
         enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+        extraPortals = [pkgs.xdg-desktop-portal-hyprland];
       };
     };
 
@@ -77,15 +76,15 @@ in
 
     boot.plymouth = {
       enable = true;
-      themePackages = with pkgs; [ rr-sv.catppuccin-plymouth ];
+      themePackages = with pkgs; [rr-sv.catppuccin-plymouth];
       theme = "catppuccin-mocha";
     };
 
     services = {
       xserver = {
         enable = true;
-        videoDrivers = [ "displaylink" "modesetting" ];
-        excludePackages = [ pkgs.xterm ];
+        videoDrivers = ["displaylink" "modesetting"];
+        excludePackages = [pkgs.xterm];
         libinput.enable = true;
         displayManager.gdm = {
           enable = true;
@@ -108,7 +107,7 @@ in
       };
       thunar = {
         enable = true;
-        plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+        plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
       };
     };
 

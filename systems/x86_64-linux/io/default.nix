@@ -1,11 +1,12 @@
-{ inputs
-, pkgs
-, lib
-, ...
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
 }:
 with lib;
 with lib.rr-sv; {
-  imports = [ ./hardware.nix ];
+  imports = [./hardware.nix];
 
   rr-sv = {
     suites.common = enabled;
@@ -82,7 +83,7 @@ with lib.rr-sv; {
   };
 
   # Setup keyfile
- boot.initrd.luks.devices."luks-2e68c365-0b8b-414b-a01c-c3c4455a01de".device = "/dev/disk/by-uuid/2e68c365-0b8b-414b-a01c-c3c4455a01de";
+  boot.initrd.luks.devices."luks-2e68c365-0b8b-414b-a01c-c3c4455a01de".device = "/dev/disk/by-uuid/2e68c365-0b8b-414b-a01c-c3c4455a01de";
 
   users.users.russ = {
     isNormalUser = true;
@@ -110,6 +111,7 @@ with lib.rr-sv; {
     nmap
     unzip
     neomutt
+    youtrack
     ventoy
     btop
     polkit
@@ -122,7 +124,6 @@ with lib.rr-sv; {
     chromium
     at
     ddcutil
-    python311Packages.setproctitle
     zoom-us
     xclip
     picom
@@ -151,7 +152,6 @@ with lib.rr-sv; {
     transmission
     arandr
     youtube-dl
-    stig
     vimpc
     mpd
     obs-studio
@@ -174,14 +174,17 @@ with lib.rr-sv; {
     inkscape
     discord
     element-desktop
-    firefox-bin 
+    firefox-bin
     tor
     tailscale
     librewolf
     brave
     gotify-cli
     gotify-desktop
-    #shell
+    bitwarden
+    bitwarden-cli
+    spotify-tui
+    spotify-cli-linux
     xxh
     navi
     # dev
@@ -214,6 +217,7 @@ with lib.rr-sv; {
     gopls
     charm
     gum
+    screen
     nixfmt
     nurl
     nixpkgs-fmt
@@ -226,10 +230,6 @@ with lib.rr-sv; {
     fd
     gccgo13
     gnumake
-    python311Packages.pip
-    python311Packages.websockets
-    python311Packages.packaging
-    python311Packages.six
     # inet tools
     dig
     whois
@@ -280,7 +280,7 @@ with lib.rr-sv; {
       enable = true;
       extraRules = [
         {
-          users = [ "russ" ];
+          users = ["russ"];
           keepEnv = true;
           persist = true;
         }

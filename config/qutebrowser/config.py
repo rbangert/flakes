@@ -81,6 +81,7 @@ c.content.plugins = False
 c.content.prefers_reduced_motion = False
 c.content.print_element_backgrounds = True
 c.content.private_browsing = False
+c.content.tls.certificate_errors = 'ask-block-thirdparty'
 c.content.webgl = True
 c.content.webrtc_ip_handling_policy = 'all-interfaces'
 c.downloads.location.directory = "$HOME/Downloads"

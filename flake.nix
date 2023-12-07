@@ -3,7 +3,7 @@
 
   inputs = {
     ## Core dependencies
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-generators.url = "github:nix-community/nixos-generators";
@@ -12,7 +12,7 @@
     snowfall-lib.url = "github:snowfallorg/lib";
     snowfall-lib.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -28,6 +28,9 @@
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "unstable";
+
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     vscode-server.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -42,8 +45,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    #flake-checker.url = "github:DeterminateSystems/flake-checker";
-    #flake-checker.inputs.nixpkgs.follows = "nixpkgs";
+    flake-checker.url = "github:DeterminateSystems/flake-checker";
+    flake-checker.inputs.nixpkgs.follows = "nixpkgs";
 
     snowfall-flake.url = "github:snowfallorg/flake";
     snowfall-flake.inputs.nixpkgs.follows = "unstable";
@@ -60,30 +63,27 @@
     #nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-        src = ./.;
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
 
-        snowfall = {
-          namespace = "rr-sv";
-          meta = {
-            name = "";
-            title = "";
-          };
+      snowfall = {
+        namespace = "rr-sv";
+        meta = {
+          name = "";
+          title = "";
         };
       };
-    in
+    };
+  in
     lib.mkFlake {
       channels-config.allowUnfree = true;
 
-
-      overlays = with inputs;
-        [
-          snowfall-flake.overlays."package/flake"
-          #nix-alien.overlays.default
-        ];
+      overlays = with inputs; [
+        snowfall-flake.overlays."package/flake"
+        #nix-alien.overlays.default
+      ];
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager

@@ -1,11 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-
-with lib;
-with lib.rr-sv;
-let
-  cfg = config.rr-sv.tools.nb;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.rr-sv; let
+  cfg = config.rr-sv.tools.nb;
+in {
   options.rr-sv.tools.nb = with types; {
     enable = mkBoolOpt false "Whether or not to enable nb";
   };
@@ -34,8 +37,6 @@ in
       mc
       mpg123
       mplayer
-      python311Packages.pdftotext
-      python311Packages.pygments
       ranger
       readability-cli
       vifm
