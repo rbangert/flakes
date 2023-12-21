@@ -8,6 +8,9 @@ with lib;
 with lib.rr-sv; {
   imports = [./hardware.nix];
 
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda1";
+
   networking = {
     hostName = "dia";
     enableIPv6 = false;
