@@ -9,7 +9,7 @@ with lib.rr-sv; {
   imports = [./hardware.nix];
 
   networking = {
-    hostName = "io";
+    hostName = "dia";
     enableIPv6 = false;
     networkmanager.enable = true;
     #wireless.iwd.enable = true;
