@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     containers.mattermost = {
+      autoStart = true;
       privateNetwork = true;
       hostAddress = "10.0.100.100";
       hostAddress6 = "fc00::1";
