@@ -47,7 +47,7 @@ in {
       fava
     ];
 
-    fonts.fonts = [pkgs.emacs-all-the-icons-fonts];
+    fonts.packages = [pkgs.emacs-all-the-icons-fonts];
 
     rr-sv.home.extraOptions = {
       home.shellAliases = {"emc" = "emacsclient -c -a 'emacs'";};

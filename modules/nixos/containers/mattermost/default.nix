@@ -10,7 +10,7 @@ with lib.rr-sv; let
   cfg = config.rr-sv.containers.mattermost;
 in {
   options.rr-sv. containers.mattermost = with types; {
-    enable = mkBoolOpt false "Whether or not to enable containers";
+    enable = mkBoolOpt false "Whether or not to enable mattermost";
   };
 
   config = mkIf cfg.enable {

@@ -19,7 +19,7 @@ in {
         programs.zsh = {
           enable = true;
           enableAutosuggestions = true;
-          enableSyntaxHighlighting = true;
+          syntaxHighlighting.enable = true;
           enableCompletion = true;
           history.path = "$XDG_CACHE_HOME/zsh.history";
           autocd = true;

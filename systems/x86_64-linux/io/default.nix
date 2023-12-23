@@ -121,6 +121,7 @@ with lib.rr-sv; {
     xorg.xsetroot
     qutebrowser
     thunderbird
+    age
     chromium
     at
     ddcutil
@@ -133,6 +134,9 @@ with lib.rr-sv; {
     feh
     calcurse
     rofi
+    rofi-calc
+    rofi-emoji
+    rofi-pass
     buku
     eza
     cht-sh
@@ -168,7 +172,6 @@ with lib.rr-sv; {
     any-nix-shell
     alacritty
     xfce.thunar
-    obsidian
     mattermost-desktop
     jitsi-meet-electron
     inkscape
@@ -183,6 +186,7 @@ with lib.rr-sv; {
     gotify-desktop
     bitwarden
     bitwarden-cli
+    rbw
     spotify-tui
     spotify-cli-linux
     xxh

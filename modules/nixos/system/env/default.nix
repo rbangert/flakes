@@ -21,18 +21,18 @@ in {
         XDG_DATA_HOME = "$HOME/.local/share";
         XDG_BIN_HOME = "$HOME/.local/bin";
         # To prevent firefox from creating ~/Desktop.
-        XDG_DESKTOP_DIR = "$HOME/s/other/";
+        XDG_DESKTOP_DIR = "$HOME/stuff/other/";
       };
       variables = {
         QUTE_QT_WRAPPER = "PyQt6";
-        PATH = "$PATH:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
+        PATH = "$PATH:$HOME/projects/flakes/bin:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
         EDITOR = "emacs";
-        DOTS = "$HOME/p/dots";
-        DOTDIR = "$HOME/p/dots";
-        STUFF = "$HOME/s";
-        JUNK = "$HOME/s/other";
-        NB_DIR = "$HOME/p/org";
-        NIXOS_CONFIG_DIR = "$HOME/p/dots";
+        DOTS = "$HOME/projects/flakes";
+        DOTDIR = "$HOME/projects/flakes";
+        STUFF = "$HOME/stuff";
+        JUNK = "$HOME/stuff/other";
+        NB_DIR = "$HOME/projects/org";
+        NIXOS_CONFIG_DIR = "$HOME/projects/dots";
         XDG_RUNTIME_DIR = "/run/user/1000";
         # Make some programs "XDG" compliant.
         LESSHISTFILE = "$XDG_CACHE_HOME/less.history";

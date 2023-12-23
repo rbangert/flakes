@@ -15,6 +15,9 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -90,6 +93,7 @@
         vscode-server.nixosModules.default
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
+        sops-nix.nixosModules.sops
       ];
     };
 }
