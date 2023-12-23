@@ -23,8 +23,6 @@ in {
       }: {
         services.caddy = {
           enable = true;
-          email = rbangert@proton.me;
-
         };
       };
     };

@@ -137,6 +137,7 @@ with lib.rr-sv; {
     rofi-calc
     rofi-emoji
     rofi-pass
+    rofi-rbw-wayland
     buku
     eza
     cht-sh
@@ -169,7 +170,7 @@ with lib.rr-sv; {
     hunspell
     hunspellDicts.en_US
     tabview
-    any-nix-shell
+    any-nix-shellpopin
     alacritty
     xfce.thunar
     mattermost-desktop
