@@ -26,7 +26,7 @@ in {
       variables = {
         QUTE_QT_WRAPPER = "PyQt6";
         PATH = "$PATH:$HOME/projects/flakes/bin:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
-        EDITOR = "emacs";
+        EDITOR = "nvim";
         DOTS = "$HOME/projects/flakes";
         DOTDIR = "$HOME/projects/flakes";
         STUFF = "$HOME/stuff";

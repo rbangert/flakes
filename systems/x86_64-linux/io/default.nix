@@ -170,7 +170,7 @@ with lib.rr-sv; {
     hunspell
     hunspellDicts.en_US
     tabview
-    any-nix-shellpopin
+    any-nix-shell
     alacritty
     xfce.thunar
     mattermost-desktop
@@ -180,6 +180,7 @@ with lib.rr-sv; {
     element-desktop
     firefox-bin
     tor
+
     tailscale
     librewolf
     brave
@@ -225,6 +226,7 @@ with lib.rr-sv; {
     screen
     nixfmt
     nurl
+    sops
     nixpkgs-fmt
     nixos-generators
     ## lazyvim

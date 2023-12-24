@@ -31,6 +31,7 @@ with lib.rr-sv; {
   rr-sv = {
     virtualisation = {
       libvirtd = enabled;
+      podman = enabled;
     };
 
     services = {
