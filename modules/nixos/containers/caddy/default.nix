@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    virtualization.oci-containers = {
+    virtualisation.oci-containers = {
       caddy = {
         image = "slothcroissant/caddy:2.7.6";
         autoStart = true;

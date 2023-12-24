@@ -39,9 +39,10 @@ with lib.rr-sv; {
       # taskserver = enabled;
     };
 
-    containers ={
+    containers = {
       caddy = enabled;
       mattermost = enabled;
+    };
   };
 
   boot.cleanTmpDir = true;
@@ -91,7 +92,6 @@ with lib.rr-sv; {
   ];
 
   services = {
-    openssh.enable = true;
     tailscale.enable = true;
   };
 
