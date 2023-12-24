@@ -7,14 +7,14 @@ inputs @ {
 }:
 with lib;
 with lib.rr-sv; let
-  cfg = config.rr-sv.containers.mattermost;
+  cfg = config.rr-sv.containers.vaultwarden;
 in {
-  options.rr-sv. containers.mattermost = with types; {
-    enable = mkBoolOpt false "Whether or not to enable mattermost";
+  options.rr-sv. containers.vaultwarden = with types; {
+    enable = mkBoolOpt false "Whether or not to enable vaultwarden";
   };
 
   config = mkIf cfg.enable {
-    containers.mattermost = {
+    containers.vaultwarden = {
       autoStart = true;
       privateNetwork = true;
       hostAddress = "10.0.100.100";
