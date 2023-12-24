@@ -9,7 +9,7 @@ with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.containers.vaultwarden;
 in {
-  options.rr-sv. containers.vaultwarden = with types; {
+  options.rr-sv.containers.vaultwarden = with types; {
     enable = mkBoolOpt false "Whether or not to enable vaultwarden";
   };
 

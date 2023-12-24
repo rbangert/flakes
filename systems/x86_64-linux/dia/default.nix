@@ -39,7 +39,9 @@ with lib.rr-sv; {
       # taskserver = enabled;
     };
 
-    containers.mattermost = enabled;
+    containers ={
+      caddy = enabled;
+      mattermost = enabled;
   };
 
   boot.cleanTmpDir = true;
