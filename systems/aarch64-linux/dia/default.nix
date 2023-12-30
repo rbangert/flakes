@@ -1,19 +1,21 @@
-{ pkgs, config, lib, modulesPath, inputs, ... }:
-
+{
+  pkgs,
+  config,
+  lib,
+  modulesPath,
+  inputs,
+  ...
+}:
 with lib;
-with lib.rr-sv;
-
+with lib.rr-sv; {
   rr-sv = {
     suites.server = enabled;
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-      options = [ "noatime" ];
-    };
-  };
+  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+  boot.loader.grub.enable = false;
+  # Enables the generation of /boot/extlinux/extlinux.conf
+  boot.loader.generic-extlinux-compatible.enable = true;
 
   networking = {
     hostName = "dia";
@@ -29,11 +31,11 @@ with lib.rr-sv;
   ];
 
   services = {
-  	openssh.enable = true;
+    openssh.enable = true;
     tailscale.enable = true;
   };
 
-users.users.russ = {
+  users.users.russ = {
     isNormalUser = true;
     #InitialHashedPassword =
     openssh.authorizedKeys.keys = [
@@ -51,27 +53,5 @@ users.users.russ = {
     ];
   };
 
-  # Enable passwordless sudo.
-  security.sudo.extraRules= [
-    {  users = [ user ];
-      commands = [
-         { command = "ALL" ;
-           options= [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
-  # Enable GPU acceleration
-  hardware.raspberry-pi."4".fkms-3d.enable = true;
-
-  services.xserver = {
-    enable = false;
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
-  };
-
-  hardware.pulseaudio.enable = true;
-
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }
