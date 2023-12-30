@@ -18,7 +18,7 @@ in {
       enable = true;
       preseed = {
         config = [
-          "core.https_address" = "0.0.0.0:8443";
+          "core.https_address" = "10.0.0.97:8443";
         ];
         networks = [
         {
