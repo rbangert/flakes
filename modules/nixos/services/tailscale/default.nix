@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.rr-sv;
