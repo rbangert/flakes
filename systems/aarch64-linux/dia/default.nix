@@ -8,6 +8,8 @@
 }:
 with lib;
 with lib.rr-sv; {
+  imports = [./hardware.nix];
+
   rr-sv = {
     suites.server = enabled;
 
