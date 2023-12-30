@@ -3,15 +3,14 @@
 with lib;
 with lib.rr-sv;
 let
-  cfg = config.rr-sv.tools.git;
+  cfg = config.rr-sv.services.tailscale;
 in
 {
-  options.rr-sv.tools.git = with types; {
-    enable = mkBoolOpt false "Whether or not to enable git";
+  options.rr-sv.services.tailscale = with types; {
+    enable = mkBoolOpt false "Whether or not to enable tailscale";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ tailscale ];
 
     services.tailscale.enable = true;
 
