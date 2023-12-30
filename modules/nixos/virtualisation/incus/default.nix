@@ -17,9 +17,11 @@ in {
     virtualisation.incus = {
       enable = true;
       preseed = {
-        config = {
+        config = [
+        {
           "core.https_address" = "10.0.0.97:8443";
-        };
+        }
+        ];
         networks = [
         {
           config = {
@@ -58,7 +60,6 @@ in {
         }
         ];
       }
-        }
     };
   };
 }
