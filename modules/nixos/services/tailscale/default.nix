@@ -1,11 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-
-with lib;
-with lib.rr-sv;
-let
-  cfg = config.rr-sv.services.tailscale;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.rr-sv; let
+  cfg = config.rr-sv.services.tailscale;
+in {
   options.rr-sv.services.tailscale = {
     enable = mkBoolOpt false "Whether or not to enable tailscale";
   };
@@ -15,10 +18,10 @@ in
 
     networking.firewall = {
       # always allow traffic from your Tailscale network
-      trustedInterfaces = [ "tailscale0" ];
+      trustedInterfaces = ["tailscale0"];
 
       # allow the Tailscale UDP port through the firewall
-      allowedUDPPorts = [ config.services.tailscale.port ];
+      allowedUDPPorts = [config.services.tailscale.port];
 
       checkReversePath = "loose";
     };
@@ -55,6 +58,5 @@ in
     #     # otherwise authenticate with tailscale
     #     ${tailscale}/bin/tailscale up --login-server=https://ts.ghuntley.net -authkey=tskey-examplekeyhere
     #   '';
-
-  }
-
+  };
+}
