@@ -63,5 +63,25 @@ with lib.rr-sv; {
     ];
   };
 
+  security = {
+    rtkit.enable = true;
+    sudo = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
+    doas = {
+      enable = true;
+      extraRules = [
+        {
+          users = ["russ"];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
+    };
+    protectKernelImage = true;
+    unprivilegedUsernsClone = true;
+  };
+
   system.stateVersion = "23.11";
 }
