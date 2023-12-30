@@ -6,12 +6,11 @@ let
   cfg = config.rr-sv.services.tailscale;
 in
 {
-  options.rr-sv.services.tailscale = with types; {
+  options.rr-sv.services.tailscale = {
     enable = mkBoolOpt false "Whether or not to enable tailscale";
   };
 
   config = mkIf cfg.enable {
-
     services.tailscale.enable = true;
 
     networking.firewall = {
