@@ -10,6 +10,13 @@ with lib;
 with lib.rr-sv; {
   rr-sv = {
     suites.server = enabled;
+
+    virtualisation = {
+      libvirtd = enabled;
+      lxc = enabled;
+      incus = enabled;
+      podman = enabled;
+    };
   };
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
@@ -50,6 +57,7 @@ with lib.rr-sv; {
       "libvirtd"
       "input"
       "networkmanager"
+      "incus-admin"
     ];
   };
 

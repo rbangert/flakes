@@ -17,6 +17,7 @@ in {
     rr-sv = {
       services = {
         openssh = enabled;
+        tailscale = enabled;
       };
 
       nix = {
@@ -25,8 +26,6 @@ in {
       };
 
       system = {
-        boot = enabled;
-        # env = enabled;
         locale = enabled;
         time = enabled;
       };
@@ -35,6 +34,8 @@ in {
     environment = {
       defaultPackages = [];
       systemPackages = with pkgs; [
+        git
+        neovim
       ];
     };
   };
