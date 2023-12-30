@@ -120,6 +120,6 @@ c.tabs.padding = {
     "bottom": 3,
 }
 c.url.default_page = "https://www.youtube.com/"
-c.url.searchengines = {"DEFAULT": "https://search.brave.com/search?q={}"}
-c.url.start_pages = "https://jasminespetcare.org/"
+c.url.searchengines = {"DEFAULT": "https://startpage.com/do/search?query={}&lui=english"}
+c.url.start_pages = "https://startpage.com"
 c.tabs.title.format = '{index}{private}{title_sep}{current_title}'

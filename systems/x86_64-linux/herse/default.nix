@@ -49,7 +49,7 @@ with lib.rr-sv; {
   zramSwap.enable = false;
 
   networking = {
-    hostName = "dia";
+    hostName = "herse";
     enableIPv6 = true;
     nat = {
       enable = true;

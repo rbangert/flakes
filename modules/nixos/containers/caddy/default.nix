@@ -9,12 +9,12 @@ with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.containers.caddy;
 in {
-  options.rr-sv. containers.caddy = with types; {
+  options.rr-sv.containers.caddy = with types; {
     enable = mkBoolOpt false "Whether or not to enable caddy";
   };
 
   config = mkIf cfg.enable {
-    virtualisation.oci-containers = {
+    virtualisation.oci-containers.containers = {
       caddy = {
         image = "slothcroissant/caddy:2.7.6";
         autoStart = true;

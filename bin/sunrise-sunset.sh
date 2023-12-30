@@ -23,4 +23,4 @@ echo "sudo ddcutil --display 1 setvcp 10 20" | at $sunset
 echo "sudo ddcutil --display 2 setvcp 10 20" | at $sunset
 echo "sudo brightnessctl set 1000" | at $sunrise
 
-at 09:00 -f /home/russ/p/dots/bin/sunrise-sunset.sh
+at 09:00 -f $DOTBIN/sunrise-sunset.sh

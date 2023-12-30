@@ -26,7 +26,7 @@ in {
 
       system = {
         boot = enabled;
-        env = enabled;
+        # env = enabled;
         locale = enabled;
         time = enabled;
       };

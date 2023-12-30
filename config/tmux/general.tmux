@@ -12,6 +12,10 @@ set -g history-limit 10000
 # Set default shell in tmux
 set -g default-shell /run/current-system/sw/bin/zsh
 
+# Screen Saver
+set -g lock-after-time 500
+set -g lock-command "asciiquarium"
+
 # Lower delay waiting for chord after escape key press.
 set -g escape-time 10
 

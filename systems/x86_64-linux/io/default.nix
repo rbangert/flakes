@@ -111,6 +111,7 @@ with lib.rr-sv; {
     nmap
     unzip
     neomutt
+    talosctl
     youtrack
     ventoy
     btop
@@ -118,7 +119,10 @@ with lib.rr-sv; {
     yt-dlp
     ytfzf
     xorg.xinit
+    qmk
     xorg.xsetroot
+    quickemu
+    dfu-util
     qutebrowser
     thunderbird
     age
@@ -131,8 +135,12 @@ with lib.rr-sv; {
     xdotool
     xorg.xbacklight
     light
+    asciiquarium
+    calcure
     feh
     calcurse
+    kicad
+    spice-gtk
     rofi
     rofi-calc
     rofi-emoji
@@ -141,6 +149,7 @@ with lib.rr-sv; {
     buku
     eza
     cht-sh
+    wtf
     dash
     dmenu
     gimp

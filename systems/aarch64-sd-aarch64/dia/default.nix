@@ -16,7 +16,7 @@ with lib.rr-sv;
   };
 
   networking = {
-    hostName = "herse";
+    hostName = "dia";
     firewall = {
       enable = true;
       checkReversePath = "loose";
@@ -31,11 +31,6 @@ with lib.rr-sv;
   services = {
   	openssh.enable = true;
     tailscale.enable = true;
-    paperless-ng = {
-        enable = true;
-        address = "0.0.0.0";
-        port = 8000;
-    };
   };
 
 users.users.russ = {
@@ -72,8 +67,8 @@ users.users.russ = {
 
   services.xserver = {
     enable = false;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
   };
 
   hardware.pulseaudio.enable = true;

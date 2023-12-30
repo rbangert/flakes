@@ -26,14 +26,14 @@ in {
       variables = {
         QUTE_QT_WRAPPER = "PyQt6";
         PATH = "$PATH:$HOME/projects/flakes/bin:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
-        EDITOR = "nvim";
+        EDITOR = "emacs";
         DOTS = "$HOME/projects/flakes";
         DOTDIR = "$HOME/projects/flakes";
+        DOTBIN = "$HOME/projects/flakes/bin";
         STUFF = "$HOME/stuff";
         JUNK = "$HOME/stuff/other";
         NB_DIR = "$HOME/projects/org";
         NIXOS_CONFIG_DIR = "$HOME/projects/dots";
-        XDG_RUNTIME_DIR = "/run/user/1000";
         # Make some programs "XDG" compliant.
         LESSHISTFILE = "$XDG_CACHE_HOME/less.history";
         WGETRC = "$XDG_CONFIG_HOME/wgetrc";
