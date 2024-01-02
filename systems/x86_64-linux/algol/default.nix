@@ -29,6 +29,7 @@ with lib.rr-sv; {
 
     services = {
       openssh = enabled;
+      syncthing = enabled;
       tailscale = enabled;
     };
 
