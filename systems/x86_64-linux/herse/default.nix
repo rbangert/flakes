@@ -21,6 +21,11 @@ with lib.rr-sv; {
     }
   ];
 
+  services.syncthing.extraOptions.gui = {
+    user = "russ";
+    password = "password";
+  };
+
   rr-sv = {
     virtualisation = {
       libvirtd = enabled;
@@ -57,7 +62,7 @@ with lib.rr-sv; {
     firewall = {
       enable = true;
       checkReversePath = "loose";
-      allowedTCPPorts = [443 80];
+      allowedTCPPorts = [8384 443 80];
       #    allowedUDPPorts = [ 443 80 44857 ];
       allowPing = false;
     };
