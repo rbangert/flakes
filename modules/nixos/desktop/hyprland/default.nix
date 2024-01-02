@@ -56,6 +56,21 @@ in {
       qt6.qtwayland
       adwaita-qt
       adwaita-qt6
+      (pkgs.python3Packages.buildPythonPackage rec {
+        pname = "pyprland";
+        version = "1.4.1";
+        src = pkgs.fetchPypi {
+          inherit pname version;
+          sha256 = "sha256-JRxUn4uibkl9tyOe68YuHuJKwtJS//Pmi16el5gL9n8=";
+        };
+        format = "pyproject";
+        propagatedBuildInputs = with pkgs; [
+          python3Packages.setuptools
+          python3Packages.poetry-core
+          poetry
+        ];
+        doCheck = false;
+      })
     ];
 
     xdg = {
@@ -112,6 +127,41 @@ in {
     };
 
     rr-sv.home = {
+      file.".config/hypr/pyprland.json".text = ''
+        {
+          "pyprland": {
+            "plugins": ["scratchpads", "magnify", "expose" ]
+          },
+          "scratchpads": {
+            "term": {
+              "command": "alacritty --class scratchpad",
+              "margin": 50
+            },
+            "ranger": {
+              "command": "kitty --class scratchpad -e ranger",
+              "margin": 50
+            },
+            "musikcube": {
+              "command": "alacritty --class scratchpad -e musikcube",
+              "margin": 50
+            },
+            "btm": {
+              "command": "alacritty --class scratchpad -e btm",
+              "margin": 50
+            },
+            "geary": {
+              "command": "geary",
+              "margin": 50
+            },
+            "pavucontrol": {
+              "command": "pavucontrol",
+              "margin": 50,
+              "unfocus": "hide",
+              "animation": "fromTop"
+            }
+          }
+        }
+      '';
       configFile."hypr/hyprland.conf".source = ../../../../config/hypr/hyprland.conf;
       extraOptions = {
         services = {

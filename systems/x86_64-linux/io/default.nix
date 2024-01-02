@@ -45,6 +45,8 @@ with lib.rr-sv; {
 
     services = {
       openssh = enabled;
+      syncthing = enabled;
+      tailscale = enabled;
       taskserver = enabled;
     };
 
@@ -108,6 +110,7 @@ with lib.rr-sv; {
     acpi
     tlp
     # essentials
+    usbutils
     nmap
     unzip
     neomutt
@@ -189,7 +192,6 @@ with lib.rr-sv; {
     element-desktop
     firefox-bin
     tor
-
     tailscale
     librewolf
     brave
@@ -203,6 +205,7 @@ with lib.rr-sv; {
     xxh
     navi
     # dev
+    freecad
     vscode
     vial
     distrobox

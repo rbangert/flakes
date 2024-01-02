@@ -20,23 +20,19 @@ with lib.rr-sv; {
       supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
     }
   ];
-  programs.ssh.extraConfig = ''
-    Host algol
-      HostName algol
-      User builder
-      IdentitiesOnly yes
-      IdentityFile /root/.ssh/id_builder
-  '';
 
   rr-sv = {
     virtualisation = {
       libvirtd = enabled;
       podman = enabled;
+      incus = enabled;
+      lxc = enabled;
     };
 
     services = {
       openssh = enabled;
-      # taskserver = enabled;
+      syncthing = enabled;
+      tailscale = enabled;
     };
 
     containers = {
@@ -51,21 +47,19 @@ with lib.rr-sv; {
   networking = {
     hostName = "herse";
     enableIPv6 = true;
+    networkmanager.enable = true;
     nat = {
       enable = true;
       internalInterfaces = ["ve-+"];
       externalInterface = "ens3";
-      # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
-    networkmanager.enable = true;
-    #wireless.iwd.enable = true;
     firewall = {
       enable = true;
       checkReversePath = "loose";
-      #    allowedTCPPorts = [ 443 80 ];
+      allowedTCPPorts = [443 80];
       #    allowedUDPPorts = [ 443 80 44857 ];
-      #    allowPing = false;
+      allowPing = false;
     };
   };
 
@@ -90,10 +84,6 @@ with lib.rr-sv; {
     git
     neovim
   ];
-
-  services = {
-    tailscale.enable = true;
-  };
 
   security = {
     rtkit.enable = true;
