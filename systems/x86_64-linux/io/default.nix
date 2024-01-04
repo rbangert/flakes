@@ -165,7 +165,7 @@ with lib.rr-sv; {
     gpa
     killall
     super-productivity
-    ytmdl
+    # ytmdl
     transmission
     arandr
     youtube-dl
@@ -175,6 +175,7 @@ with lib.rr-sv; {
     remmina
     wego
     glow
+    blender
     kitty
     coreutils-full
     libreoffice

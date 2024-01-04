@@ -42,6 +42,11 @@ with lib.rr-sv; {
   services = {
     openssh.enable = true;
     tailscale.enable = true;
+    paperless = {
+      enable = true;
+      address = "0.0.0.0";
+      port = 8080;
+    };
   };
 
   users.users.russ = {
