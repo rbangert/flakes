@@ -17,7 +17,6 @@ in {
     containers.caddy = {
       autoStart = true;
       hostAddress = "0.0.0.0";
-      port = [80 443];
       config = {
         config,
         pkgs,
