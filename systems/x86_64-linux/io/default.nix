@@ -143,6 +143,7 @@ with lib.rr-sv; {
     feh
     calcurse
     kicad
+    freecad
     spice-gtk
     rofi
     rofi-calc
@@ -206,7 +207,6 @@ with lib.rr-sv; {
     xxh
     navi
     # dev
-    freecad
     vscode
     vial
     distrobox
@@ -275,6 +275,8 @@ with lib.rr-sv; {
     picom.enable = true;
     xserver = {
       enable = true;
+      videoDrivers = ["displaylink" "modesetting"];
+      desktopManager.plasma5.enable = true;
       displayManager = {
         gdm.enable = true;
         autoLogin.enable = true;

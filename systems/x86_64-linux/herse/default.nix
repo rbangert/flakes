@@ -10,22 +10,6 @@ with lib.rr-sv; {
 
   programs.extra-container.enable = true;
 
-  nix.distributedBuilds = true;
-  nix.buildMachines = [
-    {
-      hostName = "algol";
-      systems = ["x86_64-linux" "aarch64-linux"];
-      maxJobs = 4;
-      speedFactor = 2;
-      supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-    }
-  ];
-
-  services.syncthing.extraOptions.gui = {
-    user = "russ";
-    password = "password";
-  };
-
   rr-sv = {
     virtualisation = {
       libvirtd = enabled;
@@ -36,7 +20,6 @@ with lib.rr-sv; {
 
     services = {
       openssh = enabled;
-      syncthing = enabled;
       tailscale = enabled;
     };
 
@@ -62,7 +45,7 @@ with lib.rr-sv; {
     firewall = {
       enable = true;
       checkReversePath = "loose";
-      allowedTCPPorts = [8384 443 80];
+      allowedTCPPorts = [443 80];
       #    allowedUDPPorts = [ 443 80 44857 ];
       allowPing = false;
     };
