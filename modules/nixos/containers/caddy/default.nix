@@ -14,28 +14,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    virtualisation.oci-containers.containers = {
-      caddy = {
-        image = "slothcroissant/caddy-cloudflaredns:latest";
-        autoStart = true;
-        ports = [
-          "172.245.210.126:80:80"
-          "172.245.210.126:443:443"
-          "172.245.210.126:443:443/udp"
-        ];
-        volumes = [
-          "/home/russ/www:/var/www"
-          "/home/russ/caddy:/data"
-          "/home/russ/caddy/Caddyfile:/etc/caddy/Caddyfile"
-        ];
-        environment = {
-          "TZ" = "America/Denver";
-          "ACME_AGREE" = "true";
+    containers.caddy = {
+      autoStart = true;
+      hostAdress = "0.0.0.0";
+      port = [80 443];
+      config = {
+        config,
+        pkgs,
+        ...
+      }: {
+        services.caddy = {
+          enable = true;
+          virtualHosts."localhost".extraConfig = ''
+            respond "Hello, world!"
+          '';
         };
-        extraOptions = [
-          "--name=caddy"
-          "--network=caddy"
-        ];
       };
     };
   };
