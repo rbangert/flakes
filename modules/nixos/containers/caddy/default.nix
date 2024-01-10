@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     virtualisation.oci-containers.containers = {
       caddy = {
-        image = "slothcroissant/caddy:2.7.6";
+        image = "slothcroissant/caddy-cloudflaredns:v2.7.6";
         autoStart = true;
         ports = [
           "172.245.210.126:80:80"
