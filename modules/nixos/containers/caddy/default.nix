@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     containers.caddy = {
       autoStart = true;
-      hostAdress = "0.0.0.0";
+      hostAddress = "0.0.0.0";
       port = [80 443];
       config = {
         config,

@@ -29,7 +29,7 @@ with lib.rr-sv; {
     };
   };
 
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   zramSwap.enable = false;
 
   networking = {
