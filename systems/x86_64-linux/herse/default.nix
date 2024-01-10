@@ -23,10 +23,10 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
-    containers = {
-      caddy = enabled;
-      mattermost = enabled;
-    };
+    # containers = {
+    #   caddy = enabled;
+    #   mattermost = enabled;
+    # };
   };
 
   boot.tmp.cleanOnBoot = true;

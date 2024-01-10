@@ -27,7 +27,7 @@ in {
       }: {
         services.mattermost = {
           enable = true;
-          siteUrl = "http://mm.dmaservices.ca";
+          siteUrl = "http://mm.dmaservices.cc";
 
           # envionmentFile = "${config.services.mattermost.dataDir}/config.json";
         };
