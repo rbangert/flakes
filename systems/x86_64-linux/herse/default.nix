@@ -14,7 +14,7 @@ with lib.rr-sv; {
     virtualisation = {
       libvirtd = enabled;
       podman = enabled;
-      incus = enabled;
+      # incus = enabled;
       lxc = enabled;
     };
 
@@ -29,7 +29,7 @@ with lib.rr-sv; {
     };
   };
 
-  boot.cleanTmpDir = true;
+  boot.cleanOnBoot = true;
   zramSwap.enable = false;
 
   networking = {
