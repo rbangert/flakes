@@ -46,7 +46,7 @@ with lib.rr-sv; {
       enable = true;
       checkReversePath = "loose";
       allowedTCPPorts = [443 80];
-      #    allowedUDPPorts = [ 443 80 44857 ];
+      allowedUDPPorts = [443 80];
       allowPing = false;
     };
   };
