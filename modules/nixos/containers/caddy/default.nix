@@ -25,6 +25,7 @@ in {
         services.caddy = {
           enable = true;
           virtualHosts."mm.rr-sv.win".extraConfig = ''
+            encode gzip
             reverse_proxy http://10.0.100.100
           '';
         };
