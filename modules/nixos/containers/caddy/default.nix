@@ -24,7 +24,7 @@ in {
       }: {
         services.caddy = {
           enable = true;
-          virtualHosts."mm.dmaservices.cc".extraConfig = ''
+          virtualHosts."mm.rr-sv.win".extraConfig = ''
             reverse_proxy http://10.0.100.100
           '';
         };
