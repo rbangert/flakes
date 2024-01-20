@@ -159,6 +159,8 @@ with lib.rr-sv; {
     gimp
     bottom
     ranger
+    _1password
+    _1password-gui
     signal-desktop
     ripcord
     gnupg
@@ -272,11 +274,10 @@ with lib.rr-sv; {
   services = {
     atd.enable = true;
     tailscale.enable = true;
-    picom.enable = true;
+    gvfs.enable = true;
     xserver = {
       enable = true;
       videoDrivers = ["displaylink" "modesetting"];
-      desktopManager.plasma5.enable = true;
       displayManager = {
         gdm.enable = true;
         autoLogin.enable = true;
