@@ -50,12 +50,17 @@ with lib.rr-sv; {
     };
   };
 
+  # enabling zfs
+  boot.supportedFilesystems = ["zfs"];
+  boot.zfs.forceImportRoot = false;
+
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = false;
 
   networking = {
     hostName = "algol";
+    hostId = "edf1e63e";
     firewall = {
       enable = true;
       checkReversePath = "loose";
