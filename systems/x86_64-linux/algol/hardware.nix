@@ -22,7 +22,7 @@
     fsType = "ext4";
   };
 
-  fileSystems."/home" = {
+  fileSystems."/mnt/home" = {
     device = "zpool/home";
     fsType = "zfs";
   };
