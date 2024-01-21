@@ -19,6 +19,9 @@ in {
       lockdPort = 4001;
       mountdPort = 4002;
       statdPort = 4003;
+      exports = ''
+        /exports/home 10.0.0.33(rw,fsid=0,no_subtree_check) 100.65.34.18(rw,fsid=0,no_subtree_check)
+      '';
     };
     networking.firewall = {
       # for NFSv3; view with `rpcinfo -p`

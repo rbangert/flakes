@@ -34,6 +34,7 @@ with lib.rr-sv; {
       openssh = enabled;
       syncthing = enabled;
       tailscale = enabled;
+      nfs = enabled;
     };
 
     suites = {

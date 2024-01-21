@@ -27,6 +27,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/export/home" = {
+    device = "zpool/home";
+    options = ["bind"];
+  };
+
   swapDevices = [
     {device = "/dev/disk/by-uuid/acdc268d-7dbd-4a56-a1f8-1a4e44a3c78d";}
   ];
