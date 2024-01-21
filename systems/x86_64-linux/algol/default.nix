@@ -13,6 +13,9 @@ with lib.rr-sv; {
 
   rr-sv = {
     shell = {
+      atuin = enabled;
+      starship = enabled;
+      tmux = enabled;
       zsh = enabled;
     };
 
@@ -66,20 +69,6 @@ with lib.rr-sv; {
       checkReversePath = "loose";
     };
   };
-
-  services = {
-    tailscale.enable = true;
-    xserver = {
-      layout = "us";
-      xkbVariant = "";
-    };
-    openssh = {
-      enable = true;
-      settings = {PasswordAuthentication = false;};
-    };
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
 
   users.users = {
     root = {
