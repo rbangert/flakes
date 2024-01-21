@@ -55,7 +55,7 @@ with lib.rr-sv; {
   boot.zfs.forceImportRoot = false;
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sdb";
   boot.loader.grub.useOSProber = false;
 
   networking = {
