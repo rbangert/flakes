@@ -20,6 +20,7 @@ with lib.rr-sv; {
     };
 
     tools = {
+      direnv = enabled;
       git = enabled;
     };
 

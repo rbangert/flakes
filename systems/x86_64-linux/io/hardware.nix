@@ -32,8 +32,8 @@
     fsType = "vfat";
   };
 
-  # fileSystems."/nfs" = {
-  #   device = "nas:/mnt/pool/russ";
+  # fileSystems."/home/russ/nfs" = {
+  #   device = "algol:/mnt/pool/russ";
   #   fsType = "nfs";
   #   # TODO: lazymounting
   #   # options = [ "x-systemd.automount" "noauto" ];

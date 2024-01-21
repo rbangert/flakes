@@ -36,6 +36,7 @@ with lib.rr-sv; {
       ssh = enabled;
       neomutt = enabled;
       taskwarrior = enabled;
+      yubikey = enabled;
     };
 
     virtualisation = {
