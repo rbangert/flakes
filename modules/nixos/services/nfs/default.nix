@@ -19,7 +19,6 @@ in {
       lockdPort = 4001;
       mountdPort = 4002;
       statdPort = 4003;
-      extraNfsConfig = ''''; # extra config to add to the nfs server config file
     };
     networking.firewall = {
       # for NFSv3; view with `rpcinfo -p`
