@@ -109,8 +109,6 @@ with lib.rr-sv; {
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   programs = {
     nix-ld.enable = true;
     mtr.enable = true;
@@ -125,9 +123,6 @@ with lib.rr-sv; {
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    btm
-  ];
   security = {
     sudo = {
       enable = true;
