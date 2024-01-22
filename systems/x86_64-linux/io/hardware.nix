@@ -32,12 +32,12 @@
     fsType = "vfat";
   };
 
-  # fileSystems."/home/russ/nfs" = {
-  #   device = "algol:/mnt/pool/russ";
-  #   fsType = "nfs";
-  #   # TODO: lazymounting
-  #   # options = [ "x-systemd.automount" "noauto" ];
-  # };
+  fileSystems."/export" = {
+    device = "algol:/export";
+    fsType = "nfs";
+    # TODO: lazymounting
+    # options = [ "x-systemd.automount" "noauto" ];
+  };
 
   swapDevices = [
     {device = "/dev/disk/by-uuid/7afcdde1-ded3-480e-ae43-7ff91ff5f818";}

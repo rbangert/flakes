@@ -117,6 +117,7 @@ with lib.rr-sv; {
     neomutt
     talosctl
     youtrack
+    nfs-utils
     ventoy
     btop
     polkit

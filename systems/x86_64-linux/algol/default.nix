@@ -58,7 +58,7 @@ with lib.rr-sv; {
   # enabling zfs
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.forceImportRoot = false;
-
+  boot.zfs.extraPools = ["zpool"];
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sdb";
   boot.loader.grub.useOSProber = false;

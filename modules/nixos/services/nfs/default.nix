@@ -16,11 +16,8 @@ in {
   config = mkIf cfg.enable {
     services.nfs.server = {
       enable = true;
-      lockdPort = 4001;
-      mountdPort = 4002;
-      statdPort = 4003;
       exports = ''
-        /export/home rw=10.0.0.0/24
+        /export *(rw,sync,no_subtree_check,no_root_squash)
       '';
     };
     networking.firewall = {
