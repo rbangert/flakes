@@ -57,7 +57,6 @@ with lib.rr-sv; {
     };
 
     system = {
-      boot = enabled;
       env = enabled;
       fonts = enabled;
       locale = enabled;
@@ -67,9 +66,13 @@ with lib.rr-sv; {
     };
   };
 
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  users = {
+    mutableUsers = false;
+    users.root.initialHashedPassword = "$y$j9T$a2t7BLAmUzodcdXnY.A9Q.$vDBzrWbHKVeE/Kpyfk1mkytNwTfCDxyUFMp3NhOQa09";
+  };
 
   networking = {
     hostName = "io";
@@ -84,9 +87,6 @@ with lib.rr-sv; {
       #    allowPing = false;
     };
   };
-
-  # Setup keyfile
-  boot.initrd.luks.devices."luks-2e68c365-0b8b-414b-a01c-c3c4455a01de".device = "/dev/disk/by-uuid/2e68c365-0b8b-414b-a01c-c3c4455a01de";
 
   users.users.russ = {
     isNormalUser = true;
@@ -144,8 +144,8 @@ with lib.rr-sv; {
     calcure
     feh
     calcurse
-    kicad
-    freecad
+    #kicad
+    #freecad
     spice-gtk
     rofi
     rofi-calc
@@ -279,7 +279,6 @@ with lib.rr-sv; {
     gvfs.enable = true;
     xserver = {
       enable = true;
-      videoDrivers = ["displaylink" "modesetting"];
       displayManager = {
         gdm.enable = true;
         autoLogin.enable = true;
