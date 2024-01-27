@@ -6,7 +6,9 @@
 }:
 with lib;
 with lib.rr-sv; {
-  imports = [./hardware.nix];
+  imports = [
+    ./hardware.nix
+  ];
 
   programs.extra-container.enable = true;
 
@@ -27,6 +29,11 @@ with lib.rr-sv; {
       caddy = enabled;
       mattermost = enabled;
     };
+  };
+
+  services.caddy = {
+    enable = true;
+    email = "rbangert@fastmail.com";
   };
 
   boot.tmp.cleanOnBoot = true;
@@ -93,5 +100,11 @@ with lib.rr-sv; {
     unprivilegedUsernsClone = true;
   };
 
-  system.stateVersion = "23.11";
+  system = {
+    stateVersion = "23.11";
+    autoUpgrade = {
+      enable = false;
+      channel = "https://nixos.org/channels/nixos-unstable";
+    };
+  };
 }

@@ -34,9 +34,6 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "unstable";
 
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
-    vscode-server.inputs.nixpkgs.follows = "nixpkgs";
-
     nixd.url = "github:nix-community/nixd";
     nil-lsp.url = "github:oxalica/nil";
 
@@ -54,16 +51,8 @@
     snowfall-flake.url = "github:snowfallorg/flake";
     snowfall-flake.inputs.nixpkgs.follows = "unstable";
 
-    nix-alien.url = "github:thiagokokada/nix-alien";
-    nix-alien.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-script.url = "github:BrianHicks/nix-script";
     nix-script.inputs.nixpkgs.follows = "nixpkgs";
-
-    # TODO: explore nixpkgs-wayland
-    #nixpkgs-wayland.url =
-    #  "github:nix-community/nixpkgs-wayland";
-    #nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: let
@@ -85,12 +74,10 @@
 
       overlays = with inputs; [
         snowfall-flake.overlays."package/flake"
-        #nix-alien.overlays.default
       ];
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
-        vscode-server.nixosModules.default
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
         sops-nix.nixosModules.sops

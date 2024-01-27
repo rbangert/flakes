@@ -6,7 +6,9 @@
 }:
 with lib;
 with lib.rr-sv; {
-  imports = [./hardware.nix];
+  imports = [
+    ./hardware.nix
+  ];
 
   rr-sv = {
     suites.common = enabled;
@@ -35,6 +37,7 @@ with lib.rr-sv; {
       nb = enabled;
       ssh = enabled;
       neomutt = enabled;
+      neovim = enabled;
       taskwarrior = enabled;
       yubikey = enabled;
     };
@@ -128,7 +131,6 @@ with lib.rr-sv; {
     xorg.xsetroot
     quickemu
     dfu-util
-    qutebrowser
     thunderbird
     age
     chromium
@@ -192,6 +194,7 @@ with lib.rr-sv; {
     alacritty
     xfce.thunar
     mattermost-desktop
+    caprine-bin
     jitsi-meet-electron
     inkscape
     discord
