@@ -225,6 +225,7 @@ with lib.rr-sv; {
     caddy
     devbox
     firefox-devedition-bin
+    awscli2
     fh
     lazygit
     rustup
@@ -248,6 +249,8 @@ with lib.rr-sv; {
     nurl
     sops
     nixpkgs-fmt
+    nixd
+    rnix-lsp
     nixos-generators
     ## lazyvim
     vimwiki-markdown

@@ -33,7 +33,7 @@ with lib.rr-sv; {
 
   services.caddy = {
     enable = true;
-    email = "rbangert@fastmail.com";
+    email = 
   };
 
   boot.tmp.cleanOnBoot = true;

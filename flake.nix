@@ -45,8 +45,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-checker.url = "github:DeterminateSystems/flake-checker";
-    flake-checker.inputs.nixpkgs.follows = "nixpkgs";
+    # flake-checker.url = "github:DeterminateSystems/flake-checker";
+    # flake-checker.inputs.nixpkgs.follows = "nixpkgs";
 
     snowfall-flake.url = "github:snowfallorg/flake";
     snowfall-flake.inputs.nixpkgs.follows = "unstable";
