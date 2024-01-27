@@ -20,8 +20,8 @@ in {
 
     services.openssh.enable = true;
 
+    sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     sops.age.generateKey = true;
-    sops.defaultSopsFile = ./.sops.yaml;
     sops.age.keyFile = "/home/russ/.config/sops/age/keys.txt";
 
     environment = {
