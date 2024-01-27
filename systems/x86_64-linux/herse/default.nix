@@ -36,7 +36,7 @@ with lib.rr-sv; {
     # email =
   };
 
-  sops.defaultSopsFile = ./secrets/herse/caddy.yaml;
+  # sops.defaultSopsFile = ./secrets/herse/caddy.yaml;
   sops.secrets.email = {};
 
   boot.tmp.cleanOnBoot = true;
