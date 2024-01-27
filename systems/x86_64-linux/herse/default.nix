@@ -37,7 +37,7 @@ with lib.rr-sv; {
   };
 
   sops.defaultSopsFile = ./secrets/herse/caddy.yaml;
-  # sops.secrets.email = {};
+  sops.secrets.email = {};
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = false;
