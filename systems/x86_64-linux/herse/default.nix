@@ -33,7 +33,7 @@ with lib.rr-sv; {
 
   services.caddy = {
     enable = true;
-    email = 
+    # email =
   };
 
   boot.tmp.cleanOnBoot = true;
