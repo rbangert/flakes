@@ -36,7 +36,7 @@ with lib.rr-sv; {
     # email =
   };
 
-  sops.secrets.email = {};
+  # sops.secrets.email = {};
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = false;

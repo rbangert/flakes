@@ -118,7 +118,6 @@ with lib.rr-sv; {
     nmap
     unzip
     neomutt
-    talosctl
     youtrack
     nfs-utils
     ventoy
