@@ -13,9 +13,8 @@ creation_rules:
     key_groups:
       - age:
           - *russ
-          - *herse
-          - *io
-  - path_regex: secrets/algol[^/]+\.(yaml|json|env|ini)$
+          - *hersepF1pfRzDdkMv7dwghXzEWU1rp9om
+  - path_regex: secrets/algol/[^/]+\.(yaml|json|env|ini)$:
     key_groups:
       - age:
           - *russ

@@ -31,44 +31,8 @@ with lib.rr-sv; {
     # };
   };
 
-  # security.acme = {
-  #   acceptTerms = true;
-  #   defaults.email = "${config.sops.secrets."email"}";
-  # };
-
-  # services.nginx = {
-  #   enable = true;
-  #   recommendedProxySettings = true;
-  #   recommendedTlsSettings = true;
-  # };
-
-  # virtualisation.oci-containers = {
-  #   containers = {
-  #     "gitea" = {
-  #       image = "gitea/gitea:1.21.4-rootless";
-  #       ports = ["3000:3000"];
-  #     };
-  #   };
-  # };
-
-  # services.nginx.virtualHosts = {
-  #   "git.rr-sv.win" = {
-  #     # forceSSL = true;
-  #     # enableACME = true;
-  #     locations."/" = {
-  #       proxyPass = "http://127.0.0.1:3000";
-  #     };
-  #   };
-  # };
-
-  # security.acme.certs."git.rr-sv.win" = {
-  #   dnsProvider = "cloudflare";
-  #   dnsResolver = "1.1.1.1:53";
-  #   credentialFiles = config.sops.secrets."acme/credFile".path;
-  # };
-
   sops = {
-    defaultSopsFile = ../../../secrets/herse.yaml;
+    defaultSopsFile = ../../../secrets/herse/acme.yaml;
     secrets = {
       email = {};
       acmeCredFile = {};
@@ -83,7 +47,36 @@ with lib.rr-sv; {
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = config.sops.secrets.email;
+    defaults.email = "rbangert@proton.me";
+  };
+
+  virtualisation.oci-containers = {
+    containers = {
+      "gitea" = {
+        image = "gitea/gitea:1.21.4-rootless";
+        ports = ["3000:3000"];
+        environment = {
+          DISABLE_REGISTRATION = "true";
+        };
+      };
+    };
+  };
+
+  services.nginx.virtualHosts = {
+    "git.rr-sv.win" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3000";
+      };
+    };
+  };
+
+  security.acme.certs."git.rr-sv.win" = {
+    dnsProvider = "cloudflare";
+    dnsResolver = "1.1.1.1:53";
+    webroot = null;
+    credentialsFile = config.sops.secrets.acmeCredFile.path;
   };
 
   boot.tmp.cleanOnBoot = true;
