@@ -18,9 +18,9 @@ in {
       containers = {
         "gotify" = {
           image = "gotify/server:2.4.0";
-          ports = ["3030:3030"];
+          ports = ["3030:80"];
           environment = {
-            DISABLE_REGISTRATION = "true";
+            # DISABLE_REGISTRATION = "true";
           };
         };
       };
