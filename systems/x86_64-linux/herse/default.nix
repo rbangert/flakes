@@ -26,9 +26,10 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
-    # containers = {
-    #   mattermost = enabled;
-    # };
+    containers = {
+      gitea = enabled;
+      mattermost = enabled;
+    };
   };
 
   sops = {
@@ -48,35 +49,6 @@ with lib.rr-sv; {
   security.acme = {
     acceptTerms = true;
     defaults.email = "rbangert@proton.me";
-  };
-
-  virtualisation.oci-containers = {
-    containers = {
-      "gitea" = {
-        image = "gitea/gitea:1.21.4-rootless";
-        ports = ["3000:3000"];
-        environment = {
-          DISABLE_REGISTRATION = "true";
-        };
-      };
-    };
-  };
-
-  services.nginx.virtualHosts = {
-    "git.rr-sv.win" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:3000";
-      };
-    };
-  };
-
-  security.acme.certs."git.rr-sv.win" = {
-    dnsProvider = "cloudflare";
-    dnsResolver = "1.1.1.1:53";
-    webroot = null;
-    credentialsFile = config.sops.secrets.acmeCredFile.path;
   };
 
   boot.tmp.cleanOnBoot = true;
