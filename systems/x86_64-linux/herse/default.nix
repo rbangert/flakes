@@ -26,10 +26,9 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
-<<<<<<< HEAD
-    containers = {
-      mattermost = enabled;
-    };
+    # containers = {
+    #   mattermost = enabled;
+    # };
   };
 
   # security.acme = {
@@ -70,20 +69,6 @@ with lib.rr-sv; {
 
   sops = {
     defaultSopsFile = ../../../secrets/herse.yaml;
-    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-    age.generateKey = true;
-    secrets = {
-      email = {};
-    };
-=======
-    # containers = {
-    #   caddy = enabled;
-    #   mattermost = enabled;
-    # };
-  };
-
-  sops = {
-    defaultSopsFile = ../../../secrets/herse.yaml;
     secrets = {
       email = {};
       acmeCredFile = {};
@@ -99,7 +84,6 @@ with lib.rr-sv; {
   security.acme = {
     acceptTerms = true;
     defaults.email = config.sops.secrets.email;
->>>>>>> eec7d3046a3bce7fe0b42dfae5e2007984758adc
   };
 
   boot.tmp.cleanOnBoot = true;
