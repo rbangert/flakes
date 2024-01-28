@@ -71,9 +71,9 @@ with lib.rr-sv; {
     defaultSopsFile = ../../../secrets/herse/secrets.yaml;
     age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     age.generateKey = true;
-    secrets = {
-      "acme/email" = {};
-    };
+    # secrets = {
+    #   "acme/email" = {};
+    # };
   };
 
   boot.tmp.cleanOnBoot = true;
