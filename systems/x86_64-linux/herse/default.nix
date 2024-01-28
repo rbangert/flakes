@@ -61,17 +61,19 @@ with lib.rr-sv; {
   #   };
   # };
 
-  security.acme.certs."git.rr-sv.win" = {
-    dnsProvider = "cloudflare";
-    dnsResolver = "1.1.1.1:53";
-    credentialFiles = "/run/secrets/acme/credFile";
-  };
+  # security.acme.certs."git.rr-sv.win" = {
+  #   dnsProvider = "cloudflare";
+  #   dnsResolver = "1.1.1.1:53";
+  #   credentialFiles = config.sops.secrets."acme/credFile".path;
+  # };
 
   sops = {
     defaultSopsFile = ../../../secrets/herse/secrets.yaml;
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     age.generateKey = true;
-    # secrets."acme/email" = {};
-    #   secrets.acmeEnvFile = {};
+    secrets = {
+      "acme/email" = {};
+    };
   };
 
   boot.tmp.cleanOnBoot = true;
