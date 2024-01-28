@@ -14,22 +14,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    containers.mattermost = {
-      autoStart = true;
-      privateNetwork = true;
-      hostAddress = "10.0.100.100";
-      hostAddress6 = "fc00::1";
-      localAddress6 = "fc00::2";
-      config = {
-        config,
-        pkgs,
-        ...
-      }: {
-        services.mattermost = {
-          enable = true;
-          siteUrl = "http://mm.dmaservices.cc";
-
-          # envionmentFile = "${config.services.mattermost.dataDir}/config.json";
+    virtualisation.oci-containers = {
+      containers = {
+        "mattermost" = {
+          image = "mattermost/mattermost-team-edition:9.4";
+          ports = ["3000:3000"];
+          environment = {
+            DISABLE_REGISTRATION = "true";
+          };
         };
       };
     };
