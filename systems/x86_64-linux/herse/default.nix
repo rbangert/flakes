@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   lib,
@@ -32,7 +33,7 @@ with lib.rr-sv; {
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = ${sops.secrets.email};
+    defaults.email = config.sops.secrets.email;
   };
 
   services.nginx = {
@@ -41,15 +42,12 @@ with lib.rr-sv; {
     recommendedTlsSettings = true;
   };
 
-
-
-
   virtualisation.oci-containers = {
     containers = {
       "gitea" = {
         image = "gitea/gitea:1.21.4-rootless";
-        ports = [ "3000:3000" ];
-        }
+        ports = ["3000:3000"];
+      };
     };
   };
 
@@ -64,10 +62,10 @@ with lib.rr-sv; {
   };
 
   security.acme.certs."git.rr-sv.win" = {
-      dnsProvider = "cloudflare";
-      dnsResolver = "1.1.1.1:53";
-      credentialsFiles = ${sops.secrets.acmeEnvFile};
-    };
+    dnsProvider = "cloudflare";
+    dnsResolver = "1.1.1.1:53";
+    credentialsFiles = config.sops.secrets.acmeEnvFile.path;
+  };
 
   sops.defaultSopsFile = ../../../secrets/herse/secrets.yaml;
 

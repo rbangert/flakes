@@ -28,11 +28,7 @@ in {
       defaultPackages = [];
       systemPackages = with pkgs; [
         ripgrep
-        pamixer
-        brightnessctl
         neovim
-        mutt
-        nodejs_20
         bash
         htop
         ncdu
