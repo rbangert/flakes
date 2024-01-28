@@ -31,10 +31,10 @@ with lib.rr-sv; {
     };
   };
 
-  # security.acme = {
-  #   acceptTerms = true;
-  #   # defaults.email = "${config.sops.secrets."email"}";
-  # };
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "${config.sops.secrets."email"}";
+  };
 
   # services.nginx = {
   #   enable = true;
@@ -70,7 +70,7 @@ with lib.rr-sv; {
   sops = {
     defaultSopsFile = ../../../secrets/herse/secrets.yaml;
     age.generateKey = true;
-    secrets.email = {};
+    secrets."acme/email" = {};
     #   secrets.acmeEnvFile = {};
   };
 
