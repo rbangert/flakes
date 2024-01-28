@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   lib,
@@ -6,7 +7,9 @@
 }:
 with lib;
 with lib.rr-sv; {
-  imports = [./hardware.nix];
+  imports = [
+    ./hardware.nix
+  ];
 
   programs.extra-container.enable = true;
 
@@ -23,10 +26,57 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
-    containers = {
-      caddy = enabled;
-      mattermost = enabled;
+    # containers = {
+    #   mattermost = enabled;
+    # };
+  };
+
+  sops = {
+    defaultSopsFile = ../../../secrets/herse/acme.yaml;
+    secrets = {
+      email = {};
+      acmeCredFile = {};
     };
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "rbangert@proton.me";
+  };
+
+  virtualisation.oci-containers = {
+    containers = {
+      "gitea" = {
+        image = "gitea/gitea:1.21.4-rootless";
+        ports = ["3000:3000"];
+        environment = {
+          DISABLE_REGISTRATION = "true";
+        };
+      };
+    };
+  };
+
+  services.nginx.virtualHosts = {
+    "git.rr-sv.win" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3000";
+      };
+    };
+  };
+
+  security.acme.certs."git.rr-sv.win" = {
+    dnsProvider = "cloudflare";
+    dnsResolver = "1.1.1.1:53";
+    webroot = null;
+    credentialsFile = config.sops.secrets.acmeCredFile.path;
   };
 
   boot.tmp.cleanOnBoot = true;
@@ -93,5 +143,11 @@ with lib.rr-sv; {
     unprivilegedUsernsClone = true;
   };
 
-  system.stateVersion = "23.11";
+  system = {
+    stateVersion = "23.11";
+    autoUpgrade = {
+      enable = false;
+      channel = "https://nixos.org/channels/nixos-unstable";
+    };
+  };
 }

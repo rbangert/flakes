@@ -22,17 +22,17 @@ in {
         XDG_BIN_HOME = "$HOME/.local/bin";
         # To prevent firefox from creating ~/Desktop.
         XDG_DESKTOP_DIR = "$HOME/stuff/other/";
+        EDITOR = "nvim";
       };
       variables = {
         QUTE_QT_WRAPPER = "PyQt6";
         PATH = "$PATH:$HOME/projects/flakes/bin:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
-        EDITOR = "emacs";
+        EDITOR = "nvim";
         DOTS = "$HOME/projects/flakes";
         DOTDIR = "$HOME/projects/flakes";
         DOTBIN = "$HOME/projects/flakes/bin";
         STUFF = "$HOME/stuff";
         JUNK = "$HOME/stuff/other";
-        NB_DIR = "$HOME/projects/org";
         NIXOS_CONFIG_DIR = "$HOME/projects/dots";
         # Make some programs "XDG" compliant.
         LESSHISTFILE = "$XDG_CACHE_HOME/less.history";

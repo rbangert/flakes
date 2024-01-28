@@ -6,7 +6,9 @@
 }:
 with lib;
 with lib.rr-sv; {
-  imports = [./hardware.nix];
+  imports = [
+    ./hardware.nix
+  ];
 
   rr-sv = {
     suites.common = enabled;
@@ -35,6 +37,7 @@ with lib.rr-sv; {
       nb = enabled;
       ssh = enabled;
       neomutt = enabled;
+      neovim = enabled;
       taskwarrior = enabled;
       yubikey = enabled;
     };
@@ -115,7 +118,6 @@ with lib.rr-sv; {
     nmap
     unzip
     neomutt
-    talosctl
     youtrack
     nfs-utils
     ventoy
@@ -128,7 +130,6 @@ with lib.rr-sv; {
     xorg.xsetroot
     quickemu
     dfu-util
-    qutebrowser
     thunderbird
     age
     chromium
@@ -192,6 +193,7 @@ with lib.rr-sv; {
     alacritty
     xfce.thunar
     mattermost-desktop
+    caprine-bin
     jitsi-meet-electron
     inkscape
     discord
@@ -222,6 +224,7 @@ with lib.rr-sv; {
     caddy
     devbox
     firefox-devedition-bin
+    awscli2
     fh
     lazygit
     rustup
@@ -245,6 +248,8 @@ with lib.rr-sv; {
     nurl
     sops
     nixpkgs-fmt
+    nixd
+    rnix-lsp
     nixos-generators
     ## lazyvim
     vimwiki-markdown

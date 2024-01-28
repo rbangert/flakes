@@ -30,6 +30,7 @@
       git
       gnupg
       rnix-lsp
+      nixd
       nixfmt
       nixpkgs-fmt
       nix-tree

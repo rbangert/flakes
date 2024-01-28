@@ -81,7 +81,7 @@ in {
           music = "$HOME/stuff/music/";
           pictures = "$HOME/stuff/pictures/";
           desktop = "$HOME/stuff/desktop/";
-          publicShare = "$HOME/stuff/share/";
+          publicShare = "$HOME/stuff/";
         };
       };
     };
