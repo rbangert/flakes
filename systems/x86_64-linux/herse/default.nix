@@ -70,7 +70,7 @@ with lib.rr-sv; {
   sops = {
     defaultSopsFile = ../../../secrets/herse/secrets.yaml;
     age.generateKey = true;
-    #   secrets.email = {};
+    secrets.email = {};
     #   secrets.acmeEnvFile = {};
   };
 
