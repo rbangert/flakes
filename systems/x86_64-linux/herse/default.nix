@@ -31,10 +31,10 @@ with lib.rr-sv; {
     };
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "${config.sops.secrets."email"}";
-  };
+  # security.acme = {
+  #   acceptTerms = true;
+  #   defaults.email = "${config.sops.secrets."email"}";
+  # };
 
   # services.nginx = {
   #   enable = true;
@@ -68,12 +68,12 @@ with lib.rr-sv; {
   # };
 
   sops = {
-    defaultSopsFile = ../../../secrets/herse/secrets.yaml;
+    defaultSopsFile = ../../../secrets/herse.yaml;
     age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     age.generateKey = true;
-    # secrets = {
-    #   "acme/email" = {};
-    # };
+    secrets = {
+      email = {};
+    };
   };
 
   boot.tmp.cleanOnBoot = true;
