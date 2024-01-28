@@ -31,13 +31,13 @@ with lib.rr-sv; {
     };
   };
 
-  services.caddy = {
-    enable = true;
-    # email =
+  sops = {
+    defaultSopsFile = ../../../secrets/herse.yaml;
+    secrets = {
+      email = {};
+      acmeCredFile = {};
+    };
   };
-
-  sops.defaultSopsFile = ../../../secrets/herse/caddy.yaml;
-  sops.secrets.email = {};
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = false;
