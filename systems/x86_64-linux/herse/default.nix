@@ -33,7 +33,7 @@ with lib.rr-sv; {
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = config.sops.secrets.email;
+    defaults.email = "${config.sops.secrets.email}";
   };
 
   services.nginx = {
@@ -64,7 +64,7 @@ with lib.rr-sv; {
   security.acme.certs."git.rr-sv.win" = {
     dnsProvider = "cloudflare";
     dnsResolver = "1.1.1.1:53";
-    credentialsFiles = config.sops.secrets.acmeEnvFile.path;
+    credentialsFiles = "${config.sops.secrets.acmeEnvFile.path}";
   };
 
   sops.defaultSopsFile = ../../../secrets/herse/secrets.yaml;
