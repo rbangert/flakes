@@ -64,7 +64,7 @@ with lib.rr-sv; {
   security.acme.certs."git.rr-sv.win" = {
     dnsProvider = "cloudflare";
     dnsResolver = "1.1.1.1:53";
-    credentialFiles = /run/secrets/acme/credFile;
+    credentialFiles = "/run/secrets/acme/credFile";
   };
 
   sops = {
