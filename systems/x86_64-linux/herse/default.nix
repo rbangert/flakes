@@ -61,16 +61,16 @@ with lib.rr-sv; {
   #   };
   # };
 
-  # security.acme.certs."git.rr-sv.win" = {
-  #   dnsProvider = "cloudflare";
-  #   dnsResolver = "1.1.1.1:53";
-  #   credentialsFiles = "${config.sops.secrets."acmeEnvFile".path}";
-  # };
+  security.acme.certs."git.rr-sv.win" = {
+    dnsProvider = "cloudflare";
+    dnsResolver = "1.1.1.1:53";
+    credentialsFiles = config.sops.secrets."credFile".path;
+  };
 
   sops = {
     defaultSopsFile = ../../../secrets/herse/secrets.yaml;
     age.generateKey = true;
-    secrets."acme/email" = {};
+    # secrets."acme/email" = {};
     #   secrets.acmeEnvFile = {};
   };
 
