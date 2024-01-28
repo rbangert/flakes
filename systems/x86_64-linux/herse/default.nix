@@ -31,35 +31,35 @@ with lib.rr-sv; {
     };
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "${config.sops.secrets."email"}";
-  };
+  # security.acme = {
+  #   acceptTerms = true;
+  #   # defaults.email = "${config.sops.secrets."email"}";
+  # };
 
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-  };
+  # services.nginx = {
+  #   enable = true;
+  #   recommendedProxySettings = true;
+  #   recommendedTlsSettings = true;
+  # };
 
-  virtualisation.oci-containers = {
-    containers = {
-      "gitea" = {
-        image = "gitea/gitea:1.21.4-rootless";
-        ports = ["3000:3000"];
-      };
-    };
-  };
+  # virtualisation.oci-containers = {
+  #   containers = {
+  #     "gitea" = {
+  #       image = "gitea/gitea:1.21.4-rootless";
+  #       ports = ["3000:3000"];
+  #     };
+  #   };
+  # };
 
-  services.nginx.virtualHosts = {
-    "git.rr-sv.win" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:3000";
-      };
-    };
-  };
+  # services.nginx.virtualHosts = {
+  #   "git.rr-sv.win" = {
+  #     # forceSSL = true;
+  #     # enableACME = true;
+  #     locations."/" = {
+  #       proxyPass = "http://127.0.0.1:3000";
+  #     };
+  #   };
+  # };
 
   # security.acme.certs."git.rr-sv.win" = {
   #   dnsProvider = "cloudflare";
@@ -69,8 +69,9 @@ with lib.rr-sv; {
 
   sops = {
     defaultSopsFile = ../../../secrets/herse/secrets.yaml;
-    secrets.email = {};
-    secrets.acmeEnvFile = {};
+    age.generateKey = true;
+    #   secrets.email = {};
+    #   secrets.acmeEnvFile = {};
   };
 
   boot.tmp.cleanOnBoot = true;
