@@ -27,6 +27,7 @@ with lib.rr-sv; {
     };
 
     containers = {
+      gotify = enabled;
       gitea = enabled;
       mattermost = enabled;
     };
