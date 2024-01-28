@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   lib,
@@ -25,10 +26,10 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
-    containers = {
-      caddy = enabled;
-      mattermost = enabled;
-    };
+    # containers = {
+    #   caddy = enabled;
+    #   mattermost = enabled;
+    # };
   };
 
   sops = {
@@ -37,6 +38,17 @@ with lib.rr-sv; {
       email = {};
       acmeCredFile = {};
     };
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = config.sops.secrets.email;
   };
 
   boot.tmp.cleanOnBoot = true;
