@@ -26,6 +26,7 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
+<<<<<<< HEAD
     containers = {
       mattermost = enabled;
     };
@@ -74,6 +75,31 @@ with lib.rr-sv; {
     secrets = {
       email = {};
     };
+=======
+    # containers = {
+    #   caddy = enabled;
+    #   mattermost = enabled;
+    # };
+  };
+
+  sops = {
+    defaultSopsFile = ../../../secrets/herse.yaml;
+    secrets = {
+      email = {};
+      acmeCredFile = {};
+    };
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = config.sops.secrets.email;
+>>>>>>> eec7d3046a3bce7fe0b42dfae5e2007984758adc
   };
 
   boot.tmp.cleanOnBoot = true;
