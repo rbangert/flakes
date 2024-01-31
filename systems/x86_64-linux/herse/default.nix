@@ -35,7 +35,7 @@ with lib.rr-sv; {
   };
 
   sops = {
-    defaultSopsFile = ../../../secrets/herse/acme.yaml;
+    defaultSopsFile = ../../../secrets/herse/secrets.yaml;
     secrets = {
       email = {};
       acmeCredFile = {};
