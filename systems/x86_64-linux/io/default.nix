@@ -51,7 +51,7 @@ with lib.rr-sv; {
       openssh = enabled;
       syncthing = enabled;
       tailscale = enabled;
-      taskserver = enabled;
+      wego = enabled;
     };
 
     nix = {
@@ -66,6 +66,13 @@ with lib.rr-sv; {
       time = enabled;
       xkb = enabled;
       printer = enabled;
+    };
+  };
+
+  sops = {
+    defaultSopsFile = ../../../secrets/io/secrets.yaml;
+    secrets = {
+      wegorc = {};
     };
   };
 
@@ -136,6 +143,7 @@ with lib.rr-sv; {
     at
     ddcutil
     zoom-us
+    flameshot
     xclip
     picom
     xdotool
@@ -223,7 +231,7 @@ with lib.rr-sv; {
     httrack
     caddy
     devbox
-    firefox-devedition-bin
+    firefox-devedition
     awscli2
     fh
     lazygit

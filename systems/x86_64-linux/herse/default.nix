@@ -29,6 +29,7 @@ with lib.rr-sv; {
     containers = {
       gotify = enabled;
       gitea = enabled;
+      wordpress = enabled;
       mattermost = enabled;
     };
   };

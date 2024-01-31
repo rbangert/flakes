@@ -19,11 +19,31 @@ in {
         "mattermost" = {
           image = "mattermost/mattermost-team-edition:9.4";
           ports = ["3000:3000"];
-          environment = {
-            DISABLE_REGISTRATION = "true";
-          };
+          environmentFiles = config.sops.secrets.mattermostEnv.path;
+        };
+        "mm-postgres" = {
+          image = "postgres/postgres:16.1-alpine";
+          # ports = ["3000:3000"];
+          environmentFiles = config.sops.secrets.mattermostEnv.path;
         };
       };
+    };
+
+    services.nginx.virtualHosts = {
+      "mm.rr-sv.win" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8030";
+        };
+      };
+    };
+
+    security.acme.certs."mm.rr-sv.win" = {
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+      webroot = null;
+      credentialsFile = config.sops.secrets.acmeCredFile.path;
     };
   };
 }

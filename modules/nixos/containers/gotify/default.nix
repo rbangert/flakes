@@ -22,7 +22,7 @@ in {
           environment = {
             #GOTIFY_SERVER_KEEPALIVEPERIODSECONDS = "0";
             # GOTIFY_SERVER_LISTENADDR = "127.0.0.1";
-            GOTIFY_SERVER_SSL_ENABLED = "false";
+            # GOTIFY_SERVER_SSL_ENABLED = "false";
             #GOTIFY_SERVER_SSL_REDIRECTTOHTTPS = "true";
             #GOTIFY_SERVER_SSL_LISTENADDR = ;
             #GOTIFY_SERVER_SSL_PORT = "443";

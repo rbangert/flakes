@@ -29,6 +29,8 @@ in {
             # Fix an issue with tmux.
             export KEYTIMEOUT=1
 
+            export EDITOR=nvim
+
             # Use vim bindings.
             set -o vi
 

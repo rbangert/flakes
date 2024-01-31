@@ -34,6 +34,7 @@ with lib.rr-sv; let
     p.typescript
     p.vue
     p.yaml
+    p.astro
   ]);
 in {
   options.rr-sv.tools.neovim = with types; {
