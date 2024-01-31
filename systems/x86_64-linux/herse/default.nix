@@ -30,7 +30,7 @@ with lib.rr-sv; {
       gotify = enabled;
       gitea = enabled;
       wp-dev = enabled;
-      # mattermost = enabled;
+      mattermost = enabled;
     };
   };
 
