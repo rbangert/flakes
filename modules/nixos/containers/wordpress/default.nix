@@ -23,7 +23,7 @@ in {
             "wp-dev-data:/var/www/html"
           ];
           environment = {
-            WORDPRESS_DB_HOST = "wordpress-mariadb:3306";
+            WORDPRESS_DB_HOST = "wp-dev-db:3306";
             WORDPRESS_DB_USER = "wordpress";
             WORDPRESS_DB_PASSWORD = "wordpress";
             WORDPRESS_DB_NAME = "wordpress";
