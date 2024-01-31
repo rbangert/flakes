@@ -27,6 +27,7 @@ in {
           siteName = "DMA/RussCorp";
           siteUrl = "https://mm.rr-sv.win";
           matterircd.enable = true;
+          mutableConfig = true;
         };
       };
     };
