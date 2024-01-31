@@ -42,6 +42,7 @@ with lib.rr-sv; {
       email = {};
       acmeCredFile = {};
       mattermostEnv = {};
+      deploy-webhook = {};
     };
   };
 
