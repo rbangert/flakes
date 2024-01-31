@@ -29,7 +29,7 @@ with lib.rr-sv; {
     containers = {
       gotify = enabled;
       gitea = enabled;
-      deploy-webhook = enabled;
+      # deploy-webhook = enabled;
       wp-dev = enabled;
       mattermost = enabled;
       dmaservices = enabled;
