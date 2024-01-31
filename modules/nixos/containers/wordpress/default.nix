@@ -7,20 +7,20 @@ inputs @ {
 }:
 with lib;
 with lib.rr-sv; let
-  cfg = config.rr-sv.containers.wordpress;
+  cfg = config.rr-sv.containers.wp-dev;
 in {
-  options.rr-sv.containers.wordpress = with types; {
-    enable = mkBoolOpt false "Whether or not to enable wordpress";
+  options.rr-sv.containers.wp-dev = with types; {
+    enable = mkBoolOpt false "Whether or not to enable wp-dev";
   };
 
   config = mkIf cfg.enable {
     virtualisation.oci-containers = {
       containers = {
-        "wordpress" = {
+        "wp-dev" = {
           image = "wordpress:latest";
           ports = ["8099:80"];
           volumes = [
-            "wordpress_data:/var/www/html"
+            "wp-dev-data:/var/www/html"
           ];
           environment = {
             WORDPRESS_DB_HOST = "wordpress-mariadb:3306";
@@ -29,11 +29,11 @@ in {
             WORDPRESS_DB_NAME = "wordpress";
           };
         };
-        "wordpress-mariadb" = {
+        "wp-dev-db" = {
           image = "mariadb:10.6.16-focal";
           ports = ["3307:3306"];
           volumes = [
-            "db_data:/var/lib/mysql"
+            "wp-dev-db_data:/var/lib/mysql"
           ];
           environment = {
             MYSQL_ROOT_PASSWORD = "rootpress";
