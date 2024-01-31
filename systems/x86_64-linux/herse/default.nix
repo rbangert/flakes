@@ -39,6 +39,7 @@ with lib.rr-sv; {
     secrets = {
       email = {};
       acmeCredFile = {};
+      mattermostEnv = {};
     };
   };
 
