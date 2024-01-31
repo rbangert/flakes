@@ -19,11 +19,17 @@ in {
         "mattermost" = {
           image = "mattermost/mattermost-team-edition:9.4";
           ports = ["3000:3000"];
+          volumes = [
+            "mattermost-data:/mattermost"
+          ];
           environmentFiles = config.sops.secrets.mattermostEnv.path;
         };
         "mm-postgres" = {
           image = "postgres/postgres:16.1-alpine";
           # ports = ["3000:3000"];
+          volumes = [
+            "mattermost-pgsql-data:/var/lib/postgresql/data"
+          ];
           environmentFiles = config.sops.secrets.mattermostEnv.path;
         };
       };
