@@ -29,7 +29,7 @@ in {
         services.webhook = {
           enable = true;
           port = "9000";
-          hooks = builtins.readFile config.sops.deploy-webhook.path;
+          # hooks = builtins.readFile config.sops.deploy-webhook.path;
         };
       };
     };
