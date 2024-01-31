@@ -26,14 +26,14 @@ in {
           volumes = [
             "mattermost-data:/mattermost"
           ];
-          # environmentFiles = config.sops.secrets.mattermostEnv.path;
+          environmentFiles = config.sops.secrets.mattermostEnv.path;
         };
         "mm-postgres" = {
           image = "postgres/postgres:16.1-alpine";
           volumes = [
             "mattermost-pgsql-data:/var/lib/postgresql/data"
           ];
-          # environmentFiles = config.sops.secrets.mattermostEnv.path;
+          environmentFiles = config.sops.secrets.mattermostEnv.path;
         };
       };
     };
