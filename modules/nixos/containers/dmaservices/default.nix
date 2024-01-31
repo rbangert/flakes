@@ -18,34 +18,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    containers.deploy-webhook = {
-      autoStart = true;
-      localAddress = "127.0.0.1";
-      config = {
-        config,
-        pkgs,
-        ...
-      }: {
-        services.webhook = {
-          enable = true;
-          hooks = builtins.readFile config.sops.deploy-webhook.path;
-        };
+    services.nginx.virtualHosts = {
+      "dmaservices.cc" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/dmaservices.cc/public";
       };
     };
-  };
 
-  services.nginx.virtualHosts = {
-    "dmaservices.cc" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/dmaservices.cc/public";
+    security.acme.certs."dmaservices.cc" = {
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+      webroot = null;
+      credentialsFile = config.sops.secrets.acmeCredFile.path;
     };
-  };
-
-  security.acme.certs."dmaservices.cc" = {
-    dnsProvider = "cloudflare";
-    dnsResolver = "1.1.1.1:53";
-    webroot = null;
-    credentialsFile = config.sops.secrets.acmeCredFile.path;
   };
 }
