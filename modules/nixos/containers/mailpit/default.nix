@@ -22,9 +22,8 @@ in {
             "8025:8025"
             "1025:1025"
           ];
-          environment = {
-            DISABLE_REGISTRATION = "true";
-          };
+          # environment = {
+          # };
         };
       };
     };
@@ -45,5 +44,7 @@ in {
       webroot = null;
       credentialsFile = config.sops.secrets.acmeCredFile.path;
     };
+
+    networking.firewall.allowedTCPPorts = [1025];
   };
 }
