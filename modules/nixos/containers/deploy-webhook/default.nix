@@ -35,7 +35,7 @@ in {
         RestartSec = "15s";
         User = "russ";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c '${pkgs.webhook} -hooks \
+          ${pkgs.bash}/bin/bash -c '${pkgs.webhook}/bin/webhook -hooks \
           /run/secrets/deploy-webhook -logfile \
           /var/log/deploy-webhook'
         '';
