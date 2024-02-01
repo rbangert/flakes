@@ -8,7 +8,7 @@ inputs @ {
 with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.containers.deploy-webhook;
-  pull-script = pkgs.writeScript "pull-script" ''
+  pull-script = pkgs.writeScriptBin "pull-script" ''
     cd /var/www/$1
     git pull
   '';
@@ -18,6 +18,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [pull-script];
+
     containers.deploy-webhook = {
       autoStart = true;
       localAddress = "127.0.0.1";
@@ -26,10 +28,17 @@ in {
         pkgs,
         ...
       }: {
-        services.webhook = {
+        systemd.services."webhook" = {
           enable = true;
-          port = "9000";
-          # hooks = builtins.readFile config.sops.deploy-webhook.path;
+          description = "Github deploy-webhook";
+          autoStart = true;
+          serviceConfig = {
+            ExecStart = ''
+              ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
+              ${config.sops.deploy-webhook.path} -logfile \
+              /var/log/deploy-webhook
+            '';
+          };
         };
       };
     };
