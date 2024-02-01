@@ -22,7 +22,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [pull-script pkgs.webhook];
 
-    systemd.services."webhook" = {
+    systemd.user.services."webhook" = {
       enable = true;
       wantedBy = ["multi-user.target"];
       unitConfig = {
