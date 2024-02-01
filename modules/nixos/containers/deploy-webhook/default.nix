@@ -40,8 +40,7 @@ in {
           User = "russ";
           ExecStart = ''
             ${pkgs.bash}/bin/bash -c '${pkgs.webhook}/bin/webhook -hooks \
-            /run/secrets/deploy-webhook -logfile \
-            /var/log/deploy-webhook/log'
+            /run/secrets/deploy-webhook'
           '';
         };
       };
