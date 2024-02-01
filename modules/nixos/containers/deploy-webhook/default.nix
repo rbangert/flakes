@@ -31,7 +31,6 @@ in {
         systemd.services."webhook" = {
           enable = true;
           description = "Github deploy-webhook";
-          autoStart = true;
           serviceConfig = {
             ExecStart = ''
               ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
@@ -39,6 +38,7 @@ in {
               /var/log/deploy-webhook
             '';
           };
+          wantedBy = ["default.target"];
         };
       };
     };
