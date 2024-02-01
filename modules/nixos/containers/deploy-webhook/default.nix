@@ -25,7 +25,7 @@ in {
     systemd.services."webhook" = {
       enable = true;
       after = ["network.target"];
-      wantedBy = ["multi-user.target"];
+      requiredBy = ["multi-user.target"];
       serviceConfig = {
         Description = "Github deploy-webhook";
         Restart = "always";
