@@ -34,7 +34,7 @@ in {
           serviceConfig = {
             ExecStart = ''
               ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
-              ${config.sops.deploy-webhook.path} -logfile \
+              ${config.sops.secrets.deploy-webhook.path} -logfile \
               /var/log/deploy-webhook
             '';
           };
