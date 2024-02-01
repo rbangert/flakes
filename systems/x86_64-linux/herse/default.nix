@@ -33,6 +33,7 @@ with lib.rr-sv; {
       wp-dev = enabled;
       mattermost = enabled;
       dmaservices = enabled;
+      mailpit = enabled;
     };
   };
 
