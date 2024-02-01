@@ -24,10 +24,13 @@ in {
 
     systemd.services."webhook" = {
       enable = true;
-      description = "Github deploy-webhook";
+      after = ["network.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig = {
-        user = "russ";
+        Description = "Github deploy-webhook";
+        Restart = "always";
+        RestartSec = "15s";
+        User = "russ";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
           /run/secrets/deploy-webhook -logfile \
