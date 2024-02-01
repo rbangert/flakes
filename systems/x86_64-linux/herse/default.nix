@@ -41,7 +41,9 @@ with lib.rr-sv; {
     secrets = {
       email = {};
       acmeCredFile = {};
-      deploy-webhook = {};
+      deploy-webhook = {
+        owner = "russ";
+      };
     };
   };
 
