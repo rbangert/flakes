@@ -24,10 +24,13 @@ in {
 
     systemd.services."webhook" = {
       enable = true;
-      after = ["network.target"];
-      requiredBy = ["multi-user.target"];
-      serviceConfig = {
+      wantedBy = ["multi-user.target"];
+      unitConfig = {
         Description = "Github deploy-webhook";
+        Wants = "network-online.target";
+        After = "network-online.target";
+      };
+      serviceConfig = {
         Restart = "always";
         RestartSec = "15s";
         User = "russ";
