@@ -33,9 +33,9 @@ in {
       serviceConfig = {
         Restart = "always";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
+          ${pkgs.bash}/bin/bash -c '${pkgs.webhook} -hooks \
           /run/secrets/deploy-webhook -logfile \
-          /var/log/deploy-webhook
+          /var/log/deploy-webhook'
         '';
       };
     };
