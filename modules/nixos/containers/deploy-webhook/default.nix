@@ -25,14 +25,15 @@ in {
     systemd.services."webhook" = {
       enable = true;
       description = "Github deploy-webhook";
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
+        user = "russ";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
           /run/secrets/deploy-webhook -logfile \
           /var/log/deploy-webhook
         '';
       };
-      wantedBy = ["default.target"];
     };
 
     services.nginx.virtualHosts = {
