@@ -32,6 +32,7 @@ in {
       };
       serviceConfig = {
         Restart = "always";
+        RestartSec = "15s";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c '${pkgs.webhook} -hooks \
           /run/secrets/deploy-webhook -logfile \
