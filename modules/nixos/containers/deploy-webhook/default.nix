@@ -22,27 +22,28 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [pull-script pkgs.webhook];
 
-    systemd = { 
+    systemd = {
       tmpfiles.rules = [
         "d /var/log/deploy-webhook 0640 russ users"
       ];
       services."webhook" = {
-      enable = true;
-      wantedBy = ["multi-user.target"];
-      unitConfig = {
-        Description = "Github deploy-webhook";
-        Wants = "network-online.target";
-        After = "network-online.target";
-      };
-      serviceConfig = {
-        Restart = "always";
-        RestartSec = "15s";
-        User = "russ";
-        ExecStart = ''
-          ${pkgs.bash}/bin/bash -c '${pkgs.webhook}/bin/webhook -hooks \
-          /run/secrets/deploy-webhook -logfile \
-          /var/log/deploy-webhook'
-        '';
+        enable = true;
+        wantedBy = ["multi-user.target"];
+        unitConfig = {
+          Description = "Github deploy-webhook";
+          Wants = "network-online.target";
+          After = "network-online.target";
+        };
+        serviceConfig = {
+          Restart = "always";
+          RestartSec = "15s";
+          User = "russ";
+          ExecStart = ''
+            ${pkgs.bash}/bin/bash -c '${pkgs.webhook}/bin/webhook -hooks \
+            /run/secrets/deploy-webhook -logfile \
+            /var/log/deploy-webhook'
+          '';
+        };
       };
     };
 
