@@ -47,7 +47,7 @@ in {
       "rr-sv.win" = {
         forceSSL = true;
         enableACME = true;
-        locations."/deploy" = {
+        locations."/deploy/" = {
           proxyPass = "http://127.0.0.1:9000";
           proxyWebsockets = true;
         };
