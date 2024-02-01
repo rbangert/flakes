@@ -23,9 +23,6 @@ in {
     environment.systemPackages = [pull-script pkgs.webhook];
 
     systemd = {
-      tmpfiles.rules = [
-        "d /var/log/deploy-webhook 0640 russ users"
-      ];
       services."webhook" = {
         enable = true;
         wantedBy = ["multi-user.target"];
