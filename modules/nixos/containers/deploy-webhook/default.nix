@@ -20,27 +20,17 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [pull-script];
 
-    containers.deploy-webhook = {
-      autoStart = true;
-      localAddress = "127.0.0.1";
-      config = {
-        config,
-        pkgs,
-        ...
-      }: {
-        systemd.services."webhook" = {
-          enable = true;
-          description = "Github deploy-webhook";
-          serviceConfig = {
-            ExecStart = ''
-              ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
-              /run/secrets/deploy-webhook -logfile \
-              /var/log/deploy-webhook
-            '';
-          };
-          wantedBy = ["default.target"];
-        };
+    systemd.services."webhook" = {
+      enable = true;
+      description = "Github deploy-webhook";
+      serviceConfig = {
+        ExecStart = ''
+          ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
+          /run/secrets/deploy-webhook -logfile \
+          /var/log/deploy-webhook
+        '';
       };
+      wantedBy = ["default.target"];
     };
 
     services.nginx.virtualHosts = {
