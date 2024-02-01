@@ -9,6 +9,8 @@ with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.containers.deploy-webhook;
   pull-script = pkgs.writeScriptBin "pull-script" ''
+    #!/usr/bin/env bash
+
     cd /var/www/$1
     git pull
   '';
