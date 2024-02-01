@@ -18,7 +18,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pull-script webhook];
+    environment.systemPackages = [pull-script pkgs.webhook];
 
     systemd.services."webhook" = {
       enable = true;
