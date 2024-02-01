@@ -22,7 +22,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [pull-script pkgs.webhook];
 
-    systemd.user.services."webhook" = {
+    systemd.services."webhook" = {
       enable = true;
       wantedBy = ["multi-user.target"];
       unitConfig = {
@@ -32,8 +32,6 @@ in {
       };
       serviceConfig = {
         Restart = "always";
-        RestartSec = "15s";
-        User = "russ";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "${pkgs.webhook} -hooks \
           /run/secrets/deploy-webhook -logfile \
