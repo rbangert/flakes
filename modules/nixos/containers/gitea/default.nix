@@ -18,7 +18,13 @@ in {
       containers = {
         "gitea" = {
           image = "gitea/gitea:1.21.4-rootless";
-          ports = ["3000:3000"];
+          ports = [
+            "3000:3000"
+            "222:22"
+          ];
+          volumes = [
+            "gitea-data:/data"
+          ];
           environment = {
             DISABLE_REGISTRATION = "true";
           };

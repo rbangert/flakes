@@ -19,6 +19,9 @@ in {
         "gotify" = {
           image = "gotify/server:2.4.0";
           ports = ["3030:80"];
+          volumes = [
+            "gotify-data:/app/data"
+          ];
           environment = {
             #GOTIFY_SERVER_KEEPALIVEPERIODSECONDS = "0";
             # GOTIFY_SERVER_LISTENADDR = "127.0.0.1";

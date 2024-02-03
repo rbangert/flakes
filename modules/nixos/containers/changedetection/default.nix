@@ -19,6 +19,9 @@ in {
         "changedetection" = {
           image = "lscr.io/linuxserver/changedetection.io:latest";
           ports = ["5000:5000"];
+          volumes = [
+            "changedetection-data:/datastore"
+          ];
           environment = {
             PUID = "1000";
             PGID = "1000";

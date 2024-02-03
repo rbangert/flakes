@@ -19,6 +19,9 @@ in {
         "mealie" = {
           image = "ghcr.io/mealie-recipes/mealie:v1.1.0";
           ports = ["9925:9000"];
+          volumes = [
+            "mealie-data:/app/data"
+          ];
           environment = {
             ALLOW_SIGNUP = "true";
             PUID = "1000";
