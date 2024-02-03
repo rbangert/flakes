@@ -39,8 +39,6 @@ in {
             GOTIFY_SERVER_STREAM_PINGPERIODSECONDS = "45";
             GOTIFY_DATABASE_DIALECT = "sqlite3";
             GOTIFY_DATABASE_CONNECTION = "data/gotify.db";
-            GOTIFY_DEFAULTUSER_NAME = "russ";
-            GOTIFY_DEFAULTUSER_PASS = "pass";
             GOTIFY_PASSSTRENGTH = "10";
             GOTIFY_UPLOADEDIMAGESDIR = "data/images";
             GOTIFY_PLUGINSDIR = "data/plugins";
@@ -57,6 +55,7 @@ in {
         enableACME = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:3030";
+          proxyWebsockets = true;
         };
       };
     };
