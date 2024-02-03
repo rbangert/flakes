@@ -157,8 +157,8 @@ with lib.rr-sv; {
     calcure
     feh
     calcurse
-    #kicad
-    #freecad
+    kicad
+    freecad
     spice-gtk
     rofi
     rofi-calc

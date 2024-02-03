@@ -34,6 +34,7 @@ with lib.rr-sv; {
       mattermost = enabled;
       dmaservices = enabled;
       changedetection = enabled;
+      mealie = enabled;
       # mailpit = enabled;
     };
   };
