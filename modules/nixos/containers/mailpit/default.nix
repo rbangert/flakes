@@ -28,23 +28,23 @@ in {
       };
     };
 
-    services.nginx.virtualHosts = {
-      "mailpit.rr-sv.win" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8025";
-        };
-      };
-    };
-
-    security.acme.certs."mailpit.rr-sv.win" = {
-      dnsProvider = "cloudflare";
-      dnsResolver = "1.1.1.1:53";
-      webroot = null;
-      credentialsFile = config.sops.secrets.acmeCredFile.path;
-    };
-
-    networking.firewall.allowedTCPPorts = [1025];
+    # services.nginx.virtualHosts = {
+    #   "mailpit.rr-sv.win" = {
+    #     forceSSL = true;
+    #     enableACME = true;
+    #     locations."/" = {
+    #       proxyPass = "http://127.0.0.1:8025";
+    #     };
+    #   };
+    # };
+    #
+    # security.acme.certs."mailpit.rr-sv.win" = {
+    #   dnsProvider = "cloudflare";
+    #   dnsResolver = "1.1.1.1:53";
+    #   webroot = null;
+    #   credentialsFile = config.sops.secrets.acmeCredFile.path;
+    # };
+    #
+    # networking.firewall.allowedTCPPorts = [1025];
   };
 }

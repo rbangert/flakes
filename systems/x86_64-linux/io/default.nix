@@ -54,6 +54,10 @@ with lib.rr-sv; {
       wego = enabled;
     };
 
+    containers = {
+      mailpit = enabled;
+    };
+
     nix = {
       os = enabled;
       flake = enabled;
@@ -204,6 +208,8 @@ with lib.rr-sv; {
     caprine-bin
     jitsi-meet-electron
     inkscape
+    mailpit
+    thunderbird
     discord
     element-desktop
     firefox-bin
