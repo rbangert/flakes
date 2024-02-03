@@ -7,17 +7,17 @@ inputs @ {
 }:
 with lib;
 with lib.rr-sv; let
-  cfg = config.rr-sv.containers.gitea;
+  cfg = config.rr-sv.containers.linkwarden;
 in {
-  options.rr-sv.containers.gitea = with types; {
-    enable = mkBoolOpt false "Whether or not to enable gitea";
+  options.rr-sv.containers.linkwarden = with types; {
+    enable = mkBoolOpt false "Whether or not to enable linkwarden";
   };
 
   config = mkIf cfg.enable {
     virtualisation.oci-containers = {
       containers = {
-        "gitea" = {
-          image = "gitea/gitea:1.21.4-rootless";
+        "linkwarden" = {
+          image = "linkwarden/linkwarden:1.21.4-rootless";
           ports = ["3000:3000"];
           environment = {
             DISABLE_REGISTRATION = "true";
