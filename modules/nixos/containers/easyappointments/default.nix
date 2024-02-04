@@ -36,7 +36,7 @@ in {
     };
 
     services.nginx.virtualHosts = {
-      "easyappointments.rr-sv.win" = {
+      "appt.rr-sv.win" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
@@ -45,7 +45,7 @@ in {
       };
     };
 
-    security.acme.certs."easyappointments.rr-sv.win" = {
+    security.acme.certs."appt.rr-sv.win" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
