@@ -25,6 +25,7 @@ in {
         };
         "easyappointments-db" = {
           image = "mysql:8.0";
+          ports = ["3306"];
           environmentFiles = [
             /run/secrets/easyappointmentsEnv
           ];
