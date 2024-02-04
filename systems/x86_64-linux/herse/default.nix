@@ -48,6 +48,7 @@ with lib.rr-sv; {
       deploy-webhook = {
         owner = "russ";
       };
+      easyappointmentsEnv = {};
     };
   };
 
