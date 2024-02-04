@@ -7,36 +7,36 @@ inputs @ {
 }:
 with lib;
 with lib.rr-sv; let
-  cfg = config.rr-sv.containers.easyappointsments;
+  cfg = config.rr-sv.containers.easyappointments;
 in {
-  options.rr-sv.containers.easyappointsments = with types; {
-    enable = mkBoolOpt false "Whether or not to enable easyappointsments";
+  options.rr-sv.containers.easyappointments = with types; {
+    enable = mkBoolOpt false "Whether or not to enable easyappointments";
   };
 
   config = mkIf cfg.enable {
     virtualisation.oci-containers = {
       containers = {
-        "easyappointsments" = {
+        "easyappointments" = {
           image = "alextselegidis/easyappointments:1.4.3";
           ports = ["8020:80"];
           environmentFiles = [
             /run/secrets/easyappointmentsEnv
           ];
         };
-        "easyappointsments-db" = {
+        "easyappointments-db" = {
           image = "mysql:8.0";
           environmentFiles = [
             /run/secrets/easyappointmentsEnv
           ];
           volumes = [
-            "easyappointsments-data:/app/data"
+            "easyappointments-data:/app/data"
           ];
         };
       };
     };
 
     services.nginx.virtualHosts = {
-      "easyappointsments.rr-sv.win" = {
+      "easyappointments.rr-sv.win" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
@@ -45,7 +45,7 @@ in {
       };
     };
 
-    security.acme.certs."easyappointsments.rr-sv.win" = {
+    security.acme.certs."easyappointments.rr-sv.win" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
