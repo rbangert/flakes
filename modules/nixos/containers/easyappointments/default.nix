@@ -7,36 +7,36 @@ inputs @ {
 }:
 with lib;
 with lib.rr-sv; let
-  cfg = config.rr-sv.containers.easyappoitments;
+  cfg = config.rr-sv.containers.easyappointsments;
 in {
-  options.rr-sv.containers.easyappoitments = with types; {
-    enable = mkBoolOpt false "Whether or not to enable easyappoitments";
+  options.rr-sv.containers.easyappointsments = with types; {
+    enable = mkBoolOpt false "Whether or not to enable easyappointsments";
   };
 
   config = mkIf cfg.enable {
     virtualisation.oci-containers = {
       containers = {
-        "easyappoitments" = {
+        "easyappointsments" = {
           image = "alextselegidis/easyappointments:1.4.3";
           ports = ["8020:80"];
           environmentFiles = [
             /run/secrets/easyappointmentsEnv
           ];
         };
-        "easyappoitments-db" = {
+        "easyappointsments-db" = {
           image = "mysql:8.0";
           environmentFiles = [
             /run/secrets/easyappointmentsEnv
           ];
           volumes = [
-            "easyappoitments-data:/app/data"
+            "easyappointsments-data:/app/data"
           ];
         };
       };
     };
 
     services.nginx.virtualHosts = {
-      "easyappoitments.rr-sv.win" = {
+      "easyappointsments.rr-sv.win" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
@@ -45,7 +45,7 @@ in {
       };
     };
 
-    security.acme.certs."easyappoitments.rr-sv.win" = {
+    security.acme.certs."easyappointsments.rr-sv.win" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
