@@ -43,7 +43,7 @@ in {
             })
             (pkgs.fetchurl {
               url = "https://get.gravitational.com/teleport-access-mattermost-v15.0.0-linux-amd64-bin.tar.gz";
-              sha256 = "";
+              sha256 = "sha256-6ZGQVTmU+Um7TsJbn1YC8zjOBZkxKTf4171gsS1ry5Y=";
             })
             (pkgs.fetchurl {
               url = "https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v1.8.0/com.github.manland.mattermost-plugin-gitlab-1.8.0.tar.gz";
