@@ -39,7 +39,7 @@ in {
             })
             (pkgs.fetchurl {
               url = "https://github.com/mksondej/mattermost-file-list/releases/download/v0.9.0/mattermost-file-list-0.9.0.tar.gz";
-              sha256 = "sha256-i2GUTLPD300OU0qqKERaVS2J6FmgYfHkD7s/7/mc3PY=";
+              sha256 = "sha256-ow9vm8axn6aHEkLpIGvy5ia51CjN4rtIXef29gCm9zk=";
             })
             (pkgs.fetchurl {
               url = "https://get.gravitational.com/teleport-access-mattermost-v15.0.0-linux-amd64-bin.tar.gz";
