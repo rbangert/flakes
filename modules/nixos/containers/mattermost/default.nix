@@ -36,6 +36,11 @@ in {
                 url = "https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
                 sha256 = "sha256-hLCSs3HsCSlb+ILzx37MXBNyGZCVrL9a080NZLfILUk=";
               };
+
+              installPhase = ''
+                mkdir -p $out
+                cp * $out
+              '';
             })
           ];
         };
