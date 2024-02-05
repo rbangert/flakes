@@ -35,7 +35,7 @@ in {
             })
             (pkgs.fetchurl {
               url = "https://github.com/mattermost/mattermost-plugin-github/releases/download/v2.1.8/github-2.1.8.tar.gz";
-              sha256 = "sha256-n9P6FA5+zd2TaAbVhdRxcS8cH48g1HQ51M8jILjqNmE=";
+              sha256 = "sha256-f+C7C59IfKrCJTsfvaNnm6RziBfCv3iZkqvEKyIEKyY=";
             })
             (pkgs.fetchurl {
               url = "https://github.com/mksondej/mattermost-file-list/releases/download/v0.9.0/mattermost-file-list-0.9.0.tar.gz";
