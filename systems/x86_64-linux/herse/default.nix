@@ -35,7 +35,7 @@ with lib.rr-sv; {
       dmaservices = enabled;
       changedetection = enabled;
       mealie = enabled;
-      easyappointments = enabled;
+      # easyappointments = enabled;
       # mailpit = enabled;
     };
   };
