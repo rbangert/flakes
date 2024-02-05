@@ -32,7 +32,7 @@ in {
             (pkgs.stdenv.mkDerivation {
               name = "mattermost-plugin-jitsi";
               version = "2.0.1";
-              src = pkgs.fetchzip {
+              src = pkgs.fetchurl {
                 url = "https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
                 sha256 = "sha256-hLCSs3HsCSlb+ILzx37MXBNyGZCVrL9a080NZLfILUk=";
               };
