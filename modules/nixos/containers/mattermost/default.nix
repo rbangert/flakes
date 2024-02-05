@@ -51,7 +51,7 @@ in {
             })
             (pkgs.fetchurl {
               url = "https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v1.8.0/com.github.manland.mattermost-plugin-gitlab-1.8.0.tar.gz";
-              sha256 = "sha256-ZbszxQEnySN/75TQsiI5mmt56i2WnY4t+bW5F+hp4+c=";
+              sha256 = "sha256-AetaUPLVARQwyeflCgQciSg8AiDWgqoflyUzOn7R3FY=";
             })
           ];
         };
