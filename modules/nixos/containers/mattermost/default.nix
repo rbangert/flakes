@@ -33,6 +33,26 @@ in {
               url = "https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
               sha256 = "sha256-iVmW9ZdNnzq08c929Tf1+xnA7cHWuujbn8BCpf6Zzeo=";
             })
+            (pkgs.fetchurl {
+              url = "https://github.com/mattermost/mattermost-plugin-github/releases/download/v2.1.8/github-2.1.8.tar.gz";
+              sha256 = "sha256-n9P6FA5+zd2TaAbVhdRxcS8cH48g1HQ51M8jILjqNmE=";
+            })
+            (pkgs.fetchurl {
+              url = "https://github.com/mksondej/mattermost-file-list/releases/download/v0.9.0/mattermost-file-list-0.9.0.tar.gz";
+              sha256 = "sha256-i2GUTLPD300OU0qqKERaVS2J6FmgYfHkD7s/7/mc3PY=";
+            })
+            (pkgs.fetchurl {
+              url = "https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v1.8.0/com.github.manland.mattermost-plugin-gitlab-1.8.0.tar.gz";
+              sha256 = "sha256-ZbszxQEnySN/75TQsiI5mmt56i2WnY4t+bW5F+hp4+c=";
+            })
+            (pkgs.fetchurl {
+              url = "https://get.gravitational.com/teleport-access-mattermost-v15.0.0-linux-amd64-bin.tar.gz";
+              sha256 = "";
+            })
+            (pkgs.fetchurl {
+              url = "https://github.com/mattermost/mattermost-plugin-gitlab/releases/download/v1.8.0/com.github.manland.mattermost-plugin-gitlab-1.8.0.tar.gz";
+              sha256 = "sha256-ZbszxQEnySN/75TQsiI5mmt56i2WnY4t+bW5F+hp4+c=";
+            })
           ];
         };
       };
