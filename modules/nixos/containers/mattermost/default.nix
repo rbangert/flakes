@@ -29,7 +29,7 @@ in {
           matterircd.enable = true;
           mutableConfig = true;
           plugins = [
-            (stdenv.mkDerivation {
+            (mkDerivation {
               name = "mattermost-plugin-jitsi";
               version = "2.0.1";
               src = pkgs.fetchurl {
