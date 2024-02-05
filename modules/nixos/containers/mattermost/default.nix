@@ -39,7 +39,7 @@ in {
 
               installPhase = ''
                 mkdir -p $out
-                cp -a * $out
+                cp -r * $out
               '';
             })
           ];
