@@ -18,13 +18,13 @@ in {
       wego
     ];
 
-    systemd.services."wegorc" = {
-      script = ''
-        cat ${config.sops.secrets.wegorc.path} >> .wegorc
-      '';
-      serviceConfig = {
-        WorkingDirectory = "/home/russ";
-      };
-    };
+    #systemd.services."wegorc" = {
+    #  script = ''
+    #    cat ${config.sops.secrets.wegorc.path} >> .wegorc
+    #  '';
+    #  serviceConfig = {
+    #    WorkingDirectory = "/home/russ";
+    #  };
+    #};
   };
 }

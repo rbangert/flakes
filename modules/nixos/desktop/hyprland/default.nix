@@ -98,7 +98,7 @@ in {
     services = {
       xserver = {
         enable = true;
-        videoDrivers = ["displaylink" "modesetting"];
+        videoDrivers = ["modesetting"];
         excludePackages = [pkgs.xterm];
         libinput.enable = true;
         displayManager.gdm = {

@@ -73,15 +73,30 @@ with lib.rr-sv; {
     };
   };
 
-  sops = {
-    defaultSopsFile = ../../../secrets/io/secrets.yaml;
-    secrets = {
-      wegorc = {};
+  #sops = {
+  #  defaultSopsFile = ../../../secrets/io/secrets.yaml;
+  #  secrets = {
+  #    wegorc = {};
+  #  };
+  #};
+
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    enableCryptodisk = true;
+  };
+  boot.initrd.luks.devices = {
+    root = {
+      # Use https://nixos.wiki/wiki/Full_Disk_Encryption
+      device = "/dev/disk/by-uuid/9e34c1d5-82e4-41e2-a175-b282cb4e6570";
+      preLVM = true;
     };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.supportedFilesystems = ["btrfs"];
+  hardware.enableAllFirmware = true;
 
   users = {
     mutableUsers = false;
@@ -104,7 +119,7 @@ with lib.rr-sv; {
 
   users.users.russ = {
     isNormalUser = true;
-    #InitialHashedPassword =
+    hashedPassword = "$6$jQA46gZnfuttL6pj$epxAaebcZ9q/7BMiI8VyZYu0/q7QNOrmTLJOwLhTMUFQxlrpT2quvdxgw.WiSSyv5213HI1cTBGDv1ajdRKE4/";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
     ];
@@ -204,9 +219,9 @@ with lib.rr-sv; {
     any-nix-shell
     alacritty
     xfce.thunar
-    mattermost-desktop
+    # mattermost-desktop
     caprine-bin
-    jitsi-meet-electron
+    # jitsi-meet-electron
     inkscape
     mailpit
     thunderbird
@@ -263,7 +278,7 @@ with lib.rr-sv; {
     sops
     nixpkgs-fmt
     nixd
-    rnix-lsp
+    # rnix-lsp
     nixos-generators
     ## lazyvim
     vimwiki-markdown

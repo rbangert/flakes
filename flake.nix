@@ -31,8 +31,8 @@
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "unstable";
+    # nixvim.url = "github:nix-community/nixvim";
+    # nixvim.inputs.nixpkgs.follows = "unstable";
 
     nixd.url = "github:nix-community/nixd";
     nil-lsp.url = "github:oxalica/nil";
@@ -59,7 +59,6 @@
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
-
       snowfall = {
         namespace = "rr-sv";
         meta = {
