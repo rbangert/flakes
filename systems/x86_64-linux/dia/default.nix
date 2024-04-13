@@ -29,10 +29,10 @@ with lib.rr-sv; {
     containers = {
       gotify = enabled;
       gitea = enabled;
-      deploy-webhook = enabled;
+      # deploy-webhook = enabled;
       wp-dev = enabled;
-      mattermost = enabled;
-      dmaservices = enabled;
+      # mattermost = enabled;
+      # dmaservices = enabled;
       changedetection = enabled;
       mealie = enabled;
       # easyappointments = enabled;
@@ -41,14 +41,9 @@ with lib.rr-sv; {
   };
 
   sops = {
-    defaultSopsFile = ../../../secrets/herse/secrets.yaml;
+    defaultSopsFile = ../../../secrets/dia/secrets.yaml;
     secrets = {
       email = {};
-      acmeCredFile = {};
-      deploy-webhook = {
-        owner = "russ";
-      };
-      easyappointmentsEnv = {};
     };
   };
 
@@ -67,7 +62,7 @@ with lib.rr-sv; {
   zramSwap.enable = false;
 
   networking = {
-    hostName = "herse";
+    hostName = "dia";
     enableIPv6 = true;
     networkmanager.enable = true;
     nat = {

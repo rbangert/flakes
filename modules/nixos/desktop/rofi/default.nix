@@ -16,6 +16,7 @@ in {
     rr-sv.home.extraOptions = {
       home.packages = with pkgs; [rofi-wayland];
 
+      # TODO: rofi dots
       # xdg.configFile."rofi".source = ../../../../config/rofi;
     };
   };

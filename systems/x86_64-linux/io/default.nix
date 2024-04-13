@@ -94,6 +94,8 @@ with lib.rr-sv; {
     };
   };
 
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = ["btrfs"];
   hardware.enableAllFirmware = true;
@@ -184,6 +186,7 @@ with lib.rr-sv; {
     eza
     cht-sh
     wtf
+    obsidian
     dash
     dmenu
     gimp
