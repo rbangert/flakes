@@ -1,11 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-with lib.rr-sv;
-let
-  cfg = config.rr-sv.tools.neomutt;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.rr-sv; let
+  cfg = config.rr-sv.tools.neomutt;
+in {
   options.rr-sv.tools.neomutt = with types; {
     enable = mkBoolOpt false "Whether or not to enable neomutt";
   };
@@ -24,7 +26,7 @@ in
       lynx
       notmuch
       abook
-      urlview
+      urlscan
       cron
       mpop
     ];

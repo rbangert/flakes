@@ -105,7 +105,7 @@ with lib.rr-sv; {
       #dev
       charm
       gum
-      nixfmt
+      nixfmt-rfc-style
       nurl
       nixpkgs-fmt
       nixos-generators

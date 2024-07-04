@@ -240,7 +240,6 @@ with lib.rr-sv; {
     bitwarden
     bitwarden-cli
     rbw
-    spotify-tui
     spotify-cli-linux
     xxh
     navi
@@ -276,7 +275,6 @@ with lib.rr-sv; {
     charm
     gum
     screen
-    nixfmt
     nurl
     sops
     nixpkgs-fmt
@@ -314,12 +312,12 @@ with lib.rr-sv; {
     atd.enable = true;
     tailscale.enable = true;
     gvfs.enable = true;
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = "russ";
     xserver = {
       enable = true;
       displayManager = {
         gdm.enable = true;
-        autoLogin.enable = true;
-        autoLogin.user = "russ";
       };
     };
     pipewire = {
@@ -367,7 +365,7 @@ with lib.rr-sv; {
   };
 
   system = {
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     autoUpgrade = {
       enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";

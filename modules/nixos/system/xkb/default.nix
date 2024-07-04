@@ -18,7 +18,7 @@ in {
     console.useXkbConfig = true;
     hardware.keyboard.qmk.enable = true;
 
-    services.xserver = {
+    services.xserver.xkb = {
       layout = "us";
       xkbOptions = "caps:escape";
     };

@@ -1,20 +1,21 @@
-inputs@{ options, config, lib, pkgs, ... }:
-
+inputs @ {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-with lib.rr-sv;
-let
+with lib.rr-sv; let
   cfg = config.rr-sv.desktop.eww;
-
-in
-{
+in {
   options.rr-sv.desktop.eww = with types; {
     enable = mkBoolOpt false "Whether or not to enable eww.";
   };
 
   config = mkIf cfg.enable {
     rr-sv.home.extraOptions = {
-
-      home.packages = with pkgs; [ eww-wayland ];
+      home.packages = with pkgs; [eww];
       #xdg.configFile."eww/eww.yuck".source = ./eww.yuck;
       #xdg.configFile."eww/eww.css".source = ./eww.css;
 

@@ -3,16 +3,22 @@
 
   inputs = {
     ## Core dependencies
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
-    snowfall-lib.url = "github:snowfallorg/lib";
-    snowfall-lib.inputs.nixpkgs.follows = "nixpkgs";
+    snowfall-lib = {
+      url = "github:snowfallorg/lib?ref=v3.0.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils-plus.follows = "flake-utils-plus";
+    };
+    flake-utils-plus = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+    };
 
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";

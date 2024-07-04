@@ -27,25 +27,25 @@ with lib.rr-sv; {
     };
 
     containers = {
-      gotify = enabled;
-      gitea = enabled;
+      # gotify = enabled;
+      # gitea = enabled;
       # deploy-webhook = enabled;
-      wp-dev = enabled;
+      # wp-dev = enabled;
       # mattermost = enabled;
       # dmaservices = enabled;
-      changedetection = enabled;
-      mealie = enabled;
+      # changedetection = enabled;
+      # mealie = enabled;
       # easyappointments = enabled;
       # mailpit = enabled;
     };
   };
 
-  sops = {
-    defaultSopsFile = ../../../secrets/dia/secrets.yaml;
-    secrets = {
-      email = {};
-    };
-  };
+  # sops = {
+  #   defaultSopsFile = ../../../secrets/dia/secrets.yaml;
+  #   secrets = {
+  #     email = {};
+  #   };
+  # };
 
   services.nginx = {
     enable = true;

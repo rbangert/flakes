@@ -96,11 +96,11 @@ in {
     };
 
     services = {
+      libinput.enable = true;
       xserver = {
         enable = true;
         videoDrivers = ["modesetting"];
         excludePackages = [pkgs.xterm];
-        libinput.enable = true;
         displayManager.gdm = {
           enable = true;
           wayland = true;
