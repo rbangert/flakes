@@ -18,7 +18,7 @@ in {
       extraOptions = {
         programs.zsh = {
           enable = true;
-          enableAutosuggestions = true;
+          autosuggestion.enable = true;
           syntaxHighlighting.enable = true;
           enableCompletion = true;
           history.path = "$XDG_CACHE_HOME/zsh.history";

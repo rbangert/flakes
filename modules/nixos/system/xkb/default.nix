@@ -20,7 +20,7 @@ in {
 
     services.xserver.xkb = {
       layout = "us";
-      xkbOptions = "caps:escape";
+      options = "caps:escape";
     };
   };
 }
