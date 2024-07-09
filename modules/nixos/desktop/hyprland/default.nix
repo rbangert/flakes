@@ -16,11 +16,10 @@ in {
   config = mkIf cfg.enable {
     #TODO: Pull in the hyprland config file
     environment.systemPackages = with pkgs; [
+      hypridle
       wlsunset
       wl-clipboard
       cliphist
-      swaylock-effects
-      swayidle
       grim
       gscreenshot
       ksnip
@@ -46,6 +45,7 @@ in {
       swaylock
       xdg-desktop-portal-hyprland
       hyprpaper
+      hyprlock
       wofi
       firefox-wayland
       swww
@@ -78,14 +78,6 @@ in {
       portal = {
         enable = true;
         extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-      };
-    };
-
-    security = {
-      pam.services.swaylock = {
-        text = ''
-          auth include login
-        '';
       };
     };
 
@@ -163,6 +155,8 @@ in {
         }
       '';
       configFile."hypr/hyprland.conf".source = ../../../../config/hypr/hyprland.conf;
+      configFile."hypr/hyprlock.conf".source = ../../../../config/hypr/hyprlock.conf;
+      configFile."hypr/hypridle.conf".source = ../../../../config/hypr/hypridle.conf;
       extraOptions = {
         services = {
           dunst = {
@@ -182,45 +176,6 @@ in {
           #   ``;
           #   https://nix-community.github.io/home-manager/options.html#opt-services.kanshi.profiles
           # };
-        };
-        programs.swaylock = {
-          enable = true;
-          package = pkgs.swaylock-effects;
-          settings = {
-            screenshots = true;
-            effect-blur = "20x3";
-            effect-vignette = "0.6:0.6";
-            fade-in = 0.1;
-            clock = true;
-            font = "JetBrainsMono Nerd Font";
-            font-size = 15;
-            grace = 15;
-
-            line-uses-inside = true;
-            disable-caps-lock-text = true;
-            indicator-caps-lock = true;
-            indicator-radius = 100;
-            indicator-idle-visible = true;
-
-            ring-color = "#3e4451";
-            inside-wrong-color = "#e06c75";
-            ring-wrong-color = "#e06c75";
-            key-hl-color = "#98c379";
-            bs-hl-color = "#e06c75";
-            ring-ver-color = "#d19a66";
-            inside-ver-color = "#d19a66";
-            inside-color = "#353b45";
-            text-color = "#c8ccd4";
-            text-clear-color = "#353b45";
-            text-ver-color = "#353b45";
-            text-wrong-color = "#353b45";
-            text-caps-lock-color = "#c8ccd4";
-            inside-clear-color = "#56b6c2";
-            ring-clear-color = "#56b6c2";
-            inside-caps-lock-color = "#d19a66";
-            ring-caps-lock-color = "#3e4451";
-            separator-color = "#3e4451";
-          };
         };
       };
     };

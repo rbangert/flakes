@@ -40,6 +40,7 @@
     # nixvim.url = "github:nix-community/nixvim";
     # nixvim.inputs.nixpkgs.follows = "unstable";
 
+    hyprlock.url = "github:hyprwm/hyprlock";
     nixd.url = "github:nix-community/nixd";
     nil-lsp.url = "github:oxalica/nil";
 

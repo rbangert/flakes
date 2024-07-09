@@ -23,7 +23,6 @@ with lib.rr-sv; {
     };
 
     shell = {
-      # zellij = enabled;
       zsh = enabled;
       atuin = enabled;
       starship = enabled;
@@ -32,14 +31,14 @@ with lib.rr-sv; {
 
     tools = {
       direnv = enabled;
-      emacs = enabled;
+      # emacs = enabled;
       git = enabled;
-      nb = enabled;
+      # nb = enabled;
       ssh = enabled;
-      neomutt = enabled;
+      # neomutt = enabled;
       neovim = enabled;
-      taskwarrior = enabled;
-      yubikey = enabled;
+      # taskwarrior = enabled;
+      # yubikey = enabled;
     };
 
     virtualisation = {
@@ -55,7 +54,7 @@ with lib.rr-sv; {
     };
 
     containers = {
-      mailpit = enabled;
+      # mailpit = enabled;
     };
 
     nix = {
@@ -102,7 +101,8 @@ with lib.rr-sv; {
 
   users = {
     mutableUsers = false;
-    users.root.initialHashedPassword = "$y$j9T$a2t7BLAmUzodcdXnY.A9Q.$vDBzrWbHKVeE/Kpyfk1mkytNwTfCDxyUFMp3NhOQa09";
+    users.root.hashedPassword = "$y$j9T$G6KGvLUo7/6YGsO/Ry9EC1$CQtgp/336k/4ozVfiQL2Z.3EgcosEOYpL8G8yGALDN2";
+    # users.root.initialHashedPassword = "$y$j9T$a2t7BLAmUzodcdXnY.A9Q.$vDBzrWbHKVeE/Kpyfk1mkytNwTfCDxyUFMp3NhOQa09";
   };
 
   networking = {
@@ -121,7 +121,7 @@ with lib.rr-sv; {
 
   users.users.russ = {
     isNormalUser = true;
-    hashedPassword = "$6$jQA46gZnfuttL6pj$epxAaebcZ9q/7BMiI8VyZYu0/q7QNOrmTLJOwLhTMUFQxlrpT2quvdxgw.WiSSyv5213HI1cTBGDv1ajdRKE4/";
+    hashedPassword = "$y$j9T$r9dv0dKsFPwUei7ujvARr.$dAiCl/QC.gyirBhj.SXQyJokg5H5789uVM4Y7n4OsP8";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
     ];
@@ -305,8 +305,8 @@ with lib.rr-sv; {
   };
 
   # TODO: import hlissners home.nix
-  location.latitude = 41.47;
-  location.longitude = -107.14;
+  location.latitude = 37.73;
+  location.longitude = -119.57;
 
   services = {
     atd.enable = true;
