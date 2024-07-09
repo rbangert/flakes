@@ -36,7 +36,7 @@ in {
         NIXOS_CONFIG_DIR = "$HOME/projects/dots";
         # Make some programs "XDG" compliant.
         LESSHISTFILE = "$XDG_CACHE_HOME/less.history";
-        WGETRC = "$XDG_CONFIG_HOME/wgetrc";
+        # WGETRC = "$XDG_CONFIG_HOME/wgetrc";
       };
     };
   };

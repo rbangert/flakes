@@ -1,14 +1,7 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  ...
-}:
+{ inputs, pkgs, lib, ... }:
 with lib;
 with lib.rr-sv; {
-  imports = [
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   rr-sv = {
     suites.common = enabled;
@@ -18,6 +11,7 @@ with lib.rr-sv; {
       rofi = enabled;
       dunst = enabled;
       eww = enabled;
+      ags = enabled;
       alacritty = enabled;
       foot = enabled;
     };
@@ -93,15 +87,16 @@ with lib.rr-sv; {
     };
   };
 
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems = ["btrfs"];
+  boot.supportedFilesystems = [ "btrfs" ];
   hardware.enableAllFirmware = true;
 
   users = {
     mutableUsers = false;
-    users.root.hashedPassword = "$y$j9T$G6KGvLUo7/6YGsO/Ry9EC1$CQtgp/336k/4ozVfiQL2Z.3EgcosEOYpL8G8yGALDN2";
+    users.root.hashedPassword =
+      "$y$j9T$G6KGvLUo7/6YGsO/Ry9EC1$CQtgp/336k/4ozVfiQL2Z.3EgcosEOYpL8G8yGALDN2";
     # users.root.initialHashedPassword = "$y$j9T$a2t7BLAmUzodcdXnY.A9Q.$vDBzrWbHKVeE/Kpyfk1mkytNwTfCDxyUFMp3NhOQa09";
   };
 
@@ -121,7 +116,8 @@ with lib.rr-sv; {
 
   users.users.russ = {
     isNormalUser = true;
-    hashedPassword = "$y$j9T$r9dv0dKsFPwUei7ujvARr.$dAiCl/QC.gyirBhj.SXQyJokg5H5789uVM4Y7n4OsP8";
+    hashedPassword =
+      "$y$j9T$r9dv0dKsFPwUei7ujvARr.$dAiCl/QC.gyirBhj.SXQyJokg5H5789uVM4Y7n4OsP8";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
     ];
@@ -301,7 +297,11 @@ with lib.rr-sv; {
       enable = true;
       enableSSHSupport = true;
     };
-    nix-ld.dev.enable = true;
+    # nix-ld.dev.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ stdenv.cc.cc ];
+    };
   };
 
   # TODO: import hlissners home.nix
@@ -316,9 +316,7 @@ with lib.rr-sv; {
     displayManager.autoLogin.user = "russ";
     xserver = {
       enable = true;
-      displayManager = {
-        gdm.enable = true;
-      };
+      displayManager = { gdm.enable = true; };
     };
     pipewire = {
       enable = true;
@@ -337,13 +335,11 @@ with lib.rr-sv; {
     };
     doas = {
       enable = true;
-      extraRules = [
-        {
-          users = ["russ"];
-          keepEnv = true;
-          persist = true;
-        }
-      ];
+      extraRules = [{
+        users = [ "russ" ];
+        keepEnv = true;
+        persist = true;
+      }];
     };
     protectKernelImage = true;
     unprivilegedUsernsClone = true;
