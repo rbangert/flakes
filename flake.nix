@@ -49,7 +49,7 @@
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
-    neovim.url = "github:rbangert/neovim";
+    # neovim.url = "github:rbangert/neovim";
 
     # nixvim.url = "github:nix-community/nixvim";
     # nixvim.inputs.nixpkgs.follows = "unstable";
@@ -95,7 +95,6 @@
 
       overlays = with inputs; [
         snowfall-flake.overlays."package/flake"
-        neovim.overlays.default
       ];
 
       homes.users."russ@io".modules = with inputs; [

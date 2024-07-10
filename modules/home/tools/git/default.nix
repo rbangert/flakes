@@ -28,7 +28,15 @@ in {
         key = cfg.signingKey;
         inherit (cfg) signByDefault;
       };
+      # ignores = {
+      # };
+      # hooks = {
+      #   pre-commit = ./pre-commit-script;
+      # };
       extraConfig = {
+        color.ui = true;
+        core.editor = "nvim";
+        credential.helper = "store";
         init = {
           defaultBranch = "main";
         };
@@ -41,8 +49,21 @@ in {
         core = {
           whitespace = "trailing-space,space-before-tab";
         };
-        safe = {
-          directory = "${user.home}/work/config/.git";
+        # safe = {
+        #   directory = "${user.home}/stuff/p/config/.git";
+        # };
+      };
+      delta = {
+        enable = true;
+        options = {
+          dark = true;
+          decorations = {
+            commit-decoration-style = "bold yellow box ul";
+            file-decoration-style = "none";
+            file-style = "bold yellow ul";
+          };
+          features = "decorations";
+          whitespace-error-style = "22 reverse";
         };
       };
     };

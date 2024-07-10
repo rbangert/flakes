@@ -35,8 +35,8 @@ in {
   options.${namespace}.user = with types; {
     name = mkOpt str "russ" "The name to use for the user account.";
     fullName = mkOpt str "Russell Bangert" "The full name of the user.";
-    email = mkOpt str "russ@rr-sv.win" true "The email of the user.";
-    # initialPassword = mkOpt str "omgrussb" "The initial password to use when the user is first created.";
+    email = mkOpt str "russ@rr-sv.win" "The email of the user.";
+    initialPassword = mkOpt str "omgrus/* s */b" "The initial password to use when the user is first created.";
     icon =
       mkOpt (nullOr package) defaultIcon
       "The profile picture to use for the user.";

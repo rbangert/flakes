@@ -12,7 +12,6 @@ with lib.${namespace}; {
 
   rr-sv = {
     suites.common = enabled;
-
     desktop = {
       hyprland = enabled;
       rofi = enabled;
@@ -31,7 +30,7 @@ with lib.${namespace}; {
     };
 
     tools = {
-      # direnv = enabled;
+      direnv = enabled;
       # emacs = enabled;
       # git = enabled;
       # nb = enabled;

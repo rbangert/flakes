@@ -38,6 +38,7 @@ in {
         terminal = "tmux-256color";
         mouse = true;
         shell = "/etc/profiles/per-user/russ/bin/zsh";
+        newSession = true;
         tmuxinator.enable = true;
         extraConfig =
           builtins.concatStringsSep "\n"
