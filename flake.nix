@@ -6,6 +6,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -29,9 +32,6 @@
     #   url = "github:DeterminateSystems/flake-checker";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -97,12 +97,17 @@
         # neovim.overlays.default
       ];
 
+      homes.modules = with inputs; [
+        ags.homeManagerModules.default
+        home-manager.nixosModules.home-manager
+        nix-colors.homeManagerModules.default
+      ];
+
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
-        # ags.homeManagerModules.default
       ];
     };
 }

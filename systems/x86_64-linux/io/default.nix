@@ -9,8 +9,6 @@ with lib.rr-sv; {
   imports = [./hardware.nix];
 
   rr-sv = {
-    suites.common = enabled;
-
     desktop = {
       hyprland = enabled;
       rofi = enabled;
@@ -19,25 +17,6 @@ with lib.rr-sv; {
       ags = enabled;
       alacritty = enabled;
       foot = enabled;
-    };
-
-    shell = {
-      zsh = enabled;
-      atuin = enabled;
-      starship = enabled;
-      tmux = enabled;
-    };
-
-    tools = {
-      direnv = enabled;
-      # emacs = enabled;
-      git = enabled;
-      # nb = enabled;
-      ssh = enabled;
-      # neomutt = enabled;
-      neovim = enabled;
-      # taskwarrior = enabled;
-      # yubikey = enabled;
     };
 
     virtualisation = {
@@ -73,10 +52,6 @@ with lib.rr-sv; {
 
   sops = {
     defaultSopsFile = ../../../secrets/io/secrets.yaml;
-    secrets = {
-      github_token = {};
-      # wegorc = {};
-    };
   };
 
   boot.loader.grub = {

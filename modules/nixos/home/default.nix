@@ -4,41 +4,35 @@
   pkgs,
   lib,
   inputs,
+  namespace,
   ...
 }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.home;
+with lib.${namespace}; let
+  cfg = config.${namespace}.home;
 in {
-  imports = with inputs; [
-    home-manager.nixosModules.home-manager
-    nix-colors.homeManagerModules.default
-  ];
-
-  options.rr-sv.home = with types; {
-    file =
-      mkOpt attrs {}
-      "A set of files to be managed by home-manager's <option>home.file</option>.";
-    configFile =
-      mkOpt attrs {}
-      "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
+  options.${namespace}.home = with types; {
+    file = mkOpt attrs {} (mdDoc "A set of files to be managed by home-manager's `home.file`.");
+    configFile = mkOpt attrs {} (
+      mdDoc "A set of files to be managed by home-manager's `xdg.configFile`."
+    );
     extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
   };
 
   config = {
     rr-sv.home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
-      home.file = mkAliasDefinitions options.rr-sv.home.file;
+      home.file = mkAliasDefinitions options.${namespace}.home.file;
       xdg.enable = true;
-      xdg.configFile = mkAliasDefinitions options.rr-sv.home.configFile;
+      xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;
     };
+
+    snowfallorg.users.${config.${namespace}.user.name}.home.config =
+      config.${namespace}.home.extraOptions;
 
     home-manager = {
       useUserPackages = true;
-      users.${config.rr-sv.user.name} =
-        mkAliasDefinitions options.rr-sv.home.extraOptions;
+      useGlobalPkgs = true;
     };
-
-    # FIXME colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
   };
 }
