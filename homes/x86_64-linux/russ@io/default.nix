@@ -14,6 +14,7 @@ with lib.${namespace}; {
       name = config.snowfallorg.user.name;
     };
     cli-apps = {
+      zsh = enabled;
       tmux = enabled;
       home-manager = enabled;
     };

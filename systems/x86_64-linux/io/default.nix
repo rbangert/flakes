@@ -23,10 +23,9 @@ with lib.${namespace}; {
     };
 
     shell = {
-      zsh = enabled;
+      # zsh = enabled;
       atuin = enabled;
       starship = enabled;
-      tmux = enabled;
     };
 
     tools = {
