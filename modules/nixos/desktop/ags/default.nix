@@ -3,11 +3,10 @@ inputs @ {
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.rr-sv; let
   cfg = config.rr-sv.desktop.ags;
 in {
   options.rr-sv.desktop.ags = with types; {
@@ -18,7 +17,6 @@ in {
     rr-sv.home = {
       extraOptions = {
         home.packages = with pkgs; [
-          ags
           bun
           dart-sass
           fd

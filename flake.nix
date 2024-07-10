@@ -46,15 +46,16 @@
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
     nix-search-cli.inputs.nixpkgs.follows = "nixpkgs";
 
-    ags.url = "github:Aylur/ags";
-    ags.inputs.nixpkgs.follows = "unstable";
-
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
-    # neovim.url = "github:rbangert/nixvim";
+    neovim.url = "github:rbangert/neovim";
+
+    # nixvim.url = "github:nix-community/nixvim";
+    # nixvim.inputs.nixpkgs.follows = "unstable";
 
     hyprlock.url = "github:hyprwm/hyprlock";
+    ags.url = "github:Aylur/ags";
     nixd.url = "github:nix-community/nixd";
     nil-lsp.url = "github:oxalica/nil";
 
@@ -94,7 +95,7 @@
 
       overlays = with inputs; [
         snowfall-flake.overlays."package/flake"
-        # neovim.overlays.default
+        neovim.overlays.default
       ];
 
       systems.modules.nixos = with inputs; [
