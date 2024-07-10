@@ -4,18 +4,19 @@
   pkgs,
   lib,
   inputs,
+  namespace,
   ...
 }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.home;
+with lib.${namespace}; let
+  cfg = config.${namespace}.home;
 in {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
     nix-colors.homeManagerModules.default
   ];
 
-  options.rr-sv.home = with types; {
+  options.${namespace}.home = with types; {
     file =
       mkOpt attrs {}
       "A set of files to be managed by home-manager's <option>home.file</option>.";
@@ -33,8 +34,12 @@ in {
       xdg.configFile = mkAliasDefinitions options.rr-sv.home.configFile;
     };
 
+    snowfallorg.users.${config.${namespace}.user.name}.home.config =
+      config.${namespace}.home.extraOptions;
+
     home-manager = {
       useUserPackages = true;
+      useGlobalPkgs = true;
       users.${config.rr-sv.user.name} =
         mkAliasDefinitions options.rr-sv.home.extraOptions;
     };

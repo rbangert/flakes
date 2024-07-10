@@ -98,12 +98,15 @@
         neovim.overlays.default
       ];
 
+      homes.users."russ@io".modules = with inputs; [
+        ags.homeManagerModules.default
+      ];
+
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
-        # ags.homeManagerModules.default
       ];
     };
 }

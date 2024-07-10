@@ -3,11 +3,12 @@
   config,
   pkgs,
   lib,
+  namespace,
   ...
 }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.user;
+with lib.${namespace}; let
+  cfg = config.${namespace}.user;
   defaultIconFileName = "profile.jpg";
   defaultIcon = pkgs.stdenvNoCC.mkDerivation {
     name = "default-icon";
@@ -30,16 +31,8 @@ with lib.rr-sv; let
 
       cp ${cfg.icon} "$target/${cfg.icon.fileName}"
     '';
-  # obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
-  #   pkgs.obsidian.override {
-  #     electron = pkgs.electron_25.overrideAttrs (_: {
-  #       preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-  #       meta.knownVulnerabilities = []; # NixOS/nixpkgs#273611
-  #     });
-  #   }
-  # );
 in {
-  options.rr-sv.user = with types; {
+  options.${namespace}.user = with types; {
     name = mkOpt str "russ" "The name to use for the user account.";
     fullName = mkOpt str "Russell Bangert" "The full name of the user.";
     email = mkOpt str "russ@rr-sv.win" true "The email of the user.";
@@ -56,13 +49,19 @@ in {
   config = {
     environment.systemPackages = with pkgs; [
       propagatedIcon
-      # obsidian
     ];
 
     programs.zsh.enable = true;
 
     rr-sv.home = {
       file = {
+        "Desktop/.keep".text = "";
+        "Documents/.keep".text = "";
+        "Downloads/.keep".text = "";
+        "Music/.keep".text = "";
+        "Pictures/.keep".text = "";
+        "Videos/.keep".text = "";
+        "work/.keep".text = "";
         ".face".source = cfg.icon;
         "Pictures/${
           cfg.icon.fileName or (builtins.baseNameOf cfg.icon)
