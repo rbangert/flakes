@@ -6,8 +6,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+    flake-utils-plus = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+    };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib?ref=v3.0.3";
@@ -21,9 +22,8 @@
     #   inputs.unstable.follows = "unstable";
     # };
 
-    flake-utils-plus = {
-      url = "github:gytis-ivaskevicius/flake-utils-plus";
-    };
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
     # flake-checker = {
     #   url = "github:DeterminateSystems/flake-checker";
@@ -43,6 +43,13 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     ## Tools
+
+    # Tmux
+    tmux.url = "github:rbangert/tmux";
+    tmux.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      unstable.follows = "unstable";
+    };
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
     nix-search-cli.inputs.nixpkgs.follows = "nixpkgs";
 

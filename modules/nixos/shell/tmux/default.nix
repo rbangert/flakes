@@ -11,7 +11,7 @@ with lib.rr-sv; let
 
   plugins = with pkgs.tmuxPlugins; [
     # TODO tmux add maildir-counter
-    catppuccin
+    tokyo-night-tmux
     tilish
     vim-tmux-navigator
     tmux-fzf
