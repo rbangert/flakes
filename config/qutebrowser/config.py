@@ -91,7 +91,7 @@ c.downloads.position = 'bottom'
 c.editor.command = ["alacritty", "-e", "vim '{}'"]
 c.editor.encoding = 'utf-8'
 c.editor.remove_file = True
-c.fileselect.folder.command = ['alacritty', '-e', 'vifmrun', '{}']
+c.fileselect.folder.command = ['alacritty', '-e', 'ranger', '{}']
 c.fonts.default_family      = ['Ubuntu Nerd Font']
 c.fonts.default_size        = '14px'
 c.fonts.completion.category = 'bold default_size default_family'
@@ -119,7 +119,7 @@ c.tabs.padding = {
     "top": 3,
     "bottom": 3,
 }
-c.url.default_page = "https://www.youtube.com/"
+c.url.default_page = "https://search.nixos.org/options"
 c.url.searchengines = {"DEFAULT": "https://startpage.com/do/search?query={}&lui=english"}
 c.url.start_pages = "https://startpage.com"
 c.tabs.title.format = '{index}{private}{title_sep}{current_title}'

@@ -36,9 +36,12 @@ set -g escape-time 10
 unbind C-b
 set -g prefix C-Space
 
-# Start windows at 1, instead of 0    
-set -g base-index 1 
+# Start windows and panes index at 1, not 0.
+set -g base-index 1
 setw -g pane-base-index 1
+
+# Ensure window index numbers get reordered on delete.
+set-option -g renumber-windows on
 
 # Clipboard bindings
 bind-key y run "tmux save-buffer - | xclip -i sel clipboard"

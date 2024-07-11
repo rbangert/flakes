@@ -17,6 +17,7 @@ in {
       packages = with pkgs; [
         noto-fonts
         noto-fonts-emoji
+        noto-fonts-color-emoji
         fantasque-sans-mono
         terminus_font
         jetbrains-mono
@@ -30,6 +31,9 @@ in {
         openmoji-color
         lexend
         jost
+        dejavu_fonts
+        iosevka
+        hack-font
         (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
       ];
       fontconfig = {

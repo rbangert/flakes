@@ -13,21 +13,21 @@ with lib.${namespace}; let
   plugins = with pkgs.tmuxPlugins; [
     # TODO tmux add maildir-counter
     tokyo-night-tmux
-    tilish
     vim-tmux-navigator
     tmux-fzf
+    tilish
     cpu
-    {
-      plugin = weather;
-      extraConfig = ''
-        set -g @forecast-format '%c %t %w'+'|'+'Dawn/Dusk:'+'%D/%d'+'%m'
-        set -g @forecast-location '41.79,-107.23'
-      '';
-    }
+    # {
+    #   plugin = weather;
+    #   extraConfig = ''
+    #     set -g @forecast-format '%c %t %w'+'|'+'Dawn/Dusk:'+'%D/%d'+'%m'
+    #     set -g @forecast-location '41.79,-107.23'
+    #   '';
+    # }
   ];
 in {
   options.${namespace}.cli-apps.tmux = {
-    enable = mkEnableOption "Tmux";
+    enable = mkEnableOption "tmux";
   };
 
   config = mkIf cfg.enable {
@@ -46,5 +46,8 @@ in {
 
       inherit plugins;
     };
+    home.packages = with pkgs; [
+      asciiquarium
+    ];
   };
 }

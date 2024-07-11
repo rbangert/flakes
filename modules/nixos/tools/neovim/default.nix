@@ -25,13 +25,17 @@ with lib.rr-sv; let
     p.json5
     p.json
     p.lua
+    p.ledger
     p.make
     p.markdown
     p.nix
     p.python
     p.rust
+    p.ssh_config
     p.toml
+    p.tmux
     p.typescript
+    p.terraform
     p.vue
     p.yaml
     p.astro

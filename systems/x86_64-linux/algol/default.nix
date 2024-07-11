@@ -107,11 +107,6 @@ with lib.rr-sv; {
       enable = true;
       enableSSHSupport = true;
     };
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-    };
   };
 
   security = {

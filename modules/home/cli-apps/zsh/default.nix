@@ -58,12 +58,45 @@ in {
       shellAliases = {
         cat = "bat";
         l = "eza --icons -alG --group-directories-first --git";
-      };
+        ls = "eza -F";
+        la = "eza -la";
+        rm = "rm -i";
+        mv = "mv -i";
+        cp = "cp -i";
+        im = "nvim";
+        grep = "grep --color=auto";
+        neofetch = "disfetch";
+        fetch = "disfetch";
+        gitfetch = "onefetch";
 
-      # TODO localVariables
-      # TODO plugins
-      # TODO prezto
-      # TODO shellAliases
+        # git
+        gc = "git clone";
+        ga = "git add *";
+      };
+    };
+
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      defaultCommand = "rg --files --hidden --follow";
+      defaultOptions = ["-m --bind ctrl-a:select-all,ctrl-d:deselect-all"];
+      colors = {
+        bg = "#5fff87";
+        "bg+" = "#5fff87";
+        fg = "#ffaf5f";
+        "fg+" = "#ffaf5f";
+        info = "#af87ff";
+        prompt = "#5fff87";
+        pointer = "#ff87d7";
+        marker = "#ff87d7";
+        spinner = "#ff87d7";
+      };
+    };
+
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
   };
 }

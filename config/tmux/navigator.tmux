@@ -26,7 +26,3 @@ bind-key -T copy-mode-vi 'C-l' select-pane -R
 bind-key -T copy-mode-vi 'C-\' select-pane -l
 bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
 
-unbind-key -n C-h
-unbind-key -n C-j
-unbind-key -n C-k
-unbind-key -n C-l

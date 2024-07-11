@@ -15,17 +15,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      alejandra
-      deploy-rs
-      nixfmt-rfc-style
-      nix-index
-      nix-prefetch-git
-      nix-output-monitor
-      nix-search
-      #flake-checker
-    ];
-
     nix = {
       registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;

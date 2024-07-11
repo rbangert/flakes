@@ -16,6 +16,17 @@
       inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
 
+    snowfall-thaw = {
+      url = "github:snowfallorg/thaw";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snowfall-flake.url = "github:snowfallorg/flake";
+    snowfall-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    snowfall-frost.url = "github:snowfallorg/frost";
+    snowfall-frost.inputs.nixpkgs.follows = "nixpkgs";
+
     # plusultra = {
     #   url = "github:jakehamilton/config";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -25,13 +36,10 @@
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
-    # flake-checker = {
-    #   url = "github:DeterminateSystems/flake-checker";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    stylix.url = "github:danth/stylix";
 
     home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "unstable";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -61,13 +69,10 @@
     # nixvim.url = "github:nix-community/nixvim";
     # nixvim.inputs.nixpkgs.follows = "unstable";
 
-    hyprlock.url = "github:hyprwm/hyprlock";
     ags.url = "github:Aylur/ags";
-    nixd.url = "github:nix-community/nixd";
-    nil-lsp.url = "github:oxalica/nil";
 
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    alejandra.url = "github:kamadorueda/alejandra";
+    alejandra.inputs.nixpkgs.follows = "unstable";
 
     fleek.url = "https://flakehub.com/f/ublue-os/fleek/0.10.4.tar.gz";
 
@@ -76,9 +81,6 @@
 
     # flake-checker.url = "github:DeterminateSystems/flake-checker";
     # flake-checker.inputs.nixpkgs.follows = "nixpkgs";
-
-    snowfall-flake.url = "github:snowfallorg/flake";
-    snowfall-flake.inputs.nixpkgs.follows = "unstable";
 
     nix-script.url = "github:BrianHicks/nix-script";
     nix-script.inputs.nixpkgs.follows = "nixpkgs";
@@ -102,6 +104,8 @@
 
       overlays = with inputs; [
         snowfall-flake.overlays."package/flake"
+        snowfall-frost.overlays."package/frost"
+        snowfall-thaw.overlays."package/thaw"
       ];
 
       homes.users."russ@io".modules = with inputs; [
@@ -113,6 +117,7 @@
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
+        stylix.nixosModules.stylix
       ];
     };
 }

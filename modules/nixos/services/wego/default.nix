@@ -1,16 +1,16 @@
-inputs @ {
-  options,
-  config,
+{
   lib,
+  config,
   pkgs,
+  namespace,
   ...
 }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.services.wego;
+with lib.${namespace}; let
+  cfg = config.${namespace}.services.wego;
 in {
-  options.rr-sv.services.wego = with types; {
-    enable = mkBoolOpt false "Whether or not to enable wego";
+  options.${namespace}.services.wego = {
+    enable = mkEnableOption "wego weather service";
   };
 
   config = mkIf cfg.enable {
@@ -18,13 +18,13 @@ in {
       wego
     ];
 
-    #systemd.services."wegorc" = {
-    #  script = ''
-    #    cat ${config.sops.secrets.wegorc.path} >> .wegorc
-    #  '';
-    #  serviceConfig = {
-    #    WorkingDirectory = "/home/russ";
-    #  };
-    #};
+    systemd.services."wegorc" = {
+      # script = ''
+      #   cat ${config.sops.secrets.wegorc.path} >> .wegorc
+      # '';
+      serviceConfig = {
+        WorkingDirectory = "/home/russ";
+      };
+    };
   };
 }

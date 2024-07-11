@@ -1,0 +1,14 @@
+# Home tmuxinator config
+
+name: Home
+socket_name: Home
+root: ~/
+
+windows:
+  - flakes:
+      layout: 3d51,168x40,0,0[168x34,0,0,1,168x5,0,35,3]
+      root: ~/stuff/p/flakes
+      panes:
+        - flakes:
+          - nvim
+          - 
