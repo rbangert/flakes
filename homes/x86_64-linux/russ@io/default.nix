@@ -37,6 +37,7 @@ with lib.${namespace}; {
 
   home = {
     packages = with pkgs; [
+      python312Packages.distutils-extra
       neovim
       #firefox-bin
       yt-dlp

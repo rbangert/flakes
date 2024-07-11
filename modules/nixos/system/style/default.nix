@@ -1,13 +1,14 @@
 {
-  options,
-  config,
   lib,
+  config,
   pkgs,
+  namespace,
   ...
 }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.system.style;
+with lib.${namespace}; let
+  cfg = config.${namespace}.system.style;
+  wallpaper = lib.snowfall.fs.get-file ../../../../config/wallpaper.png;
   # TODO: Customize KB config
 in {
   options.rr-sv.system.style = with types; {
@@ -19,6 +20,7 @@ in {
       enable = true;
       polarity = "dark";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
+      image = wallpaper;
       fonts = {
         serif = {
           package = pkgs.dejavu_fonts;

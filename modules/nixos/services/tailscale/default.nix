@@ -1,62 +1,78 @@
 {
-  options,
-  config,
   lib,
   pkgs,
+  config,
+  namespace,
   ...
 }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.services.tailscale;
+with lib.${namespace}; let
+  cfg = config.${namespace}.services.tailscale;
 in {
-  options.rr-sv.services.tailscale = {
-    enable = mkBoolOpt false "Whether or not to enable tailscale";
+  options.${namespace}.services.tailscale = with types; {
+    enable = mkBoolOpt false "Whether or not to configure Tailscale";
+    autoconnect = {
+      enable = mkBoolOpt true "Whether or not to enable automatic connection to Tailscale";
+      # key = mkOpt str "" "The authentication key to use";
+    };
   };
 
   config = mkIf cfg.enable {
-    services.tailscale.enable = true;
+    #   assertions = [
+    #     {
+    #       assertion = cfg.autoconnect.enable -> cfg.autoconnect.key != "";
+    #       message = "plusultra.services.tailscale.autoconnect.key must be set";
+    #     }
+    #   ];
 
-    networking.firewall = {
-      # always allow traffic from your Tailscale network
-      trustedInterfaces = ["tailscale0"];
+    environment.systemPackages = with pkgs; [tailscale];
 
-      # allow the Tailscale UDP port through the firewall
-      allowedUDPPorts = [config.services.tailscale.port];
+    services.tailscale = enabled;
 
-      checkReversePath = "loose";
+    networking = {
+      firewall = {
+        trustedInterfaces = [config.services.tailscale.interfaceName];
+
+        allowedUDPPorts = [config.services.tailscale.port];
+
+        # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
+        checkReversePath = "loose";
+      };
+
+      networkmanager.unmanaged = ["tailscale0"];
     };
 
-    boot.kernel.sysctl = {
-      "net.ipv6.conf.all.forwarding" = "1"; # for tailscale exit node
+    systemd.services.tailscale-autoconnect = mkIf cfg.autoconnect.enable {
+      description = "Automatic connection to Tailscale";
+
+      # Make sure tailscale is running before trying to connect to tailscale
+      after = [
+        "network-pre.target"
+        "tailscale.service"
+      ];
+      wants = [
+        "network-pre.target"
+        "tailscale.service"
+      ];
+      wantedBy = ["multi-user.target"];
+
+      # Set this service as a oneshot job
+      serviceConfig.Type = "oneshot";
+
+      # Have the job run this shell script
+      script = with pkgs; ''
+        # Wait for tailscaled to settle
+        sleep 2
+
+        # Check if we are already authenticated to tailscale
+        status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
+        if [ $status = "Running" ]; then # if so, then do nothing
+          exit 0
+        fi
+
+        # Otherwise authenticate with tailscale
+        ${tailscale}/bin/tailscale up -authkey $(cat /run/secrets/tailscale_token)
+      '';
     };
-
-    # TODO: automatically join tailscale network and handle 90 day key expiration
-
-    # # create a oneshot job to authenticate to Tailscale
-    # systemd.services.tailscale-autoconnect = {
-    #   description = "Automatic connection to Tailscale";
-
-    #   # make sure tailscale is running before trying to connect to tailscale
-    #   after = [ "network-pre.target" "tailscale.service" ];
-    #   wants = [ "network-pre.target" "tailscale.service" ];
-    #   wantedBy = [ "multi-user.target" ];
-
-    #   # set this service as a oneshot job
-    #   serviceConfig.Type = "oneshot";
-
-    #   # have the job run this shell script
-    #   script = with pkgs; ''
-    #     # wait for tailscaled to settle
-    #     sleep 2
-
-    #     # check if we are already authenticated to tailscale
-    #     status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
-    #     if [ $status = "Running" ]; then # if so, then do nothing
-    #       exit 0
-    #     fi
-
-    #     # otherwise authenticate with tailscale
-    #     ${tailscale}/bin/tailscale up --login-server=https://ts.ghuntley.net -authkey=tskey-examplekeyhere
-    #   '';
   };
 }

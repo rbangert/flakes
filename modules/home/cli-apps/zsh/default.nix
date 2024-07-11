@@ -48,8 +48,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "chisui";
             repo = "zsh-nix-shell";
-            rev = "v0.4.0";
-            sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+            rev = "82ca15e638cc208e6d8368e34a1625ed75e08f90";
+            hash = "sha256-Rtg8kWVLhXRuD2/Ctbtgz9MQCtKZOLpAIdommZhXKdE=";
           };
         }
       ];
@@ -81,17 +81,6 @@ in {
         enableZshIntegration = true;
         defaultCommand = "rg --files --hidden --follow";
         defaultOptions = ["-m --bind ctrl-a:select-all,ctrl-d:deselect-all"];
-        colors = {
-          bg = "#5fff87";
-          "bg+" = "#5fff87";
-          fg = "#ffaf5f";
-          "fg+" = "#ffaf5f";
-          info = "#af87ff";
-          prompt = "#5fff87";
-          pointer = "#ff87d7";
-          marker = "#ff87d7";
-          spinner = "#ff87d7";
-        };
       };
 
       direnv = {

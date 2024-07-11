@@ -109,6 +109,7 @@
       ];
 
       homes.users."russ@io".modules = with inputs; [
+        sops-nix.homeManagerModules.sops
         ags.homeManagerModules.default
       ];
 
