@@ -19,9 +19,9 @@ in {
     ];
 
     systemd.services."wegorc" = {
-      # script = ''
-      #   cat ${config.sops.secrets.wegorc.path} >> .wegorc
-      # '';
+      script = ''
+        cat ${config.sops.secrets.wegorc.path} >> .wegorc
+      '';
       serviceConfig = {
         WorkingDirectory = "/home/russ";
       };

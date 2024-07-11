@@ -44,6 +44,13 @@ with lib.rr-sv; {
   #   defaultSopsFile = ../../../secrets/dia/secrets.yaml;
   #   secrets = {
   #     email = {};
+  #     tailscale_token = {};
+  #     github_token = {};
+  #     cf-tunnel_token = {};
+  #     cf-dns_token = {};
+  #     wegorc = {};
+  #     ssh_key = {};
+  #     ssh_host_key = {};
   #   };
   # };
 

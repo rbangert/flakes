@@ -622,6 +622,7 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
+        "lastModified": 1696342919,
         "narHash": "sha256-dQYj2yDvZhiJEKegdsbGXUYPs7CYy+Gjj/wcEZrJMsE=",
         "rev": "6c181c0e2625239952beb10dda200f6be6c1c3b0",
         "revCount": 454,

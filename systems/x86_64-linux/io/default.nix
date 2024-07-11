@@ -33,7 +33,6 @@ in
 
       nix = {
         os = enabled;
-        flake = enabled;
       };
 
       system = {
@@ -46,16 +45,14 @@ in
       };
     };
 
-    # sops = {
-    #   defaultSopsFile = ../../../secrets/io/secrets.yaml;
-    #   age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-    #   age.generateKey = true;
-    #   age.keyFile = "/home/russ/.config/sops/age/keys.txt";
-    #   secrets = {
-    #     github_token = {};
-    #     wegorc = {};
-    #   };
-    # };
+    sops = {
+      defaultSopsFile = ../../../secrets/io/secrets.yaml;
+      age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      secrets = {
+        github_token = {};
+        wegorc = {};
+      };
+    };
 
     boot.loader.grub = {
       enable = true;

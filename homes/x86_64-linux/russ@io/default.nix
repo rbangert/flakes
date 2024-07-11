@@ -13,7 +13,7 @@ with lib.${namespace}; {
       alacritty = enabled;
       dunst = enabled;
       hyprland = enabled;
-      #qutebrowser = enabled;
+      # qutebrowser = enabled;
       rofi = enabled;
     };
 

@@ -22,7 +22,6 @@ in {
 
       nix = {
         os = enabled;
-        flake = enabled;
       };
 
       system = {

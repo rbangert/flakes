@@ -75,28 +75,34 @@ in {
       };
     };
 
-    programs.fzf = {
-      enable = true;
-      enableZshIntegration = true;
-      defaultCommand = "rg --files --hidden --follow";
-      defaultOptions = ["-m --bind ctrl-a:select-all,ctrl-d:deselect-all"];
-      colors = {
-        bg = "#5fff87";
-        "bg+" = "#5fff87";
-        fg = "#ffaf5f";
-        "fg+" = "#ffaf5f";
-        info = "#af87ff";
-        prompt = "#5fff87";
-        pointer = "#ff87d7";
-        marker = "#ff87d7";
-        spinner = "#ff87d7";
+    programs = {
+      fzf = {
+        enable = true;
+        enableZshIntegration = true;
+        defaultCommand = "rg --files --hidden --follow";
+        defaultOptions = ["-m --bind ctrl-a:select-all,ctrl-d:deselect-all"];
+        colors = {
+          bg = "#5fff87";
+          "bg+" = "#5fff87";
+          fg = "#ffaf5f";
+          "fg+" = "#ffaf5f";
+          info = "#af87ff";
+          prompt = "#5fff87";
+          pointer = "#ff87d7";
+          marker = "#ff87d7";
+          spinner = "#ff87d7";
+        };
       };
-    };
 
-    programs.direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
+
+      bat = {
+        enable = true;
+      };
     };
   };
 }
