@@ -7,9 +7,9 @@
 }:
 with lib;
 with lib.${namespace}; let
-  cfg = config.${namespace}.desktop.qutebrowser;
+  cfg = config.${namespace}.applications.qutebrowser;
 in {
-  options.${namespace}.desktop.qutebrowser = {
+  options.${namespace}.applications.qutebrowser = {
     enable = mkEnableOption "qutebrowser";
   };
   config = mkIf cfg.enable {
