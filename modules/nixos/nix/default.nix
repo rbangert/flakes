@@ -23,6 +23,7 @@ in {
         http-connections = 50;
         auto-optimise-store = true;
         allowed-users = ["russ"];
+        trusted-users = ["russ"];
         warn-dirty = false;
         log-lines = 50;
         substituters = ["https://aseipp-nix-cache.global.ssl.fastly.net"];

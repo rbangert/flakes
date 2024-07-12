@@ -25,6 +25,10 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
+    nix = {
+      os = enabled;
+    };
+
     containers = {
       # gotify = enabled;
       # gitea = enabled;

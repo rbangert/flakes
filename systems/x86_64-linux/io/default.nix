@@ -91,6 +91,7 @@ with lib.${namespace}; {
     hashedPassword = "$y$j9T$r9dv0dKsFPwUei7ujvARr.$dAiCl/QC.gyirBhj.SXQyJokg5H5789uVM4Y7n4OsP8";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7fghe/cS7r7e94cQivF3rI7EAHV6XUrBld+07dgg6s russ@dia"
     ];
     extraGroups = [
       "polkituser"

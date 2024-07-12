@@ -33,7 +33,7 @@ gc:
 ############################################################################
 
 dia: 
-	nixos-rebuild --flake .#dia --target-host dia --build-host io switch --use-remote-sudo
+	nixos-rebuild --flake .#dia --target-host dia --build-host localhost switch --use-remote-sudo
 
 dia-debug: 
 	nixos-rebuild --flake .#pod --target-host dia --build-host io switch --use-remote-sudo --show-trace --verbose

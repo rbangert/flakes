@@ -1,1 +1,2 @@
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7fghe/cS7r7e94cQivF3rI7EAHV6XUrBld+07dgg6s russ@dia
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBmFWl0ANYQFThs/Mp+PECQmX/c5mSBim8wyZEvIy6X0 root@dia /root/.ssh/authorized_keys
