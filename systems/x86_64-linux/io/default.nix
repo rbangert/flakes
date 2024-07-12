@@ -106,9 +106,6 @@ with lib.${namespace}; {
   };
 
   environment.systemPackages = with pkgs; [
-    python312Full
-    python312Packages.pip
-    python312Packages.setuptools
     qutebrowser
     neovim
     firefox-bin
