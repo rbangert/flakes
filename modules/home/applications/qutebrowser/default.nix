@@ -21,9 +21,9 @@ in {
 
     # home.sessionVariables = {DEFAULT_BROWSER = "${pkgs.qutebrowser}/bin/qutebrowser";};
 
-    environment.systemPackages = with pkgs; [
-      qutebrowser
-    ];
+    # home.packages = with pkgs; [
+    #   qutebrowser
+    # ];
 
     # home.file.".config/qutebrowser" = {
     #   source = ../../../../config/qutebrowser;
