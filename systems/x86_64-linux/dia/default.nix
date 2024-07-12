@@ -17,7 +17,6 @@ with lib.rr-sv; {
     virtualisation = {
       libvirtd = enabled;
       podman = enabled;
-      # incus = enabled;
       lxc = enabled;
     };
 
@@ -40,19 +39,19 @@ with lib.rr-sv; {
     };
   };
 
-  # sops = {
-  #   defaultSopsFile = ../../../secrets/dia/secrets.yaml;
-  #   secrets = {
-  #     email = {};
-  #     tailscale_token = {};
-  #     github_token = {};
-  #     cf-tunnel_token = {};
-  #     cf-dns_token = {};
-  #     wegorc = {};
-  #     ssh_key = {};
-  #     ssh_host_key = {};
-  #   };
-  # };
+  sops = {
+    defaultSopsFile = ../../../secrets/dia/secrets.yaml;
+    secrets = {
+      email = {};
+      tailscale_token = {};
+      github_token = {};
+      cf-tunnel_token = {};
+      acmecredfile = {};
+      wegorc = {};
+      ssh_key = {};
+      ssh_host_key = {};
+    };
+  };
 
   services.nginx = {
     enable = true;

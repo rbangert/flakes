@@ -72,6 +72,7 @@ in {
         # git
         gc = "git clone";
         ga = "git add *";
+        cm = "git clone -m";
       };
     };
 

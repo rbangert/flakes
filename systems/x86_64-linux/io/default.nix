@@ -80,13 +80,9 @@ with lib.${namespace}; {
     hostName = "io";
     enableIPv6 = false;
     networkmanager.enable = true;
-    #wireless.iwd.enable = true;
     firewall = {
       enable = true;
-      checkReversePath = "loose";
-      #    allowedTCPPorts = [ 443 80 ];
-      #    allowedUDPPorts = [ 443 80 44857 ];
-      #    allowPing = false;
+      allowPing = false;
     };
   };
 
@@ -109,6 +105,7 @@ with lib.${namespace}; {
   };
 
   environment.systemPackages = with pkgs; [
+    python312Packages.setuptools
     neovim
     firefox-bin
     # for qutebrowser

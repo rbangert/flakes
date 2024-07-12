@@ -125,9 +125,10 @@ with lib.${namespace}; {
     sessionVariables = {
       EDITOR = "nvim";
     };
+  };
 
-    shellAliases = {
-      vimdiff = "nvim -d";
-    };
+  stylix = {
+    enable = true;
+    autoEnable = true;
   };
 }

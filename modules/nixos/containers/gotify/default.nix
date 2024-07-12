@@ -67,7 +67,7 @@ in {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
-      credentialsFile = config.sops.secrets.acmeCredFile.path;
+      credentialsFile = config.sops.secrets.acmecredfile.path;
     };
   };
 }

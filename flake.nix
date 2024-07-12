@@ -120,5 +120,18 @@
         sops-nix.nixosModules.sops
         stylix.nixosModules.stylix
       ];
+
+      deploy = lib.mkDeploy {inherit (inputs) self;};
+
+      checks =
+        builtins.mapAttrs (
+          system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy
+        )
+        inputs.deploy-rs.lib;
+
+      outputs-builder = channels: {formatter = channels.nixpkgs.nixfmt-rfc-style;};
+    }
+    // {
+      self = inputs.self;
     };
 }
