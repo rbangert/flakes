@@ -14,11 +14,11 @@ with lib.rr-sv; {
   programs.extra-container.enable = true;
 
   rr-sv = {
-    # virtualisation = {
-    #   libvirtd = enabled;
-    #   podman = enabled;
-    #   lxc = enabled;
-    # };
+    virtualisation = {
+      libvirtd = enabled;
+      podman = enabled;
+      lxc = enabled;
+    };
 
     services = {
       openssh = enabled;
@@ -33,13 +33,13 @@ with lib.rr-sv; {
       # gotify = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
-      # wp-dev = enabled;
+      wp-dev = enabled;
       # mattermost = enabled;
       # dmaservices = enabled;
       # changedetection = enabled;
       # mealie = enabled;
       # easyappointments = enabled;
-      # mailpit = enabled;
+      mailpit = enabled;
     };
   };
 
