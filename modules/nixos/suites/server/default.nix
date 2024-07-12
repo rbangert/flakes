@@ -29,13 +29,5 @@ in {
         time = enabled;
       };
     };
-
-    environment = {
-      defaultPackages = [];
-      systemPackages = with pkgs; [
-        git
-        neovim
-      ];
-    };
   };
 }
