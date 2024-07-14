@@ -1,19 +1,15 @@
-{
-  lib,
-  pkgs,
-  config,
-  osConfig ? {},
-  format ? "unknown",
-  namespace,
-  ...
-}:
+{ lib, pkgs, namespace, ... }:
 with lib.${namespace}; {
   rr-sv = {
+    applications = {
+      emacs = enabled;
+      qutebrowser = enabled;
+    };
+
     desktop = {
       alacritty = enabled;
       dunst = enabled;
       hyprland = enabled;
-      # qutebrowser = enabled;
       rofi = enabled;
     };
 
@@ -35,9 +31,11 @@ with lib.${namespace}; {
     };
   };
 
+  manual.json.enable = true;
+
   home = {
     packages = with pkgs; [
-      python312Packages.distutils-extra
+      pandoc
       neovim
       #firefox-bin
       yt-dlp
@@ -54,15 +52,9 @@ with lib.${namespace}; {
       #rofi-emoji
       #rofi-pass
       #rofi-rbw-wayland
-      buku
-      eza
-      cht-sh
-      wtf
       obsidian
 
       gimp
-      bottom
-      ranger
       _1password
       _1password-gui
 
@@ -78,7 +70,6 @@ with lib.${namespace}; {
       mpd
       obs-studio
 
-      glow
       blender
 
       libreoffice
@@ -118,17 +109,14 @@ with lib.${namespace}; {
       perl
       pwgen
 
-      charm
-      gum
     ];
 
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
+    sessionVariables = { EDITOR = "nvim"; };
   };
 
   stylix = {
     enable = true;
     autoEnable = true;
+    fonts.sizes.applications = 10;
   };
 }

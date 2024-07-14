@@ -1,17 +1,9 @@
-{
-  lib,
-  config,
-  pkgs,
-  namespace,
-  ...
-}:
+{ lib, config, pkgs, namespace, ... }:
 with lib;
-with lib.${namespace}; let
-  cfg = config.${namespace}.cli-apps.zsh;
+with lib.${namespace};
+let cfg = config.${namespace}.cli-apps.zsh;
 in {
-  options.${namespace}.cli-apps.zsh = {
-    enable = mkEnableOption "zsh shell";
-  };
+  options.${namespace}.cli-apps.zsh = { enable = mkEnableOption "zsh shell"; };
 
   config = mkIf cfg.enable {
     programs.zsh = {
@@ -41,18 +33,16 @@ in {
         export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
       '';
 
-      plugins = [
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "82ca15e638cc208e6d8368e34a1625ed75e08f90";
-            hash = "sha256-Rtg8kWVLhXRuD2/Ctbtgz9MQCtKZOLpAIdommZhXKdE=";
-          };
-        }
-      ];
+      plugins = [{
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "82ca15e638cc208e6d8368e34a1625ed75e08f90";
+          hash = "sha256-Rtg8kWVLhXRuD2/Ctbtgz9MQCtKZOLpAIdommZhXKdE=";
+        };
+      }];
 
       # TODO add zsh aliases
       shellAliases = {
@@ -65,9 +55,11 @@ in {
         cp = "cp -i";
         im = "nvim";
         grep = "grep --color=auto";
-        neofetch = "disfetch";
-        fetch = "disfetch";
-        gitfetch = "onefetch";
+        fetch = "fastfetch";
+        cs = "cht.sh";
+        manix = ''
+          manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix
+        '';
 
         # git
         gc = "git clone";
@@ -79,9 +71,10 @@ in {
     programs = {
       fzf = {
         enable = true;
+        tmux.enableShellIntegration = true;
         enableZshIntegration = true;
         defaultCommand = "rg --files --hidden --follow";
-        defaultOptions = ["-m --bind ctrl-a:select-all,ctrl-d:deselect-all"];
+        defaultOptions = [ "-m --bind ctrl-a:select-all,ctrl-d:deselect-all" ];
       };
 
       direnv = {
@@ -89,10 +82,19 @@ in {
         enableZshIntegration = true;
         nix-direnv.enable = true;
       };
-
-      bat = {
+      eza = {
         enable = true;
+        enableZshIntegration = true;
+        icons = true;
       };
+      bat = { enable = true; };
+      fd = { enable = true; };
+      fastfetch = { enable = true; };
+      bottom.enable = true;
+    };
+
+    home = {
+      packages = with pkgs; [ buku cht-sh wtf charm gum glow bottom ranger ];
     };
   };
 }

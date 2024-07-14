@@ -35,7 +35,6 @@ with lib.rr-sv; {
       # deploy-webhook = enabled;
       wp-dev = enabled;
       # mattermost = enabled;
-      # dmaservices = enabled;
       # changedetection = enabled;
       # mealie = enabled;
       # easyappointments = enabled;

@@ -28,7 +28,6 @@ in {
         killall
         git
         gparted
-        coreutils-full
       ];
     };
   };

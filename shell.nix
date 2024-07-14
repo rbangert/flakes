@@ -29,7 +29,6 @@
       home-manager
       git
       gnupg
-      rnix-lsp
       nixd
       nixfmt
       nixpkgs-fmt

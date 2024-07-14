@@ -13,7 +13,6 @@ with lib.${namespace}; let
 in {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
-    nix-colors.homeManagerModules.default
   ];
 
   options.${namespace}.home = with types; {

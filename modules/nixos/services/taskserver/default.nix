@@ -14,12 +14,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # rr-sv.home.configFile."alacritty/alacritty.yml".source = ./config/alacritty.yml;
+    networking.firewall = {
+      allowedTCPPorts = [53589];
+    };
 
     services.taskserver = {
       enable = true;
+      fqdn = "task.rr-sv.win";
+      listenHost = "::";
       # dataDir = "/p/tasks";
-      organisations.rr-sv.users = ["russ" "rebecca"];
+      organisations.personal.users = ["russ"];
       # manual.server.key = ;
       # manual.server.cert = ;
     };

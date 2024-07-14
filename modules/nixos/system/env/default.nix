@@ -1,13 +1,7 @@
-{
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ options, config, lib, pkgs, ... }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.system.env;
+with lib.rr-sv;
+let cfg = config.rr-sv.system.env;
 in {
   options.rr-sv.system.env = with types; {
     enable = mkBoolOpt false "Whether or not to enable env";
@@ -22,12 +16,13 @@ in {
         XDG_BIN_HOME = "$HOME/.local/bin";
         # To prevent firefox from creating ~/Desktop.
         XDG_DESKTOP_DIR = "$HOME/stuff/other/";
-        EDITOR = "nvim";
+        EDITOR = "emacs";
       };
       variables = {
         QUTE_QT_WRAPPER = "PyQt6";
-        PATH = "$PATH:$HOME/projects/flakes/bin:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
-        EDITOR = "nvim";
+        PATH =
+          "$PATH:$HOME/.emacs.d/bin/:$HOME/projects/flakes/bin:$HOME/.local/bin:$HOME/.config/emacs/bin:$HOME/go/bin";
+        EDITOR = "emacs";
         DOTS = "$HOME/projects/flakes";
         DOTDIR = "$HOME/projects/flakes";
         DOTBIN = "$HOME/projects/flakes/bin";

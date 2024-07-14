@@ -34,7 +34,7 @@ in {
         dejavu_fonts
         iosevka
         hack-font
-        (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+        (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "FiraCode" "JetBrainsMono"];})
       ];
       fontconfig = {
         hinting.autohint = true;
