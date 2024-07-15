@@ -1,27 +1,15 @@
-{
-  lib,
-  config,
-  pkgs,
-  namespace,
-  ...
-}:
+{ lib, config, namespace, ... }:
 with lib;
-with lib.${namespace}; let
-  cfg = config.${namespace}.desktop.fuzzel;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.fuzzel;
 in {
-  options.${namespace}.desktop.fuzzel = {
-    enable = mkEnableOption "fuzzell";
-  };
+  options.${namespace}.desktop.fuzzel = { enable = mkEnableOption "fuzzell"; };
 
   config = mkIf cfg.enable {
-    home = {
-      programs.fuzzel = {
-        enable = true;
-      };
-      # file.".config/rofi" = {
-      #   source = ../../../../config/rofi;
-      #   recursive = true;
-      # };
-    };
+    programs.fuzzel = { enable = true; };
+    # file.".config/rofi" = {
+    #   source = ../../../../config/rofi;
+    #   recursive = true;
+    # };
   };
 }

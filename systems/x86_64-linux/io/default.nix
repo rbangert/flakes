@@ -1,7 +1,12 @@
-{ pkgs, config, lib, channel, namespace, ... }:
+{
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 with lib;
 with lib.${namespace}; {
-  imports = [ ./hardware.nix ];
+  imports = [./hardware.nix];
 
   rr-sv = {
     virtualisation = {
@@ -9,13 +14,15 @@ with lib.${namespace}; {
       podman = enabled;
     };
 
+    containers = {home-assistant = enabled;};
+
     services = {
       openssh = enabled;
-      tailscale = { enable = true; };
+      tailscale = {enable = true;};
       wego = enabled;
     };
 
-    nix = { os = enabled; };
+    nix = {os = enabled;};
 
     system = {
       env = enabled;
@@ -30,14 +37,14 @@ with lib.${namespace}; {
 
   sops = {
     defaultSopsFile = ../../../secrets/io/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     secrets = {
-      github_token = { };
-      wegorc = { };
-      tailscale_token = { };
-      atuin_key = { owner = "russ"; };
-      ssh_key = { };
-      ssh_host_key = { };
+      github_token = {};
+      wegorc = {};
+      tailscale_token = {};
+      atuin_key = {owner = "russ";};
+      ssh_key = {};
+      ssh_host_key = {};
     };
   };
 
@@ -55,16 +62,15 @@ with lib.${namespace}; {
     };
   };
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems = [ "btrfs" ];
+  boot.supportedFilesystems = ["btrfs"];
   hardware.enableAllFirmware = true;
 
   users = {
     mutableUsers = false;
-    users.root.hashedPassword =
-      "$y$j9T$G6KGvLUo7/6YGsO/Ry9EC1$CQtgp/336k/4ozVfiQL2Z.3EgcosEOYpL8G8yGALDN2";
+    users.root.hashedPassword = "$y$j9T$G6KGvLUo7/6YGsO/Ry9EC1$CQtgp/336k/4ozVfiQL2Z.3EgcosEOYpL8G8yGALDN2";
   };
 
   networking = {
@@ -79,8 +85,7 @@ with lib.${namespace}; {
 
   users.users.russ = {
     isNormalUser = true;
-    hashedPassword =
-      "$y$j9T$r9dv0dKsFPwUei7ujvARr.$dAiCl/QC.gyirBhj.SXQyJokg5H5789uVM4Y7n4OsP8";
+    hashedPassword = "$y$j9T$r9dv0dKsFPwUei7ujvARr.$dAiCl/QC.gyirBhj.SXQyJokg5H5789uVM4Y7n4OsP8";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7fghe/cS7r7e94cQivF3rI7EAHV6XUrBld+07dgg6s russ@dia"
@@ -100,7 +105,6 @@ with lib.${namespace}; {
   environment.systemPackages = with pkgs; [
     gettext
     bash
-    neovim
     firefox-bin
 
     # laptop stuff
@@ -132,13 +136,13 @@ with lib.${namespace}; {
     hyprland.enable = true;
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
-    nix-ld.dev.enable = true;
+    #nix-ld.dev.enable = true;
     # nix-ld = {
     #   enable = true;
     #   libraries = with pkgs; [stdenv.cc.cc];
     # };
   };
-  security.pam.services.hyprlock = { };
+  security.pam.services.hyprlock = {};
 
   boot.plymouth = {
     enable = true;
@@ -161,7 +165,7 @@ with lib.${namespace}; {
     displayManager.autoLogin.user = "russ";
     xserver = {
       enable = true;
-      videoDrivers = [ "modesetting" ];
+      videoDrivers = ["modesetting"];
       displayManager.gdm = {
         enable = true;
         wayland = true;
@@ -189,11 +193,13 @@ with lib.${namespace}; {
     doas = {
       enable = true;
       wheelNeedsPassword = false;
-      extraRules = [{
-        users = [ "russ" ];
-        keepEnv = true;
-        persist = true;
-      }];
+      extraRules = [
+        {
+          users = ["russ"];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
     };
     protectKernelImage = true;
     unprivilegedUsernsClone = true;

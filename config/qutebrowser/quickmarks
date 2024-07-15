@@ -1,1 +1,5 @@
 qutebrowser-cht.sht https://raw.githubusercontent.com/qutebrowser/qutebrowser/main/doc/img/cheatsheet-big.png
+nixos-options https://search.nixos.org/packages?channel=unstable
+github https://github.com/rbangert
+home-manager options https://nix-community.github.io/home-manager/options.html
+12ft ladder https://12ft.io/

@@ -1,8 +1,6 @@
 {
-  options,
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -24,6 +22,7 @@ in {
       # TODO fix doas
       doas = {
         enable = true;
+
         wheelNeedsPassword = false;
         extraRules = [
           {

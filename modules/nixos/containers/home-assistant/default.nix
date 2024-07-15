@@ -14,8 +14,6 @@ in {
           image = "ghcr.io/home-assistant/home-assistant:stable";
           ports = [ "8123:8123" ];
           user = "1000:1000";
-          priviledged = true;
-          networkMode = "host";
           volumes = [
             "/etc/localtime:/etc/localtime:ro"
             "/opt/homeassistant/config:/config"

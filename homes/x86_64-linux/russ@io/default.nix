@@ -1,4 +1,9 @@
-{ lib, pkgs, namespace, ... }:
+{
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib.${namespace}; {
   rr-sv = {
     applications = {
@@ -36,7 +41,6 @@ with lib.${namespace}; {
   home = {
     packages = with pkgs; [
       pandoc
-      neovim
       #firefox-bin
       yt-dlp
       ytfzf
@@ -108,10 +112,9 @@ with lib.${namespace}; {
 
       perl
       pwgen
-
     ];
 
-    sessionVariables = { EDITOR = "nvim"; };
+    sessionVariables = {EDITOR = "nvim";};
   };
 
   stylix = {

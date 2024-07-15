@@ -1,5 +1,4 @@
 {
-
   description = "RR-SV Flakes";
 
   inputs = {
@@ -10,7 +9,7 @@
     flake-utils-plus = { url = "github:gytis-ivaskevicius/flake-utils-plus"; };
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib?ref=v3.0.3";
+      url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
@@ -57,11 +56,15 @@
     #   unstable.follows = "unstable";
     # };
 
+    neovim.url = "github:rbangert/neovim";
+    neovim.inputs.nixpkgs.follows = "unstable";
+
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
     nix-search-cli.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Run unpatched dynamically compiled binaries
     nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    nix-ld.inputs.nixpkgs.follows = "unstable";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -83,36 +86,39 @@
           };
         };
       };
-    in lib.mkFlake {
-      channels-config.allowUnfree = true;
+    in
+    lib.mkFlake
+      {
+        channels-config.allowUnfree = true;
 
-      overlays = with inputs; [
-        snowfall-flake.overlays."package/flake"
-        snowfall-frost.overlays."package/frost"
-        snowfall-thaw.overlays."package/thaw"
-      ];
+        overlays = with inputs; [
+          snowfall-flake.overlays."package/flake"
+          snowfall-frost.overlays."package/frost"
+          snowfall-thaw.overlays."package/thaw"
+          neovim.overlays.default
+        ];
 
-      homes.users."russ@io".modules = with inputs;
-        [ sops-nix.homeManagerModules.sops ];
+        homes.users."russ@io".modules = with inputs; [ sops-nix.homeManagerModules.sops ];
 
-      systems.modules.nixos = with inputs; [
-        home-manager.nixosModules.home-manager
-        nix-ld.nixosModules.nix-ld
-        disko.nixosModules.disko
-        sops-nix.nixosModules.sops
-        stylix.nixosModules.stylix
-      ];
+        systems.modules.nixos = with inputs; [
+          home-manager.nixosModules.home-manager
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
+        ];
 
-      deploy = lib.mkDeploy { inherit (inputs) self; };
+        deploy = lib.mkDeploy { inherit (inputs) self; };
 
-      checks = builtins.mapAttrs
-        (system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+        checks =
+          builtins.mapAttrs
+            (system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy)
+            inputs.deploy-rs.lib;
 
-      outputs-builder = channels: {
-        formatter = channels.nixpkgs.nixfmt-rfc-style;
-      };
-    } // {
+        outputs-builder = channels: {
+          formatter = channels.nixpkgs.nixfmt-rfc-style;
+        };
+      }
+    // {
       self = inputs.self;
     };
 }
