@@ -1,13 +1,14 @@
-{
-  lib,
-  pkgs,
-  namespace,
-  ...
+{ lib
+, pkgs
+, namespace
+, ...
 }:
 with lib.${namespace}; {
   rr-sv = {
     applications = {
       emacs = enabled;
+      # INFO keybase kbfs package currently broken
+      # keybase = enabled;
       qutebrowser = enabled;
     };
 
@@ -54,7 +55,7 @@ with lib.${namespace}; {
       #rofi
       #rofi-calc
       #rofi-emoji
-      #rofi-pass
+      rofi-pass
       #rofi-rbw-wayland
       obsidian
 
@@ -114,7 +115,7 @@ with lib.${namespace}; {
       pwgen
     ];
 
-    sessionVariables = {EDITOR = "nvim";};
+    sessionVariables = { EDITOR = "nvim"; };
   };
 
   stylix = {

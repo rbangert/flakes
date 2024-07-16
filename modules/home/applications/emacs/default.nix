@@ -1,15 +1,19 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.applications.emacs;
+with lib.${namespace}; let
+  cfg = config.${namespace}.applications.emacs;
 in {
   options.${namespace}.applications.emacs = {
     enable = mkEnableOption "emacs";
   };
 
   config = mkIf cfg.enable {
-
-    manual.json.enable = true;
     home.packages = with pkgs; [
       # binutils
       emacs29-pgtk
@@ -29,7 +33,7 @@ in {
       cmake
       libtool
       # :checkers spell
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      (aspellWithDicts (ds: with ds; [en en-computers en-science]))
       # :tools editorconfig
       editorconfig-core-c # per-project style config
       # :tools lookup & :lang org +roam
@@ -44,6 +48,6 @@ in {
       emacsPackages.prettier-js
     ];
 
-    services.emacs = { enable = true; };
+    services.emacs = {enable = true;};
   };
 }

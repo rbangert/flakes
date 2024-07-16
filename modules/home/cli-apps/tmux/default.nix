@@ -1,9 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  namespace,
-  ...
+{ lib
+, config
+, pkgs
+, namespace
+, ...
 }:
 with lib;
 with lib.${namespace}; let
@@ -25,7 +24,8 @@ with lib.${namespace}; let
     #   '';
     # }
   ];
-in {
+in
+{
   options.${namespace}.cli-apps.tmux = {
     enable = mkEnableOption "tmux";
   };
@@ -36,13 +36,14 @@ in {
       historyLimit = 2000;
       keyMode = "vi";
       terminal = "tmux-256color";
+      baseIndex = 1;
       mouse = true;
       shell = "/etc/profiles/per-user/russ/bin/zsh";
       newSession = true;
       tmuxinator.enable = true;
       extraConfig =
         builtins.concatStringsSep "\n"
-        (builtins.map lib.strings.fileContents configFiles);
+          (builtins.map lib.strings.fileContents configFiles);
 
       inherit plugins;
     };

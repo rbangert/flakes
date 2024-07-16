@@ -1,4 +1,3 @@
-
 # Reload tmux config
 bind r source-file ~/.config/tmux/tmux.conf
 
@@ -22,9 +21,6 @@ set-option -ga terminal-overrides ",*:Tc"
 # Set scrollback buffer to 10000
 set -g history-limit 2000
 
-# Set default shell in tmux
-set -g default-shell /run/current-system/sw/bin/zsh
-
 # Screen Saver
 set -g lock-after-time 500
 set -g lock-command "asciiquarium"
@@ -35,10 +31,6 @@ set -g escape-time 10
 # Binding prefix to CTRL+SPACE
 unbind C-b
 set -g prefix C-Space
-
-# Start windows and panes index at 1, not 0.
-set -g base-index 1
-setw -g pane-base-index 1
 
 # Ensure window index numbers get reordered on delete.
 set-option -g renumber-windows on

@@ -15,6 +15,7 @@ with lib.${namespace}; {
     };
 
     containers = {home-assistant = enabled;};
+    tools.keybase = enabled;
 
     services = {
       openssh = enabled;
@@ -56,7 +57,6 @@ with lib.${namespace}; {
   };
   boot.initrd.luks.devices = {
     root = {
-      # Use https://nixos.wiki/wiki/Full_Disk_Encryption
       device = "/dev/disk/by-uuid/9e34c1d5-82e4-41e2-a175-b282cb4e6570";
       preLVM = true;
     };
