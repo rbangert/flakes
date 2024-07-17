@@ -1,14 +1,7 @@
-{ config
-, inputs
-, pkgs
-, lib
-, ...
-}:
+{ config, inputs, pkgs, lib, ... }:
 with lib;
 with lib.rr-sv; {
-  imports = [
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   programs.extra-container.enable = true;
 
@@ -24,9 +17,7 @@ with lib.rr-sv; {
       tailscale = enabled;
     };
 
-    nix = {
-      os = enabled;
-    };
+    nix = { os = enabled; };
 
     containers = {
       gotify = enabled;
@@ -57,6 +48,8 @@ with lib.rr-sv; {
 
   services.nginx = {
     enable = true;
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
   };
@@ -95,20 +88,11 @@ with lib.rr-sv; {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEf8/lOV9CoafN4j76Hk9fZtP4MgR07KXus8qKuuvpMk russ@algol"
     ];
-    extraGroups = [
-      "polkituser"
-      "wheel"
-      "audio"
-      "libvirtd"
-      "input"
-      "networkmanager"
-    ];
+    extraGroups =
+      [ "polkituser" "wheel" "audio" "libvirtd" "input" "networkmanager" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-  ];
+  environment.systemPackages = with pkgs; [ git neovim ];
 
   security = {
     rtkit.enable = true;
@@ -118,13 +102,11 @@ with lib.rr-sv; {
     };
     doas = {
       enable = true;
-      extraRules = [
-        {
-          users = [ "russ" ];
-          keepEnv = true;
-          persist = true;
-        }
-      ];
+      extraRules = [{
+        users = [ "russ" ];
+        keepEnv = true;
+        persist = true;
+      }];
     };
     protectKernelImage = true;
     unprivilegedUsernsClone = true;
