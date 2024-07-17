@@ -18,9 +18,9 @@ in {
             SIGNUPS_ALLOWED = "false";
             IP_HEADER = "none";
             DOMAIN = "https://vault.russellb.dev";
-            WEBSOCKET_ENABLED = true;
+            WEBSOCKET_ENABLED = "true";
             WEBSOCKET_ADDRESS = "0.0.0.0";
-            WEBSOCKET_PORT = 3012;
+            WEBSOCKET_PORT = "3012";
             # ADMIN_TOKEN = (import /etc/nixos/secret/bitwarden.nix).ADMIN_TOKEN;
             # YUBICO_CLIENT_ID =
             #   (import /etc/nixos/secret/bitwarden.nix).YUBICO_CLIENT_ID;
