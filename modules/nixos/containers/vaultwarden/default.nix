@@ -1,14 +1,14 @@
-inputs @ {
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
+inputs @ { options
+, config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.containers.vaultwarden;
-in {
+in
+{
   options.rr-sv.containers.vaultwarden = with types; {
     enable = mkBoolOpt false "Whether or not to enable vaultwarden";
   };
@@ -17,8 +17,8 @@ in {
     virtualisation.oci-containers = {
       containers = {
         "vaultwarden" = {
-          image = "vaultwarden:1.31.0-alpine";
-          ports = ["8119:80"];
+          image = "vaultwarden:1.31.0";
+          ports = [ "8119:80" ];
           volumes = [
             "/opt/vaultwarden:/data"
           ];
