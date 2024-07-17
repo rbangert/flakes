@@ -14,7 +14,6 @@ in {
       enable = true;
       config = {
         WEB_VAULT_ENABLED = true;
-        LOG_FILE = "/var/log/bitwarden";
         WEBSOCKET_ENABLED = true;
         WEBSOCKET_ADDRESS = "0.0.0.0";
         WEBSOCKET_PORT = 3012;
