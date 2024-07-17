@@ -1,9 +1,8 @@
-{
-  config,
-  inputs,
-  pkgs,
-  lib,
-  ...
+{ config
+, inputs
+, pkgs
+, lib
+, ...
 }:
 with lib;
 with lib.rr-sv; {
@@ -45,14 +44,14 @@ with lib.rr-sv; {
   sops = {
     defaultSopsFile = ../../../secrets/dia/secrets.yaml;
     secrets = {
-      email = {};
-      tailscale_token = {};
-      github_token = {};
-      cf-tunnel_token = {};
-      acmecredfile = {};
-      wegorc = {};
-      ssh_key = {};
-      ssh_host_key = {};
+      email = { };
+      tailscale_token = { };
+      github_token = { };
+      cf-tunnel_token = { };
+      acmecredfile = { };
+      wegorc = { };
+      ssh_key = { };
+      ssh_host_key = { };
     };
   };
 
@@ -76,15 +75,15 @@ with lib.rr-sv; {
     networkmanager.enable = true;
     nat = {
       enable = true;
-      internalInterfaces = ["ve-+"];
+      internalInterfaces = [ "ve-+" ];
       externalInterface = "ens3";
       enableIPv6 = true;
     };
     firewall = {
       enable = true;
       checkReversePath = "loose";
-      allowedTCPPorts = [443 80];
-      allowedUDPPorts = [443 80];
+      allowedTCPPorts = [ 443 80 ];
+      allowedUDPPorts = [ 443 80 ];
       allowPing = false;
     };
   };
@@ -121,7 +120,7 @@ with lib.rr-sv; {
       enable = true;
       extraRules = [
         {
-          users = ["russ"];
+          users = [ "russ" ];
           keepEnv = true;
           persist = true;
         }
@@ -132,7 +131,7 @@ with lib.rr-sv; {
   };
 
   system = {
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     autoUpgrade = {
       enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";
