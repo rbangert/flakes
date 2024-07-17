@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  namespace,
-  ...
-}:
+{ lib, pkgs, namespace, ... }:
 with lib.${namespace}; {
   rr-sv = {
     applications = {
@@ -112,7 +107,7 @@ with lib.${namespace}; {
       pwgen
     ];
 
-    sessionVariables = {EDITOR = "nvim";};
+    sessionVariables = { EDITOR = "nvim"; };
   };
 
   stylix = {
