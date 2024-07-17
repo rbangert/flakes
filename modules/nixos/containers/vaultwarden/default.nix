@@ -39,7 +39,7 @@ in
       };
     };
 
-    security.acme.certs."vault.rr-sv.win" = {
+    security.acme.certs."vault.rbangert.dev" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
