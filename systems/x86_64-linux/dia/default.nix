@@ -15,6 +15,7 @@ with lib.rr-sv; {
     services = {
       openssh = enabled;
       tailscale = enabled;
+      vaultwarden = enabled;
     };
 
     nix = { os = enabled; };
@@ -27,7 +28,6 @@ with lib.rr-sv; {
       # mattermost = enabled;
       changedetection = enabled;
       # mealie = enabled;
-      vaultwarden = enabled;
       mailpit = enabled;
     };
   };
