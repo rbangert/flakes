@@ -30,14 +30,14 @@ with lib.rr-sv; {
     };
 
     containers = {
-      # gotify = enabled;
+      gotify = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
       wp-dev = enabled;
       # mattermost = enabled;
-      # changedetection = enabled;
+      changedetection = enabled;
       # mealie = enabled;
-      # easyappointments = enabled;
+      vaultwarden = enabled;
       mailpit = enabled;
     };
   };

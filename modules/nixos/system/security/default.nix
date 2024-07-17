@@ -22,7 +22,6 @@ in {
       # TODO fix doas
       doas = {
         enable = true;
-
         wheelNeedsPassword = false;
         extraRules = [
           {

@@ -18,7 +18,3 @@ margin = 50.0
 [scratchpads.btm]
 command = "alacritty --class scratchpad -e btm"
 margin = 50.0
-
-[scratchpads.manix]
-command = "alacritty --class scratchpad -e 'manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'"
-margin = 50.0

@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    flake-utils-plus = { url = "github:gytis-ivaskevicius/flake-utils-plus"; };
+    flake-utils-plus = {url = "github:gytis-ivaskevicius/flake-utils-plus";};
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -71,53 +71,112 @@
 
     nix-script.url = "github:BrianHicks/nix-script";
     nix-script.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Doom Emacs
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    nix-doom-emacs.inputs.nixpkgs.follows = "emacs-pin-nixpkgs";
+    emacs-pin-nixpkgs.url = "nixpkgs/f72123158996b8d4449de481897d855bc47c7bf6";
+    nix-straight.url = "github:librephoenix/nix-straight.el/pgtk-patch";
+    nix-straight.flake = false;
+    nix-doom-emacs.inputs.nix-straight.follows = "nix-straight";
+
+    eaf = {
+      url = "github:emacs-eaf/emacs-application-framework";
+      flake = false;
+    };
+    eaf-browser = {
+      url = "github:emacs-eaf/eaf-browser";
+      flake = false;
+    };
+    org-nursery = {
+      url = "github:chrisbarrett/nursery";
+      flake = false;
+    };
+    org-yaap = {
+      url = "gitlab:tygrdev/org-yaap";
+      flake = false;
+    };
+    org-side-tree = {
+      url = "github:localauthor/org-side-tree";
+      flake = false;
+    };
+    org-timeblock = {
+      url = "github:ichernyshovvv/org-timeblock";
+      flake = false;
+    };
+    org-krita = {
+      url = "github:librephoenix/org-krita";
+      flake = false;
+    };
+    org-xournalpp = {
+      url = "gitlab:vherrmann/org-xournalpp";
+      flake = false;
+    };
+    org-sliced-images = {
+      url = "github:jcfk/org-sliced-images";
+      flake = false;
+    };
+    magit-file-icons = {
+      url = "github:librephoenix/magit-file-icons/abstract-icon-getters-compat";
+      flake = false;
+    };
+    phscroll = {
+      url = "github:misohena/phscroll";
+      flake = false;
+    };
+    mini-frame = {
+      url = "github:muffinmad/emacs-mini-frame";
+      flake = false;
+    };
   };
 
-  outputs = inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-        src = ./.;
-        snowfall = {
-          namespace = "rr-sv";
-          meta = {
-            name = "";
-            title = "";
-          };
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
+      snowfall = {
+        namespace = "rr-sv";
+        meta = {
+          name = "";
+          title = "";
         };
       };
-    in
+    };
+  in
     lib.mkFlake
-      {
-        channels-config.allowUnfree = true;
+    {
+      channels-config.allowUnfree = true;
 
-        overlays = with inputs; [
-          snowfall-flake.overlays."package/flake"
-          snowfall-frost.overlays."package/frost"
-          snowfall-thaw.overlays."package/thaw"
-          neovim.overlays.default
-        ];
+      overlays = with inputs; [
+        snowfall-flake.overlays."package/flake"
+        snowfall-frost.overlays."package/frost"
+        snowfall-thaw.overlays."package/thaw"
+        neovim.overlays.default
+      ];
 
-        homes.users."russ@io".modules = with inputs; [ sops-nix.homeManagerModules.sops ];
+      homes.users."russ@io".modules = with inputs; [
+        sops-nix.homeManagerModules.sops
+        nix-doom-emacs.hmModule
+      ];
 
-        systems.modules.nixos = with inputs; [
-          home-manager.nixosModules.home-manager
-          disko.nixosModules.disko
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-        ];
+      systems.modules.nixos = with inputs; [
+        home-manager.nixosModules.home-manager
+        disko.nixosModules.disko
+        sops-nix.nixosModules.sops
+        stylix.nixosModules.stylix
+      ];
 
-        deploy = lib.mkDeploy { inherit (inputs) self; };
+      deploy = lib.mkDeploy {inherit (inputs) self;};
 
-        checks =
-          builtins.mapAttrs
-            (system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy)
-            inputs.deploy-rs.lib;
+      checks =
+        builtins.mapAttrs
+        (system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
 
-        outputs-builder = channels: {
-          formatter = channels.nixpkgs.nixfmt-rfc-style;
-        };
-      }
+      outputs-builder = channels: {
+        formatter = channels.nixpkgs.nixfmt-rfc-style;
+      };
+    }
     // {
       self = inputs.self;
     };

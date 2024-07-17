@@ -15,7 +15,6 @@ with lib.${namespace}; {
     };
 
     containers = {home-assistant = enabled;};
-    tools.keybase = enabled;
 
     services = {
       openssh = enabled;
@@ -136,18 +135,11 @@ with lib.${namespace}; {
     hyprland.enable = true;
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
-    #nix-ld.dev.enable = true;
-    # nix-ld = {
-    #   enable = true;
-    #   libraries = with pkgs; [stdenv.cc.cc];
-    # };
   };
   security.pam.services.hyprlock = {};
 
   boot.plymouth = {
     enable = true;
-    # themePackages = with pkgs; [rr-sv.catppuccin-plymouth];
-    # theme = "catppuccin-mocha";
   };
 
   # TODO: import hlissners home.nix
@@ -182,27 +174,6 @@ with lib.${namespace}; {
       pulse.enable = true;
       jack.enable = true;
     };
-  };
-
-  security = {
-    rtkit.enable = true;
-    sudo = {
-      enable = true;
-      wheelNeedsPassword = false;
-    };
-    doas = {
-      enable = true;
-      wheelNeedsPassword = false;
-      extraRules = [
-        {
-          users = ["russ"];
-          keepEnv = true;
-          persist = true;
-        }
-      ];
-    };
-    protectKernelImage = true;
-    unprivilegedUsernsClone = true;
   };
 
   sound.enable = true;

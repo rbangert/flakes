@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, namespace
-, ...
+{
+  lib,
+  pkgs,
+  namespace,
+  ...
 }:
 with lib.${namespace}; {
   rr-sv = {
@@ -17,6 +18,7 @@ with lib.${namespace}; {
       dunst = enabled;
       hyprland = enabled;
       rofi = enabled;
+      fuzzel = enabled;
     };
 
     cli-apps = {
@@ -52,11 +54,6 @@ with lib.${namespace}; {
       kicad
       freecad
       spice-gtk
-      #rofi
-      #rofi-calc
-      #rofi-emoji
-      rofi-pass
-      #rofi-rbw-wayland
       obsidian
 
       gimp
@@ -115,7 +112,7 @@ with lib.${namespace}; {
       pwgen
     ];
 
-    sessionVariables = { EDITOR = "nvim"; };
+    sessionVariables = {EDITOR = "nvim";};
   };
 
   stylix = {
