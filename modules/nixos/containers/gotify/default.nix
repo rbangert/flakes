@@ -1,14 +1,14 @@
-inputs @ {
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
+inputs @ { options
+, config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 with lib.rr-sv; let
   cfg = config.rr-sv.containers.gotify;
-in {
+in
+{
   options.rr-sv.containers.gotify = with types; {
     enable = mkBoolOpt false "Whether or not to enable gotify";
   };
@@ -17,8 +17,8 @@ in {
     virtualisation.oci-containers = {
       containers = {
         "gotify" = {
-          image = "gotify/server:2.4.0";
-          ports = ["3030:80"];
+          image = "gotify/server:2.5.0";
+          ports = [ "3030:80" ];
           volumes = [
             "gotify-data:/app/data"
           ];
@@ -45,7 +45,7 @@ in {
             GOTIFY_PASSSTRENGTH = "10";
             GOTIFY_UPLOADEDIMAGESDIR = "data/images";
             GOTIFY_PLUGINSDIR = "data/plugins";
-            GOTIFY_REGISTRATION = "false";
+            GOTIFY_REGISTRATION = "true";
             # GOTIFY_SERVER_PORT = "80";
           };
         };
@@ -63,7 +63,7 @@ in {
       };
     };
 
-    security.acme.certs."gotify.rr-sv.win" = {
+    security.acme.certs."gotify.russellb.dev" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
