@@ -1,14 +1,8 @@
-inputs @ { options
-, config
-, lib
-, pkgs
-, ...
-}:
+inputs@{ options, config, lib, pkgs, ... }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.containers.vaultwarden;
-in
-{
+with lib.rr-sv;
+let cfg = config.rr-sv.containers.vaultwarden;
+in {
   options.rr-sv.containers.vaultwarden = with types; {
     enable = mkBoolOpt false "Whether or not to enable vaultwarden";
   };
@@ -19,27 +13,21 @@ in
         "vaultwarden" = {
           image = "vaultwarden/server:1.31.0-alpine";
           ports = [ "8119:80" ];
-          volumes = [
-            "/opt/vaultwarden:/data"
-          ];
-          environment = {
-            SIGNUPS_ALLOWED = "true";
-          };
+          volumes = [ "/opt/vaultwarden:/data" ];
+          environment = { SIGNUPS_ALLOWED = "true"; };
         };
       };
     };
 
     services.nginx.virtualHosts = {
-      "vault.rr-sv.win" = {
+      "vault.russellb.dev" = {
         forceSSL = true;
         enableACME = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8119";
-        };
+        locations."/" = { proxyPass = "http://127.0.0.1:8119"; };
       };
     };
 
-    security.acme.certs."vault.rbangert.dev" = {
+    security.acme.certs."vault.russellb.dev" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       webroot = null;
