@@ -12,7 +12,6 @@ in {
 
     services.vaultwarden = {
       enable = true;
-      bitwarden-directory-connector-cli.domain = "https://vault.russellb.dev";
       config = {
         WEB_VAULT_FOLDER =
           "${pkgs.bitwarden_rs-vault}/share/bitwarden_rs/vault";
