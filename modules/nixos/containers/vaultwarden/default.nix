@@ -17,7 +17,7 @@ in
     virtualisation.oci-containers = {
       containers = {
         "vaultwarden" = {
-          image = "vaultwarden:1.31.0";
+          image = "vaultwarden/server:1.31.0-alpine";
           ports = [ "8119:80" ];
           volumes = [
             "/opt/vaultwarden:/data"
