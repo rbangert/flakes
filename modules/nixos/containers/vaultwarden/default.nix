@@ -14,7 +14,10 @@ in {
           image = "vaultwarden/server:1.31.0-alpine";
           ports = [ "8119:80" ];
           volumes = [ "vaultwarden-data:/data" ];
-          environment = { SIGNUPS_ALLOWED = "false"; };
+          environment = {
+            SIGNUPS_ALLOWED = "false";
+            IP_HEADER = "none";
+          };
         };
       };
     };
