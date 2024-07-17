@@ -13,8 +13,6 @@ in {
     services.vaultwarden = {
       enable = true;
       config = {
-        WEB_VAULT_FOLDER =
-          "${pkgs.bitwarden_rs-vault}/share/bitwarden_rs/vault";
         WEB_VAULT_ENABLED = true;
         LOG_FILE = "/var/log/bitwarden";
         WEBSOCKET_ENABLED = true;
@@ -36,7 +34,7 @@ in {
         # SMTP_USERNAME = (import /etc/nixos/secret/bitwarden.nix).SMTP_USERNAME;
         # SMTP_PASSWORD = (import /etc/nixos/secret/bitwarden.nix).SMTP_PASSWORD;
         # SMTP_TIMEOUT = 15;
-        # ROCKET_PORT = 8812;
+        ROCKET_PORT = 8812;
       };
     };
     # environmentFile = "/etc/nixos/secret/bitwarden.env";
@@ -46,7 +44,7 @@ in {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8119";
+          proxyPass = "http://127.0.0.1:8812";
           proxyWebsockets = true;
         };
       };
