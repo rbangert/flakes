@@ -23,16 +23,15 @@ in {
           adminPasswordFile = "/run/secrets/davis-password";
           appSecretFile = "/run/secrets/davis-secret";
         };
-
-        services.nginx.virtualHosts = {
-          "dav.russellb.dev" = {
-            forceSSL = true;
-            enableACME = true;
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:8000";
-              proxyWebsockets = true;
-            };
-          };
+      };
+    };
+    services.nginx.virtualHosts = {
+      "dav.russellb.dev" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8000";
+          proxyWebsockets = true;
         };
       };
     };

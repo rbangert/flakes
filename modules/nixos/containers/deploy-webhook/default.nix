@@ -1,12 +1,7 @@
-inputs @ {
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-with lib.rr-sv; let
+with lib.rr-sv;
+let
   cfg = config.rr-sv.containers.deploy-webhook;
   pull-script = pkgs.writeScriptBin "pull-script" ''
     #!/usr/bin/env bash
@@ -20,12 +15,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pull-script pkgs.webhook];
+    environment.systemPackages = [ pull-script pkgs.webhook ];
 
     systemd = {
       services."webhook" = {
         enable = true;
-        wantedBy = ["multi-user.target"];
+        wantedBy = [ "multi-user.target" ];
         unitConfig = {
           Description = "Github deploy-webhook";
           Wants = "network-online.target";
