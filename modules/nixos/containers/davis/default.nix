@@ -1,14 +1,14 @@
 { lib, config, namespace, ... }:
 with lib;
 with lib.${namespace};
-let cfg = config.${namespace}.services.davis;
+let cfg = config.${namespace}.containers.davis;
 in {
-  options.${namespace}.services.davis = {
+  options.${namespace}.containers.davis = {
     enable = mkEnableOption "davis *dav service";
   };
 
   config = mkIf cfg.enable {
-    containers.mattermost = {
+    containers.davis = {
       autoStart = true;
       localAddress = "127.0.0.1";
       config = { config, pkgs, ... }: {
