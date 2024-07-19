@@ -6,13 +6,12 @@ in {
   options.${namespace}.desktop.rofi = { enable = mkEnableOption "rofi"; };
 
   config = mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [ rofi-wayland ];
-
-      file.".config/rofi" = {
-        source = ../../../../config/rofi;
-        recursive = true;
-      };
+    programs.rofi = {
+      enable = true;
+      cycle = true;
+      location = "center";
+      # pass = { };
+      plugins = [ pkgs.rofi-calc pkgs.rofi-emoji pkgs.rofi-systemd ];
     };
   };
 }

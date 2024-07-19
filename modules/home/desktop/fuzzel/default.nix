@@ -3,12 +3,13 @@ with lib;
 with lib.${namespace};
 let cfg = config.${namespace}.desktop.fuzzel;
 in {
-  options.${namespace}.desktop.fuzzel = { enable = mkEnableOption "fuzzell"; };
+  options.${namespace}.desktop.fuzzel = { enable = mkEnableOption "fuzzel"; };
 
   config = mkIf cfg.enable {
     programs.fuzzel.enable = true;
     programs.fuzzel.settings = {
       main = {
+        font = lib.mkForce ":size=20";
         dpi-aware = "no";
         show-actions = "yes";
         terminal = "${pkgs.alacritty}/bin/alacritty";

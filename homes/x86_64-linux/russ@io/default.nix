@@ -4,7 +4,7 @@ with lib.${namespace}; {
     applications = {
       emacs = enabled;
       # INFO keybase kbfs package currently broken
-      # keybase = enabled;
+      foot = enabled;
       qutebrowser = enabled;
     };
 
@@ -52,8 +52,6 @@ with lib.${namespace}; {
       obsidian
 
       gimp
-      _1password
-      _1password-gui
 
       ripcord
       gnupg
@@ -86,11 +84,15 @@ with lib.${namespace}; {
       bitwarden
       bitwarden-cli
       rbw
+      rofi-rbw
+      bitwarden-menu
 
       xxh
-      navi
       # dev
       vscode
+      go
+      hugo
+      nodePackages.prettier
 
       gh
       gh-dash

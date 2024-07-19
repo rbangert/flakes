@@ -1,13 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  namespace,
-  ...
-}:
+{ lib, config, pkgs, namespace, ... }:
 with lib;
-with lib.${namespace}; let
-  cfg = config.${namespace}.desktop.hyprland;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.hyprland;
 in {
   options.${namespace}.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -22,9 +16,9 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
-      extraConfig = ''
-        exec-once = pypr
-      '';
+      # extraConfig = ''
+      #   exec-once = pypr
+      # '';
       systemd = {
         enable = true;
         enableXdgAutostart = true;
@@ -35,9 +29,7 @@ in {
       };
     };
 
-    programs.hyprlock = {
-      enable = true;
-    };
+    programs.hyprlock = { enable = true; };
 
     services.hypridle = {
       enable = true;
@@ -65,8 +57,8 @@ in {
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload = ["~/stuff/other/walls/digital/9py055cffwk71.png"];
-        wallpaper = [",~/stuff/other/walls/digital/9py055cffwk71.png"];
+        preload = [ ",~/stuff/other/walls/digital/9py055cffwk71.png" ];
+        wallpaper = [ ",~/stuff/other/walls/digital/9py055cffwk71.png" ];
       };
     };
 
@@ -80,7 +72,7 @@ in {
     xdg = {
       portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+        extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
         config.common.default = "*";
       };
     };
@@ -90,6 +82,7 @@ in {
       hypridle
       hyprlock
       hyprpaper
+      polkit_gnome
       wl-clipboard
       cliphist
       grim
@@ -100,14 +93,15 @@ in {
       pavucontrol
       musikcube
       playerctl
-      polkit_gnome
       libva-utils
       udiskie
       gsettings-desktop-schemas
       wlr-randr
       ydotool
       hyprland-protocols
+      xdg-desktop-portal
       xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
       xdg-utils
       adwaita-qt
       adwaita-qt6

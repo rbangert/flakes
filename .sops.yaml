@@ -1,21 +1,19 @@
 keys:
   - &russ age16vep4ks0c4mvp9ys8kglqdnzjtzpwhpl3wal2gnv6csw2a65wg0ska342c
-  - &io age1kcnlsmzpcd3dwlc25645zf476htk4huffmeguhjgu9xw833ht40slsxgk9
-  - &herse age1tnsa2eswxh8ks7fx3hahaq0tvjwcchvrchd9w4kfd83dkl55y9js5pepsm
-  - &algol age1ucs9ystjeawdve5jtktphtyfzsrw0lmp6jaa2edwgmh6hyp3he8sfhugu2
+  - &io age1n227ha5uuex9uqmpdsnplqf96njhjklx8tpn4hn2x9h5ygyjausqy7xhz8
+  - &dia age16vep4ks0c4mvp9ys8kglqdnzjtzpwhpl3wal2gnv6csw2a65wg0ska342c
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *russ
+  - path_regex: secrets/io/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *russ
           - *io
-  - path_regex: secrets/herse/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/dia/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *russ
-          - *hersepF1pfRzDdkMv7dwghXzEWU1rp9om
-  - path_regex: secrets/algol/[^/]+\.(yaml|json|env|ini)$:
-    key_groups:
-      - age:
-          - *russ
-          - *algol
+          - *dia

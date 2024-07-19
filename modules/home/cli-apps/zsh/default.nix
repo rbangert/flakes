@@ -57,6 +57,8 @@ in {
         grep = "grep --color=auto";
         fetch = "fastfetch";
         cs = "cht.sh";
+
+        ns = "nix-search";
         manix = ''
           manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix
         '';

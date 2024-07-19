@@ -1,13 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  namespace,
-  ...
-}:
+{ lib, config, pkgs, namespace, ... }:
 with lib;
-with lib.${namespace}; let
-  cfg = config.${namespace}.applications.emacs;
+with lib.${namespace};
+let cfg = config.${namespace}.applications.emacs;
 in {
   options.${namespace}.applications.emacs = {
     enable = mkEnableOption "emacs";
@@ -19,9 +13,23 @@ in {
       emacs29-pgtk
       git
       wget
+      zip
       ripgrep
       gnutls
       coreutils
+      gnumake
+      terraform
+      gopls
+      gomodifytags
+      gotests
+      gore
+      # guru
+      scrot
+      emacsPackages.mbsync
+      shfmt
+      # spellcheck
+      graphviz
+      ffmpeg
       fd
       jq
       imagemagick
@@ -33,7 +41,7 @@ in {
       cmake
       libtool
       # :checkers spell
-      (aspellWithDicts (ds: with ds; [en en-computers en-science]))
+      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
       # :tools editorconfig
       editorconfig-core-c # per-project style config
       # :tools lookup & :lang org +roam
@@ -41,13 +49,20 @@ in {
       # :lang latex & :lang org (latex previews)
       texlive.combined.scheme-medium
       # :lang beancount
+      ledger
       beancount
       emacs-all-the-icons-fonts
       fava
       multimarkdown
+      gnuplot
+      prettierd
+      nil
+      nixd
+      emacsPackages.prettier
       emacsPackages.prettier-js
+      nodePackages_latest.nodejs
     ];
 
-    services.emacs = {enable = true;};
+    services.emacs = { enable = true; };
   };
 }

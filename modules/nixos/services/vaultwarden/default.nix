@@ -1,4 +1,4 @@
-inputs@{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, ... }:
 with lib;
 with lib.rr-sv;
 let cfg = config.rr-sv.services.vaultwarden;
