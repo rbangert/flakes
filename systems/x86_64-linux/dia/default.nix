@@ -21,6 +21,7 @@ with lib.rr-sv; {
     nix = { os = enabled; };
 
     containers = {
+      davis = enabled;
       gotify = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
