@@ -22,7 +22,7 @@ in {
           adminLogin = "admin";
           adminPasswordFile = "/run/secrets/davis-password";
           appSecretFile = "/run/secrets/davis-secret";
-          nginx = {}
+          nginx = { };
         };
       };
     };
