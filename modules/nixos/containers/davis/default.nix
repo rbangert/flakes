@@ -16,7 +16,7 @@ in {
           enable = true;
           hostname = "dav.russellb.dev";
           mail = {
-            dsnFile = config.sops.secrets.smtp_uri.path;
+            dsnFile = "/run/secrets/smtp_uri";
             inviteFromAddress = "webdav@russellb.dev";
           };
           adminLogin = "admin";
