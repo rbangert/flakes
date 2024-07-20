@@ -15,10 +15,10 @@ in {
         services.davis = {
           enable = true;
           hostname = "dav.russellb.dev";
-          # mail = {
-          #   dsn = "smtp://username@example.com:25";
-          #   inviteFromAddress = "davis@example.com";
-          # };
+          mail = {
+            dsnFile = config.sops.secrets.smtp_uri.path;
+            inviteFromAddress = "webdav@russellb.dev";
+          };
           adminLogin = "admin";
           adminPasswordFile = "/run/secrets/davis-password";
           appSecretFile = "/run/secrets/davis-secret";
@@ -26,6 +26,7 @@ in {
         };
       };
     };
+
     services.nginx.virtualHosts = {
       "dav.russellb.dev" = {
         forceSSL = true;
@@ -36,5 +37,13 @@ in {
         };
       };
     };
+
+    security.acme.certs."dav.russellb.dev" = {
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+      webroot = null;
+      credentialsFile = config.sops.secrets.acmecredfile.path;
+    };
+
   };
 }

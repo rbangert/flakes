@@ -18,16 +18,16 @@ in {
       gnutls
       coreutils
       gnumake
+      shellcheck
       terraform
       gopls
       gomodifytags
       gotests
       gore
-      # guru
+      gotools
       scrot
       emacsPackages.mbsync
       shfmt
-      # spellcheck
       graphviz
       ffmpeg
       fd
