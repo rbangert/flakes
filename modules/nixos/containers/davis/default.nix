@@ -8,17 +8,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.davis = {
-      enable = true;
-      hostname = "dav.russellb.dev";
-      mail = {
-        dsnFile = "/run/secrets/smtp_uri";
-        inviteFromAddress = "webdav@russellb.dev";
+    virtualisation.oci-containers = {
+      containers = {
+        "webdav" = {
+          image = "ugeek/webdav:i386-alpine";
+          ports = [ "8090:80" ];
+          volumes = [ "/srv/dav:/media" ];
+          environment = {
+            "UID" = "1000";
+            "GID" = "1000";
+            "password" = "password";
+            "username" = "username";
+          };
+        };
       };
-      adminLogin = "admin";
-      adminPasswordFile = "/run/secrets/davis-password";
-      appSecretFile = "/run/secrets/davis-secret";
-      nginx = { };
     };
 
     services.nginx.virtualHosts = {
@@ -26,7 +29,7 @@ in {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8000";
+          proxyPass = "http://127.0.0.1:8090";
           proxyWebsockets = true;
         };
       };
