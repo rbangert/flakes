@@ -11,7 +11,7 @@ in {
     virtualisation.oci-containers = {
       containers = {
         "davis-webdav" = {
-          image = "tchapi/davus:v3.1.0";
+          image = "tchapi/davis:v3.1.0";
           ports = [ "8090:80" ];
           volumes = [ "davis-webdav:/var/www/davis" ];
           environment = { };
