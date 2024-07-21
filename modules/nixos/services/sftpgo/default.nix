@@ -21,5 +21,24 @@ in {
         }];
       };
     };
+
+    services.nginx.virtualHosts = {
+      "dav.russellb.dev" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8888";
+          proxyWebsockets = true;
+        };
+      };
+    };
+
+    security.acme.certs."dav.russellb.dev" = {
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+      webroot = null;
+      credentialsFile = config.sops.secrets.acmecredfile.path;
+    };
+
   };
 }
