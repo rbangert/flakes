@@ -23,14 +23,21 @@ in {
     };
 
     services.nginx.virtualHosts = {
-      "dav.russellb.dev" = {
-        forceSSL = true;
-        enableACME = true;
+      "davmin.russellb.dev" = {
+        forcessl = true;
+        enableacme = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:888";
-          proxyWebsockets = true;
+          proxypass = "http://127.0.0.1:888";
+          proxywebsockets = true;
         };
-        locations."/admin" = { proxyPass = "http://127.0.0.1:8888"; };
+      };
+      "dav.russellb.dev" = {
+        forcessl = true;
+        enableacme = true;
+        locations."/" = {
+          proxypass = "http://127.0.0.1:888";
+          proxywebsockets = true;
+        };
       };
     };
 
