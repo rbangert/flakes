@@ -31,6 +31,8 @@ in {
           proxywebsockets = true;
         };
       };
+    };
+    services.nginx.virtualHosts = {
       "dav.russellb.dev" = {
         forcessl = true;
         enableacme = true;
