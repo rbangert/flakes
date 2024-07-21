@@ -27,7 +27,7 @@ in {
         forcessl = true;
         enableacme = true;
         locations."/" = {
-          proxypass = "http://127.0.0.1:888";
+          proxypass = "http://127.0.0.1:8888";
           proxywebsockets = true;
         };
       };
