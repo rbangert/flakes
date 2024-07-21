@@ -27,18 +27,19 @@ in {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxypass = "http://127.0.0.1:8888";
-          proxywebsockets = true;
+          proxyPass = "http://127.0.0.1:8888";
+          proxyWebsockets = true;
         };
       };
     };
+
     services.nginx.virtualHosts = {
       "dav.russellb.dev" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxypass = "http://127.0.0.1:888";
-          proxywebsockets = true;
+          proxyPass = "http://127.0.0.1:888";
+          proxyWebsockets = true;
         };
       };
     };
