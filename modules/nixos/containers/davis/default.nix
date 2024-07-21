@@ -8,37 +8,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    containers.davis = {
-      autoStart = true;
-      localAddress = "127.0.0.1";
-      config = { config, pkgs, ... }: {
-        services.davis = {
-          enable = true;
-          hostname = "dav.russellb.dev";
-          mail = {
-            dsnFile = "/run/secrets/smtp_uri";
-            inviteFromAddress = "webdav@russellb.dev";
-          };
-          adminLogin = "admin";
-          adminPasswordFile = "/run/secrets/davis-password";
-          appSecretFile = "/run/secrets/davis-secret";
-          nginx = { };
-        };
-
-        system.stateVersion = "24.05";
-
-        networking = {
-          firewall = {
-            enable = true;
-            allowedTCPPorts = [ 8000 9000 ];
-          };
-          # Use systemd-resolved inside the container
-          # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-          useHostResolvConf = lib.mkForce false;
-        };
-
-        services.resolved.enable = true;
+    services.davis = {
+      enable = true;
+      hostname = "dav.russellb.dev";
+      mail = {
+        dsnFile = "/run/secrets/smtp_uri";
+        inviteFromAddress = "webdav@russellb.dev";
       };
+      adminLogin = "admin";
+      adminPasswordFile = "/run/secrets/davis-password";
+      appSecretFile = "/run/secrets/davis-secret";
+      nginx = { };
     };
 
     services.nginx.virtualHosts = {
@@ -58,6 +38,5 @@ in {
       webroot = null;
       credentialsFile = config.sops.secrets.acmecredfile.path;
     };
-
   };
 }
