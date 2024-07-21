@@ -35,12 +35,19 @@ in {
     services.nginx.virtualHosts = {
       "dav.russellb.dev" = {
         forcessl = true;
-        # enableacme = true;
+        enableacme = true;
         locations."/" = {
           proxypass = "http://127.0.0.1:888";
           proxywebsockets = true;
         };
       };
+    };
+
+    security.acme.certs."davmin.russellb.dev" = {
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+      webroot = null;
+      credentialsFile = config.sops.secrets.acmecredfile.path;
     };
 
     security.acme.certs."dav.russellb.dev" = {
