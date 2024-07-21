@@ -10,16 +10,11 @@ in {
   config = mkIf cfg.enable {
     virtualisation.oci-containers = {
       containers = {
-        "webdav" = {
-          image = "ugeek/webdav:i386-alpine";
+        "davis-webdav" = {
+          image = "tchapi/davus:v3.1.0";
           ports = [ "8090:80" ];
-          volumes = [ "/srv/dav:/media" ];
-          environment = {
-            "UID" = "1000";
-            "GID" = "1000";
-            "password" = "password";
-            "username" = "username";
-          };
+          volumes = [ "davis-webdav:/var/www/davis" ];
+          environment = { };
         };
       };
     };
