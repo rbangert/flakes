@@ -11,13 +11,10 @@ in {
     virtualisation.oci-containers = {
       containers = {
         "davis-webdav" = {
-
           image = "ghcr.io/tchapi/davis:edge";
           ports = [ "8090:80" ];
           volumes = [ "davis-webdav:/var/www/davis" ];
-          environmentFiles = [
-
-          ];
+          environmentFiles = [ config.sops.secrets.davis_dotenv.path ];
         };
       };
     };
