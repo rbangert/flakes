@@ -25,7 +25,7 @@ in {
     services.nginx.virtualHosts = {
       "davmin.russellb.dev" = {
         forcessl = true;
-        enableacme = true;
+        enableACME = true;
         locations."/" = {
           proxypass = "http://127.0.0.1:8888";
           proxywebsockets = true;
@@ -35,7 +35,7 @@ in {
     services.nginx.virtualHosts = {
       "dav.russellb.dev" = {
         forcessl = true;
-        enableacme = true;
+        enableACME = true;
         locations."/" = {
           proxypass = "http://127.0.0.1:888";
           proxywebsockets = true;
