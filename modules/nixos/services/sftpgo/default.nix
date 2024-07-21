@@ -9,9 +9,6 @@ in {
 
   config = mkIf cfg.enable {
 
-    services.sftpgo = {
-      enable = true;
-      settings = { httpd = { bindings."127.0.0.1".port = 8888; }; };
-    };
+    services.sftpgo = { enable = true; };
   };
 }
