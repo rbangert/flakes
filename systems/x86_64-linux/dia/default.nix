@@ -21,11 +21,10 @@ with lib.rr-sv; {
     nix = { os = enabled; };
 
     containers = {
-      davis = enabled;
       gotify = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
-      wp-dev = enabled;
+      # wp-dev = enabled;
       # mattermost = enabled;
       changedetection = enabled;
       # mealie = enabled;
@@ -44,7 +43,6 @@ with lib.rr-sv; {
       wegorc = { };
       ssh_key = { };
       ssh_host_key = { };
-      davis_dotenv = { };
     };
   };
 

@@ -13,7 +13,7 @@ in {
         "davis-webdav" = {
           image = "ghcr.io/tchapi/davis:edge";
           ports = [ "8090:80" ];
-          volumes = [ "davis-webdav:/var/www/davis" ];
+          volumes = [ "/srv/webdav:/var/www/davis" ];
           environmentFiles = [ config.sops.secrets.davis_dotenv.path ];
         };
       };
@@ -24,9 +24,11 @@ in {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://0.0.0.0:8090";
-          proxyWebsockets = true;
+          root = "/srv/webdav";
+          tryFiles = "$uri /index.php$is_args$args;";
         };
+        locations."/bundles".tryFiles = "$uri =404;";
+        locations."/bundles".tryFiles = "$uri =404;";
       };
     };
 
