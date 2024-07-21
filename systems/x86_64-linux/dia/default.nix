@@ -44,6 +44,7 @@ with lib.rr-sv; {
       wegorc = { };
       ssh_key = { };
       ssh_host_key = { };
+      davis_dotenv = { };
     };
   };
 
