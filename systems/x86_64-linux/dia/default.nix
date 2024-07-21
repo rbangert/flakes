@@ -13,6 +13,7 @@ with lib.rr-sv; {
     };
 
     services = {
+      sftpgo = enabled;
       openssh = enabled;
       tailscale = enabled;
       vaultwarden = enabled;
