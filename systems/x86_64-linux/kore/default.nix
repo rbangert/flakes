@@ -47,5 +47,5 @@ with lib.rr-sv; {
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdfj6SbSBSWs2medcA8jKdFmVT1CL8l6iXTCyPUsw7y russ@rr-sv.win"
   ];
-  system.stateVersion = "23.11";
+  system.stateVersion = "23.05";
 }
