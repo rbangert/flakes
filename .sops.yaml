@@ -2,6 +2,7 @@ keys:
   - &russ age16vep4ks0c4mvp9ys8kglqdnzjtzpwhpl3wal2gnv6csw2a65wg0ska342c
   - &io age1n227ha5uuex9uqmpdsnplqf96njhjklx8tpn4hn2x9h5ygyjausqy7xhz8
   - &dia age16vep4ks0c4mvp9ys8kglqdnzjtzpwhpl3wal2gnv6csw2a65wg0ska342c
+  - &kore age1ps9p4etw73mnlelhedz5wg8qp00gk8gz0v9wfkpghly4ctywxquqsxfudr
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -17,3 +18,8 @@ creation_rules:
       - age:
           - *russ
           - *dia
+  - path_regex: secrets/kore/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *russ
+          - *kore

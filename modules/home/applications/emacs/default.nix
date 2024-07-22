@@ -8,8 +8,33 @@ in {
   };
 
   config = mkIf cfg.enable {
+    accounts.email.accounts."russellb.dev" = {
+      address = "mail@russellb.dev";
+      userName = "mail@russellb.dev";
+      passwordCommand = ''
+        pass show email/russellb.dev
+      '';
+      primary = true;
+      realName = "Russell Bangert";
+      # signature = {
+      # command =
+      # delimiter
+      # text
+      # };
+      smtp = {
+        host = "smtppro.zoho.com";
+        port = 465;
+        tls.enable = true;
+      };
+      imap = {
+        host = "imappro.zoho.com";
+        port = 993;
+        tls.enable = true;
+      };
+    };
+
     home.packages = with pkgs; [
-      # binutils
+      mu
       emacs29-pgtk
       git
       wget

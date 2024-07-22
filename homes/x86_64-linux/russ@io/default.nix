@@ -38,13 +38,13 @@ with lib.${namespace}; {
 
   home = {
     packages = with pkgs; [
-      pandoc
       #firefox-bin
       yt-dlp
       ytfzf
       age
       calcure
       htop
+      remmina
 
       calcurse
       kicad

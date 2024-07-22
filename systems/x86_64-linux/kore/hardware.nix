@@ -8,5 +8,5 @@
     device = "/dev/sda2";
     fsType = "ext4";
   };
-
+  swapDevices = [{ device = "/dev/vda2"; }];
 }
