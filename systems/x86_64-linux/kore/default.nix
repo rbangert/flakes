@@ -9,7 +9,7 @@ with lib.rr-sv; {
     services = {
       openssh = enabled;
       tailscale = enabled;
-      nextcloud = enabled;
+      # nextcloud = enabled;
     };
 
     nix = { os = enabled; };
