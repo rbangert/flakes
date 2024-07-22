@@ -22,7 +22,10 @@ with lib.rr-sv; {
       cf-tunnel_token = { };
       acmecredfile = { };
       ssh_host_key = { };
-      nextcloud_pass = { };
+      nextcloud_pass = {
+        owner = "nextcloud";
+        group = "nextcloud";
+      };
     };
   };
 
