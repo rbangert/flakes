@@ -44,6 +44,7 @@ with lib.${namespace}; {
       ytfzf
       age
       calcure
+      htop
 
       calcurse
       kicad
