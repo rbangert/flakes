@@ -6,15 +6,10 @@ with lib.rr-sv; {
   programs.extra-container.enable = true;
 
   rr-sv = {
-    virtualisation = {
-      libvirtd = enabled;
-      podman = enabled;
-      lxc = enabled;
-    };
-
     services = {
       openssh = enabled;
       tailscale = enabled;
+      nextcloud = enabled;
     };
 
     nix = { os = enabled; };
