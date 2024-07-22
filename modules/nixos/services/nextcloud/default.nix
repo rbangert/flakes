@@ -40,7 +40,7 @@ in {
           trusted_proxies = [ "107.172.20.201" ];
         };
         config = {
-          dbtype = "pgsql";
+          # dbtype = "pgsql";
           adminuser = "admin";
           adminpassFile = "/run/secrets/nextcloud_pass";
         };
