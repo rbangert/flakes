@@ -18,7 +18,6 @@ in {
         configureRedis = true;
         maxUploadSize = "16G";
         https = true;
-        nginx.enable = true;
 
         autoUpdateApps.enable = true;
         extraAppsEnable = true;
