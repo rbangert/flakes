@@ -15,17 +15,17 @@ with lib.rr-sv; {
     nix = { os = enabled; };
   };
 
-  sops = {
-    defaultSopsFile = ../../../secrets/kore/secrets.yaml;
-    secrets = {
-      email = { };
-      tailscale_token = { };
-      cf-tunnel_token = { };
-      acmecredfile = { };
-      ssh_host_key = { };
-      nextcloud_pass = { };
-    };
-  };
+  # sops = {
+  #   defaultSopsFile = ../../../secrets/kore/secrets.yaml;
+  #   secrets = {
+  #     email = { };
+  #     tailscale_token = { };
+  #     cf-tunnel_token = { };
+  #     acmecredfile = { };
+  #     ssh_host_key = { };
+  #     nextcloud_pass = { };
+  #   };
+  # };
 
   services.nginx = {
     enable = true;
