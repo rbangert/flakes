@@ -37,8 +37,8 @@ in {
         settings = {
           #   overwriteprotocol = "https";
           #   default_phone_region = "US";
-          trusted_domains = [ "100.119.211.85" ];
-          trusted_proxies = [ "107.172.20.201" ];
+          # trusted_domains = [  ];
+          trusted_proxies = [ "100.119.211.85" "107.172.20.201" ];
         };
         config = {
           # dbtype = "pgsql";
@@ -57,10 +57,6 @@ in {
       "cloud.russellb.dev" = {
         forceSSL = true;
         enableACME = true;
-        listen = [{
-          addr = "127.0.0.1";
-          port = 8080;
-        }];
       };
     };
 
