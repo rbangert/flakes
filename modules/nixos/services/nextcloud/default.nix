@@ -38,7 +38,7 @@ in {
         };
         config = {
           dbtype = "mysql";
-          adminUser = "admin";
+          adminuser = "admin";
           adminpassFile = "/run/secrets/nextcloud_pass";
         };
       };
