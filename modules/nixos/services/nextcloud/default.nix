@@ -37,7 +37,7 @@ in {
           trusted_proxies = [ "100.119.211.85" "107.172.20.201" ];
         };
         config = {
-          # dbtype = "pgsql";
+          dbtype = "pgsql";
           adminpassFile = "/run/secrets/nextcloud_pass";
         };
       };
@@ -48,15 +48,15 @@ in {
       };
     };
 
-    # services.postgresql = {
-    #   enable = true;
-    #   package = pkgs.postgresql_16;
-    #   ensureDatabases = [ "nextcloud" ];
-    #   authentication = pkgs.lib.mkOverride 10 ''
-    #     #type database DBuser auth-method
-    #     local all      all    trust
-    #   '';
-    # };
+    services.postgresql = {
+      enable = true;
+      package = pkgs.postgresql_16;
+      ensureDatabases = [ "nextcloud" ];
+      authentication = pkgs.lib.mkOverride 10 ''
+        #type database DBuser auth-method
+        local all      all    trust
+      '';
+    };
 
     services.nginx.virtualHosts = {
       "cloud.russellb.dev" = {
