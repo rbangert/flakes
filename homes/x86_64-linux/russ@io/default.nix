@@ -51,6 +51,7 @@ with lib.${namespace}; {
       freecad
       spice-gtk
       obsidian
+      nextcloud-client
 
       gimp
 
@@ -109,8 +110,11 @@ with lib.${namespace}; {
       perl
       pwgen
     ];
+  };
 
-    sessionVariables = { EDITOR = "nvim"; };
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
   };
 
   stylix = {

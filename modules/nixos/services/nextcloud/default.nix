@@ -21,28 +21,21 @@ in {
 
         autoUpdateApps.enable = true;
         extraAppsEnable = true;
-        # extraApps = with config.services.nextcloud.package.packages.apps; {
-        #   # List of apps we want to install and are already packaged in
-        #   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-        #   inherit calendar contacts mail notes onlyoffice tasks;
-
-        #   # Custom app installation example.
-        #   cookbook = pkgs.fetchNextcloudApp rec {
-        #     url =
-        #       "https://github.com/nextcloud/cookbook/releases/download/v0.10.2/Cookbook-0.10.2.tar.gz";
-        #     sha256 = "sha256-XgBwUr26qW6wvqhrnhhhhcN4wkI+eXDHnNSm1HDbP6M=";
-        #   };
-        # };
+        extraApps = with config.services.nextcloud.package.packages.apps; {
+          # List of apps we want to install and are already packaged in
+          # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
+          inherit calendar contacts mail notes onlyoffice tasks;
+        };
 
         settings = {
           #   overwriteprotocol = "https";
           #   default_phone_region = "US";
           # trusted_domains = [  ];
+          log_type = "file";
           trusted_proxies = [ "100.119.211.85" "107.172.20.201" ];
         };
         config = {
-          # dbtype = "pgsql";
-          adminuser = "admin";
+          dbtype = "pgsql";
           adminpassFile = "/run/secrets/nextcloud_pass";
         };
       };
