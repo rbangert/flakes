@@ -17,7 +17,7 @@ in {
         database.createLocally = true;
         configureRedis = true;
         maxUploadSize = "16G";
-        enableImagemagick = true;
+        # enableImagemagick = true;
         https = true;
 
         autoUpdateApps.enable = true;
