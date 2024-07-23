@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    flake-utils-plus = {url = "github:gytis-ivaskevicius/flake-utils-plus";};
+    flake-utils-plus = { url = "github:gytis-ivaskevicius/flake-utils-plus"; };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -30,6 +30,9 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     #   inputs.unstable.follows = "unstable";
     # };
+
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
@@ -130,21 +133,20 @@
     };
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
-      snowfall = {
-        namespace = "rr-sv";
-        meta = {
-          name = "";
-          title = "";
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
+        snowfall = {
+          namespace = "rr-sv";
+          meta = {
+            name = "";
+            title = "";
+          };
         };
       };
-    };
-  in
-    lib.mkFlake
-    {
+    in lib.mkFlake {
       channels-config.allowUnfree = true;
 
       overlays = with inputs; [
@@ -164,20 +166,19 @@
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
         stylix.nixosModules.stylix
+        microvm.nixosModules.host
       ];
 
-      deploy = lib.mkDeploy {inherit (inputs) self;};
+      deploy = lib.mkDeploy { inherit (inputs) self; };
 
-      checks =
-        builtins.mapAttrs
+      checks = builtins.mapAttrs
         (system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy)
         inputs.deploy-rs.lib;
 
       outputs-builder = channels: {
         formatter = channels.nixpkgs.nixfmt-rfc-style;
       };
-    }
-    // {
+    } // {
       self = inputs.self;
     };
 }
