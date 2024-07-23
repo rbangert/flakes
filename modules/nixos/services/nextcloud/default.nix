@@ -17,6 +17,7 @@ in {
         database.createLocally = true;
         configureRedis = true;
         maxUploadSize = "16G";
+        enableImagemagick = true;
         https = true;
 
         autoUpdateApps.enable = true;
@@ -24,7 +25,8 @@ in {
         extraApps = with config.services.nextcloud.package.packages.apps; {
           # List of apps we want to install and are already packaged in
           # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-          inherit calendar contacts mail notes onlyoffice tasks;
+          inherit bookmarks maps music calendar contacts mail notes onlyoffice
+            tasks;
         };
 
         settings = {
@@ -44,6 +46,16 @@ in {
         enable = false;
         hostname = "docs.russellb.dev";
       };
+    };
+
+    services.postgresql = {
+      enable = true;
+      package = pkgs.postgresql_15;
+      ensureDatabases = [ "nextcloud" ];
+      authentication = pkgs.lib.mkOverride 10 ''
+        #type database DBuser auth-method
+        local all      all    trust
+      '';
     };
 
     services.nginx.virtualHosts = {
