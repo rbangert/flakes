@@ -34,11 +34,12 @@ in {
         #   };
         # };
 
-        # settings = {
-        #   overwriteprotocol = "https";
-        #   default_phone_region = "US";
-        #   trusted_proxies = [ "107.172.20.201" ];
-        # };
+        settings = {
+          #   overwriteprotocol = "https";
+          #   default_phone_region = "US";
+          trusted_domains = [ "100.119.211.85" ];
+          trusted_proxies = [ "107.172.20.201" ];
+        };
         config = {
           # dbtype = "pgsql";
           adminuser = "admin";
@@ -56,10 +57,10 @@ in {
       "cloud.russellb.dev" = {
         forceSSL = true;
         enableACME = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:888";
-          proxyWebsockets = true;
-        };
+        listen = [{
+          addr = "127.0.0.1";
+          port = 8080;
+        }];
       };
     };
 
