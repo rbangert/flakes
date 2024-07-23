@@ -38,7 +38,7 @@ in {
         };
         config = {
           dbtype = "pgsql";
-          adminuser = "admin";
+          adminuser = "russ";
           adminpassFile = "/run/secrets/nextcloud_pass";
         };
       };
