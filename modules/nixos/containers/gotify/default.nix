@@ -37,7 +37,7 @@ in {
             GOTIFY_PASSSTRENGTH = "10";
             GOTIFY_UPLOADEDIMAGESDIR = "data/images";
             GOTIFY_PLUGINSDIR = "data/plugins";
-            GOTIFY_REGISTRATION = "true";
+            GOTIFY_REGISTRATION = "false";
             # GOTIFY_SERVER_PORT = "80";
           };
         };
