@@ -20,12 +20,7 @@ in {
           image = "mariadb:10.6.16-focal";
           # ports = ["3307:3306"];
           volumes = [ "itflow-db_data:/var/lib/mysql" ];
-          environment = {
-            MYSQL_ROOT_PASSWORD = "rootpress";
-            MYSQL_DATABASE = "wordpress";
-            MYSQL_USER = "wordpress";
-            MYSQL_PASSWORD = "wordpress";
-          };
+          environmentFiles = [ /run/secrets/itflow_env ];
         };
       };
     };
