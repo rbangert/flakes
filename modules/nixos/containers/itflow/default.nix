@@ -12,7 +12,7 @@ in {
       containers = {
         "itflow" = {
           image = "lued/itflow:v1.3";
-          ports = [ "8059:80" ];
+          ports = [ "127.0.0.1:8059:80" ];
           volumes = [ "itflow-data:/var/www/html" ];
           environmentFiles = [ /run/secrets/itflow_dotenv ];
         };
