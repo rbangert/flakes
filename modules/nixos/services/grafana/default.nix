@@ -28,13 +28,13 @@ in {
           proxyWebsockets = true;
         };
       };
+    };
 
-      security.acme.certs.${config.services.grafana.settings.server.domain} = {
-        dnsProvider = "cloudflare";
-        dnsResolver = "1.1.1.1:53";
-        webroot = null;
-        credentialsFile = config.sops.secrets.acmecredfile.path;
-      };
+    security.acme.certs.${config.services.grafana.settings.server.domain} = {
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+      webroot = null;
+      credentialsFile = config.sops.secrets.acmecredfile.path;
     };
   };
 }
