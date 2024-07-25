@@ -22,7 +22,7 @@ with lib.rr-sv; {
 
     containers = {
       gotify = enabled;
-      itflow = enabled;
+      # itflow = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
       # wp-dev = enabled;
