@@ -11,21 +11,25 @@ in {
     services = {
       grafana = {
         enable = true;
-        domain = "graf.russellb.dev";
-        port = 2342;
-        addr = "127.0.0.1";
+        settings = {
+          server = {
+            http_port = 2342;
+            domain = "graf.russellb.dev";
+          };
+        };
       };
 
-      nginx.virtualHosts.${config.services.grafana.domain} = {
+      nginx.virtualHosts.${config.services.grafana.settings.server.domain} = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${config.services.grafana.port}";
+          proxyPass =
+            "http://127.0.0.1:${config.services.grafana.settings.server.http_port}";
           proxyWebsockets = true;
         };
       };
 
-      security.acme.certs.${config.services.grafana.domain} = {
+      security.acme.certs.${config.services.grafana.settings.server.domain} = {
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
         webroot = null;
