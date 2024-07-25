@@ -36,6 +36,11 @@ with lib.${namespace}; {
     secrets = {
       github_token = { };
       wegorc = { };
+      davfs2 = {
+        owner = "russ";
+        mode = "0600";
+        path = "/home/russ/.davfs2/secrets";
+      };
       tailscale_token = { };
       atuin_key = { owner = "russ"; };
       ssh_key = { };
@@ -71,12 +76,39 @@ with lib.${namespace}; {
   networking = {
     hostName = "io";
     enableIPv6 = false;
+    # useNetworkd = true;
     networkmanager.enable = true;
     firewall = {
       enable = true;
       allowPing = false;
     };
   };
+
+  # # For microvm's + useNetworkd ^^ in networking = { ... } above
+  # systemd.network.enable = true;
+
+  # systemd.network.networks."10-lan" = {
+  #   matchConfig.Name = [ "eno1" "vm-*" ];
+  #   networkConfig = { Bridge = "br0"; };
+  # };
+
+  # systemd.network.netdevs."br0" = {
+  #   netdevConfig = {
+  #     Name = "br0";
+  #     Kind = "bridge";
+  #   };
+  # };
+
+  # systemd.network.networks."10-lan-bridge" = {
+  #   matchConfig.Name = "br0";
+  #   networkConfig = {
+  #     Address = [ "192.168.1.2/24" "2001:db8::a/64" ];
+  #     Gateway = "192.168.1.1";
+  #     DNS = [ "192.168.1.1" ];
+  #     IPv6AcceptRA = true;
+  #   };
+  #   linkConfig.RequiredForOnline = "routable";
+  # };
 
   users.users.russ = {
     isNormalUser = true;
@@ -174,6 +206,12 @@ with lib.${namespace}; {
       pulse.enable = true;
       jack.enable = true;
     };
+    # davfs2 = {
+    #   enable = true;
+    #   davUser = "russ";
+    #   settings = {
+
+    #   };
   };
 
   sound.enable = true;

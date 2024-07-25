@@ -1,10 +1,17 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.applications.qutebrowser;
   userSettings.font = "JetBrainsMono NerdFont";
-  generateHomepage = name: font: config:
+  generateHomepage =
+    name: font: config:
     ''
       <!DOCTYPE html>
           <html>
@@ -15,94 +22,115 @@ let
             <style>
               /*body*/
               body {
-                  background-color: #'' + config.lib.stylix.colors.base00 + ''
+                  background-color: #''
+    + config.lib.stylix.colors.base00
+    + ''
 
-        }
-        /*paragraphs*/
-        p {
-            font-family:'' + font + ''
-          ;
+      }
+      /*paragraphs*/
+      p {
+          font-family:''
+    + font
+    + ''
+      ;
 
-                      font-size:24px;
-                      text-align:center;
-                      color: #'' + config.lib.stylix.colors.base08 + ''
-            ;
+                  font-size:24px;
+                  text-align:center;
+                  color: #''
+    + config.lib.stylix.colors.base08
+    + ''
+      ;
 
-                        line-height: 1.35;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                    .open {
-                      color: #'' + config.lib.stylix.colors.base09 + ''
-              ;
-                        font-weight: bold;
-                      }
-                      .quickmarks {
-                        color: #'' + config.lib.stylix.colors.base0A + ''
-                ;
-                          font-weight: bold;
-                        }
-                        .history {
-                          color: #'' + config.lib.stylix.colors.base0B + ''
-                  ;
-                            font-weight: bold;
-                          }
-                          .newtab {
-                            color: #'' + config.lib.stylix.colors.base0C + ''
-                    ;
-                              font-weight: bold;
-                            }
-                            .close {
-                              color: #'' + config.lib.stylix.colors.base0D + ''
-                      ;
-                                font-weight: bold;
-                              }
+                  line-height: 1.35;
+                  margin-top: 0;
+                  margin-bottom: 0;
+              }
+              .open {
+                color: #''
+    + config.lib.stylix.colors.base09
+    + ''
+      ;
+                font-weight: bold;
+              }
+              .quickmarks {
+                color: #''
+    + config.lib.stylix.colors.base0A
+    + ''
+      ;
+                font-weight: bold;
+              }
+              .history {
+                color: #''
+    + config.lib.stylix.colors.base0B
+    + ''
+      ;
+                font-weight: bold;
+              }
+              .newtab {
+                color: #''
+    + config.lib.stylix.colors.base0C
+    + ''
+      ;
+                font-weight: bold;
+              }
+              .close {
+                color: #''
+    + config.lib.stylix.colors.base0D
+    + ''
+      ;
+                font-weight: bold;
+              }
 
-                              /*div*/
-                              div {
-                                  margin:auto;
-                                  width:50%;
-                                  text-align:center;
-                              }
-                              /*class made for ascii art icon*/
-                              .icon {
-                                  line-height:10%
-                              }
-                            </style>
-                          </head>
+              /*div*/
+              div {
+                  margin:auto;
+                  width:50%;
+                  text-align:center;
+              }
+              /*class made for ascii art icon*/
+              .icon {
+                  line-height:10%
+              }
+            </style>
+          </head>
 
-                          <body>
-                            <!--start with cool qutebrowser ascii art-->
-                            <br>
-                            <br>
-                            <br>
-                            <div class="icon">
-                                 <img width="300" src="logo.png">
-                            </div>
-                            <br>
-                            <br>
-                            <br>
-                            <!--qutebrowser title-->
-                            <p style="color:#''
-    + config.lib.stylix.colors.base01 + ''
+          <body>
+            <!--start with cool qutebrowser ascii art-->
+            <br>
+            <br>
+            <br>
+            <div class="icon">
+                 <img width="300" src="logo.png">
+            </div>
+            <br>
+            <br>
+            <br>
+            <!--qutebrowser title-->
+            <p style="color:#''
+    + config.lib.stylix.colors.base01
+    + ''
       ">Welcome to Qutebrowser</p>
             <br>
-            <p><b>'' + name + " " + ''
-        Profile</b></p>
-              <br>
-              <!--basic keyboard commands-->
-              <div>
-                <p class="open"> [o] [Search] </p>
-                <p class="quickmarks"> [b] [Quickmarks] </p>
-                <p class="history"> [S h] [History] </p>
-                <p class="newtab"> [t] [New tab] </p>
-                <p class="close"> [x] [Close tab] </p>
-              </div>
-            </body>
+            <p><b>''
+    + name
+    + " "
+    + ''
+      Profile</b></p>
+            <br>
+            <!--basic keyboard commands-->
+            <div>
+              <p class="open"> [o] [Search] </p>
+              <p class="quickmarks"> [b] [Quickmarks] </p>
+              <p class="history"> [S h] [History] </p>
+              <p class="newtab"> [t] [New tab] </p>
+              <p class="close"> [x] [Close tab] </p>
+            </div>
+          </body>
 
-            </html>
-      '';
-in {
+          </html>
+    '';
+in
+{
   options.${namespace}.applications.qutebrowser = {
     enable = mkEnableOption "qutebrowser";
   };
@@ -123,92 +151,126 @@ in {
       "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
     };
     home.file.".config/qutebrowser/userscripts/container-open".source = "${
-        (pkgs.callPackage ./qute-containers.nix { dmenuCmd = "fuzzel -d"; })
-      }/bin/container-open";
+      (pkgs.callPackage ./qute-containers.nix { dmenuCmd = "fuzzel -d"; })
+    }/bin/container-open";
     home.file.".config/qutebrowser/userscripts/containers_config".source = "${
-        (pkgs.callPackage ./qute-containers.nix { dmenuCmd = "fuzzel -d"; })
-      }/bin/containers_config";
+      (pkgs.callPackage ./qute-containers.nix { dmenuCmd = "fuzzel -d"; })
+    }/bin/containers_config";
 
     programs.qutebrowser.enable = true;
-    programs.qutebrowser.extraConfig = ''
-      import sys
-      import os.path
-      secretsExists = False
-      secretFile = os.path.expanduser("~/.config/qutebrowser/qutesecrets.py")
+    programs.qutebrowser.extraConfig =
+      ''
+        import sys
+        import os.path
+        secretsExists = False
+        secretFile = os.path.expanduser("~/.config/qutebrowser/qutesecrets.py")
 
-      if (os.path.isfile(secretFile)):
-          sys.path.append(os.path.dirname(secretFile))
-          import qutesecrets
-          secretsExists = True
+        if (os.path.isfile(secretFile)):
+            sys.path.append(os.path.dirname(secretFile))
+            import qutesecrets
+            secretsExists = True
 
-      config.set('qt.args',['ignore-gpu-blacklist','enable-gpu-rasterization','enable-native-gpu-memory-buffers','num-raster-threads=4'])
-      config.load_autoconfig(False)
+        config.set('qt.args',['ignore-gpu-blacklist','enable-gpu-rasterization','enable-native-gpu-memory-buffers','num-raster-threads=4'])
+        config.load_autoconfig(False)
 
-      base00 = "#'' + config.lib.stylix.colors.base00 + ''
-        "
-        base01 = "#'' + config.lib.stylix.colors.base01 + ''
-          "
-          base02 = "#'' + config.lib.stylix.colors.base02 + ''
-            "
-            base03 = "#'' + config.lib.stylix.colors.base03 + ''
-              "
-              base04 = "#'' + config.lib.stylix.colors.base04 + ''
-                "
-                base05 = "#'' + config.lib.stylix.colors.base05 + ''
-                  "
-                  base06 = "#'' + config.lib.stylix.colors.base06 + ''
-                    "
-                    base07 = "#'' + config.lib.stylix.colors.base07 + ''
-                      "
-                      base08 = "#'' + config.lib.stylix.colors.base08 + ''
-                        "
-                        base09 = "#'' + config.lib.stylix.colors.base09 + ''
-                          "
-                          base0A = "#'' + config.lib.stylix.colors.base0A + ''
-                            "
-                            base0B = "#'' + config.lib.stylix.colors.base0B + ''
-                              "
-                              base0C = "#'' + config.lib.stylix.colors.base0C
+        base00 = "#''
+      + config.lib.stylix.colors.base00
       + ''
         "
-        base0D = "#'' + config.lib.stylix.colors.base0D + ''
-          "
-          base0E = "#'' + config.lib.stylix.colors.base0E + ''
-            "
-            base0F = "#'' + config.lib.stylix.colors.base0F + ''
-              "
+        base01 = "#''
+      + config.lib.stylix.colors.base01
+      + ''
+        "
+        base02 = "#''
+      + config.lib.stylix.colors.base02
+      + ''
+        "
+        base03 = "#''
+      + config.lib.stylix.colors.base03
+      + ''
+        "
+        base04 = "#''
+      + config.lib.stylix.colors.base04
+      + ''
+        "
+        base05 = "#''
+      + config.lib.stylix.colors.base05
+      + ''
+        "
+        base06 = "#''
+      + config.lib.stylix.colors.base06
+      + ''
+        "
+        base07 = "#''
+      + config.lib.stylix.colors.base07
+      + ''
+        "
+        base08 = "#''
+      + config.lib.stylix.colors.base08
+      + ''
+        "
+        base09 = "#''
+      + config.lib.stylix.colors.base09
+      + ''
+        "
+        base0A = "#''
+      + config.lib.stylix.colors.base0A
+      + ''
+        "
+        base0B = "#''
+      + config.lib.stylix.colors.base0B
+      + ''
+        "
+        base0C = "#''
+      + config.lib.stylix.colors.base0C
+      + ''
+        "
+        base0D = "#''
+      + config.lib.stylix.colors.base0D
+      + ''
+        "
+        base0E = "#''
+      + config.lib.stylix.colors.base0E
+      + ''
+        "
+        base0F = "#''
+      + config.lib.stylix.colors.base0F
+      + ''
+        "
 
 
-              config.set('content.cookies.accept', 'no-3rdparty', 'chrome-devtools://*')
-              config.set('content.cookies.accept', 'no-3rdparty', 'devtools://*')
+        config.set('content.cookies.accept', 'no-3rdparty', 'chrome-devtools://*')
+        config.set('content.cookies.accept', 'no-3rdparty', 'devtools://*')
 
-              config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
-              config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+        config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
+        config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
-              config.set('content.images', True, 'chrome-devtools://*')
-              config.set('content.images', True, 'devtools://*')
+        config.set('content.images', True, 'chrome-devtools://*')
+        config.set('content.images', True, 'devtools://*')
 
-              config.set('content.javascript.enabled', True, 'chrome-devtools://*')
-              config.set('content.javascript.enabled', True, 'devtools://*')
-              config.set('content.javascript.enabled', True, 'chrome://*/*')
-              config.set('content.javascript.enabled', True, 'qute://*/*')
+        config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+        config.set('content.javascript.enabled', True, 'devtools://*')
+        config.set('content.javascript.enabled', True, 'chrome://*/*')
+        config.set('content.javascript.enabled', True, 'qute://*/*')
 
-              config.set('content.javascript.enabled', True, 'qute://*/*')
+        config.set('content.javascript.enabled', True, 'qute://*/*')
 
-              config.set('auto_save.session', True)
-              config.set('content.pdfjs', True)
+        config.set('auto_save.session', True)
+        config.set('content.pdfjs', True)
 
-              config.set('statusbar.show', 'in-mode')
+        config.set('statusbar.show', 'in-mode')
 
-              c.tabs.favicons.scale = 1.0
-              c.tabs.last_close = 'close'
-              c.tabs.position = 'left'
-              c.tabs.width = '3%'
-              c.window.transparent = True
-              c.colors.webpage.darkmode.enabled = ''
-      + (if (config.stylix.polarity == "dark") then "True" else "False") + ''
+        c.tabs.favicons.scale = 1.0
+        c.tabs.last_close = 'close'
+        c.tabs.position = 'left'
+        c.tabs.width = '3%'
+        c.window.transparent = True
+        c.colors.webpage.darkmode.enabled = ''
+      + (if (config.stylix.polarity == "dark") then "True" else "False")
+      + ''
 
-        c.colors.webpage.preferred_color_scheme = "'' + config.stylix.polarity
+        c.colors.webpage.preferred_color_scheme = "''
+      + config.stylix.polarity
       + ''
         "
         c.colors.webpage.darkmode.policy.images = 'never'
@@ -216,8 +278,7 @@ in {
         c.url.default_page = str(config.configdir)+'/qute-home.html'
         c.url.start_pages = str(config.configdir)+'/qute-home.html'
 
-        c.url.searchengines = {'DEFAULT': 'https://startpage.com/do/search?query={}',
-                               'd'      : 'https://duckduckgo.com/?q={}&ia=web',
+        c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}&ia=web',
                                'az'     : 'https://www.amazon.com/s?k={}',
                                'aw'     : 'https://wiki.archlinux.org/index.php?search={}&title=Special%3ASearch&wprov=acrw1',
                                'nw'     : 'https://nixos.wiki/index.php?search={}&go=Go',
@@ -371,21 +432,23 @@ in {
         c.colors.tabs.selected.even.fg = base05
         c.colors.tabs.selected.even.bg = base02
 
-        font = "'' + userSettings.font + ''
-          "
+        font = "''
+      + userSettings.font
+      + ''
+        "
 
-          c.fonts.default_family = font
-          c.fonts.default_size = '10pt'
+        c.fonts.default_family = font
+        c.fonts.default_size = '10pt'
 
-          c.fonts.web.family.standard = font
-          c.fonts.web.family.serif = font
-          c.fonts.web.family.sans_serif = font
-          c.fonts.web.family.fixed = font
-          c.fonts.web.family.fantasy = font
-          c.fonts.web.family.cursive = font
-          c.fonts.tabs.selected = '18pt'
-          c.fonts.tabs.unselected = '18pt'
-        '';
+        c.fonts.web.family.standard = font
+        c.fonts.web.family.serif = font
+        c.fonts.web.family.sans_serif = font
+        c.fonts.web.family.fixed = font
+        c.fonts.web.family.fantasy = font
+        c.fonts.web.family.cursive = font
+        c.fonts.tabs.selected = '18pt'
+        c.fonts.tabs.unselected = '18pt'
+      '';
 
     home.file.".config/qutebrowser/containers".text = ''
       Personal
@@ -395,20 +458,24 @@ in {
     '';
 
     home.file.".config/qutebrowser/qute-home.html".text =
-      generateHomepage "Default" userSettings.font config;
+      generateHomepage "Default" userSettings.font
+        config;
     home.file.".config/qutebrowser/logo.png".source = ./qutebrowser-logo.png;
     home.file.".browser/Personal/config/qute-home.html".text =
-      generateHomepage "Personal" userSettings.font config;
-    home.file.".browser/Personal/config/logo.png".source =
-      ./qutebrowser-logo.png;
+      generateHomepage "Personal" userSettings.font
+        config;
+    home.file.".browser/Personal/config/logo.png".source = ./qutebrowser-logo.png;
     home.file.".browser/Tech/config/qute-home.html".text =
-      generateHomepage "Tech" userSettings.font config;
+      generateHomepage "Tech" userSettings.font
+        config;
     home.file.".browser/Tech/config/logo.png".source = ./qutebrowser-logo.png;
     home.file.".browser/WebDev/config/qute-home.html".text =
-      generateHomepage "WebDev" userSettings.font config;
+      generateHomepage "WebDev" userSettings.font
+        config;
     home.file.".browser/WebDev/config/logo.png".source = ./qutebrowser-logo.png;
     home.file.".browser/NixOS/config/qute-home.html".text =
-      generateHomepage "NixOS" userSettings.font config;
+      generateHomepage "NixOS" userSettings.font
+        config;
     home.file.".browser/NixOS/config/logo.png".source = ./qutebrowser-logo.png;
   };
 }

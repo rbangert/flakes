@@ -1,69 +1,12 @@
 { pkgs, lib, ... }:
 with lib;
 with lib.rr-sv; {
-  imports = [ ./hardware.nix ];
-
-  programs.extra-container.enable = true;
 
   rr-sv = {
-    virtualisation = {
-      libvirtd = enabled;
-      podman = enabled;
-      lxc = enabled;
-    };
-
-    services = {
-      sftpgo = enabled;
-      openssh = enabled;
-      tailscale = enabled;
-      vaultwarden = enabled;
-    };
 
     nix = { os = enabled; };
 
-    containers = {
-      gotify = enabled;
-      itflow = enabled;
-      # gitea = enabled;
-      # deploy-webhook = enabled;
-      # wp-dev = enabled;
-      # mattermost = enabled;
-      changedetection = enabled;
-      # mealie = enabled;
-      mailpit = enabled;
-    };
   };
-
-  sops = {
-    defaultSopsFile = ../../../secrets/dia/secrets.yaml;
-    secrets = {
-      email = { };
-      tailscale_token = { };
-      github_token = { };
-      cf-tunnel_token = { };
-      acmecredfile = { };
-      wegorc = { };
-      ssh_key = { };
-      ssh_host_key = { };
-    };
-  };
-
-  services.nginx = {
-    enable = true;
-    recommendedGzipSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "rbangert@proton.me";
-  };
-
-  boot.tmp.cleanOnBoot = true;
-  zramSwap.enable = false;
-
   networking = {
     hostName = "dia";
     enableIPv6 = true;

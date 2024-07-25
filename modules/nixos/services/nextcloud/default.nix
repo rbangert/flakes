@@ -1,8 +1,16 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib;
 with lib.${namespace};
-let cfg = config.${namespace}.services.nextcloud;
-in {
+let
+  cfg = config.${namespace}.services.nextcloud;
+in
+{
   options.${namespace}.services.nextcloud = {
     enable = mkEnableOption "nextcloud service";
   };
@@ -25,8 +33,18 @@ in {
         extraApps = with config.services.nextcloud.package.packages.apps; {
           # List of apps we want to install and are already packaged in
           # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-          inherit bookmarks maps music calendar contacts mail notes onlyoffice
-            tasks;
+          inherit
+            bookmarks
+            cookbook
+            maps
+            music
+            calendar
+            contacts
+            mail
+            notes
+            onlyoffice
+            tasks
+            ;
         };
 
         settings = {
@@ -34,7 +52,10 @@ in {
           #   default_phone_region = "US";
           # trusted_domains = [  ];
           log_type = "file";
-          trusted_proxies = [ "100.119.211.85" "107.172.20.201" ];
+          trusted_proxies = [
+            "100.119.211.85"
+            "107.172.20.201"
+          ];
         };
         config = {
           dbtype = "pgsql";

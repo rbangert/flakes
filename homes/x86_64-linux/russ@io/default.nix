@@ -105,6 +105,7 @@ with lib.${namespace}; {
       devbox
       firefox-devedition
       awscli2
+      sass
       fh
 
       perl
@@ -114,7 +115,7 @@ with lib.${namespace}; {
 
   services.nextcloud-client = {
     enable = true;
-    startInBackground = true;
+    startInBackground = false;
   };
 
   stylix = {
