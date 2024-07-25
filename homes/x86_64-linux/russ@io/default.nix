@@ -105,7 +105,6 @@ with lib.${namespace}; {
       devbox
       firefox-devedition
       awscli2
-      sass
       fh
 
       perl
