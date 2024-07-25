@@ -14,13 +14,13 @@ in {
           image = "itflow:v1.3";
           ports = [ "8059:80" ];
           volumes = [ "itflow-data:/var/www/html" ];
-          environmentFiles = [ /run/secrets/itflow_env ];
+          environmentFiles = [ /run/secrets/itflow_dotenv ];
         };
         "itflow-db" = {
           image = "mariadb:10.6.16-focal";
           # ports = ["3307:3306"];
           volumes = [ "itflow-db_data:/var/lib/mysql" ];
-          environmentFiles = [ /run/secrets/itflow_env ];
+          environmentFiles = [ /run/secrets/itflow_dotenv ];
         };
       };
     };

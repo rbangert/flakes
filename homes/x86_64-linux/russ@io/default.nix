@@ -105,6 +105,7 @@ with lib.${namespace}; {
       devbox
       firefox-devedition
       awscli2
+      upwork
       fh
 
       perl
