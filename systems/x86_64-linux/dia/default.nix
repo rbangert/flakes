@@ -22,7 +22,8 @@ with lib.rr-sv; {
 
     containers = {
       gotify = enabled;
-      itflow = enabled;
+      grafana = enabled;
+      # itflow = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
       # wp-dev = enabled;
@@ -42,7 +43,7 @@ with lib.rr-sv; {
       cf-tunnel_token = { };
       acmecredfile = { };
       wegorc = { };
-      itflow_dotenv = { };
+      # itflow_dotenv = { };
       ssh_key = { };
       ssh_host_key = { };
     };
