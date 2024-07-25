@@ -1,14 +1,8 @@
-inputs @ { options
-, config
-, lib
-, pkgs
-, ...
-}:
+inputs@{ options, config, lib, pkgs, ... }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.containers.gotify;
-in
-{
+with lib.rr-sv;
+let cfg = config.rr-sv.containers.gotify;
+in {
   options.rr-sv.containers.gotify = with types; {
     enable = mkBoolOpt false "Whether or not to enable gotify";
   };
@@ -19,9 +13,7 @@ in
         "gotify" = {
           image = "gotify/server:2.5.0";
           ports = [ "3030:80" ];
-          volumes = [
-            "gotify-data:/app/data"
-          ];
+          volumes = [ "gotify-data:/app/data" ];
           environment = {
             #GOTIFY_SERVER_KEEPALIVEPERIODSECONDS = "0";
             # GOTIFY_SERVER_LISTENADDR = "127.0.0.1";
@@ -53,7 +45,7 @@ in
     };
 
     services.nginx.virtualHosts = {
-      "gotify.rr-sv.win" = {
+      "gotify.russellb.dev" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {

@@ -16,13 +16,13 @@ with lib.rr-sv; {
       openssh = enabled;
       tailscale = enabled;
       vaultwarden = enabled;
+      grafana = enabled;
     };
 
     nix = { os = enabled; };
 
     containers = {
       gotify = enabled;
-      grafana = enabled;
       # itflow = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
