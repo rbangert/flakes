@@ -12,10 +12,10 @@ in {
       grafana = {
         enable = true;
         settings = {
-          security = {
-            admin_user = "admin";
-            admin_password = config.sops.secrets.grafanaadminpass;
-          };
+          # security = {
+          #   admin_user = "admin";
+          #   admin_password = config.sops.secrets.grafanaadminpass;
+          # };
           server = {
             http_port = 2342;
             domain = "graf.russellb.dev";

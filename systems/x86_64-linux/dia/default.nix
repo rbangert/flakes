@@ -43,7 +43,6 @@ with lib.rr-sv; {
       cf-tunnel_token = { };
       acmecredfile = { };
       wegorc = { };
-      grafanaadminpass = { };
       # itflow_dotenv = { };
       ssh_key = { };
       ssh_host_key = { };
