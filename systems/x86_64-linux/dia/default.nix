@@ -23,10 +23,10 @@ with lib.rr-sv; {
 
     containers = {
       gotify = enabled;
-      # itflow = enabled;
+      itflow = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
-      # wp-dev = enabled;
+      wp-dev = enabled;
       # mattermost = enabled;
       changedetection = enabled;
       mailpit = enabled;
