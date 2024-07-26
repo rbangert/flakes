@@ -26,7 +26,7 @@ with lib.rr-sv; {
       # itflow = enabled;
       # gitea = enabled;
       # deploy-webhook = enabled;
-      wp-dev = enabled;
+      # wp-dev = enabled;
       # mattermost = enabled;
       changedetection = enabled;
       mailpit = enabled;
