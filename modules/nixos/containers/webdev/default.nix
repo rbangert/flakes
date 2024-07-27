@@ -4,68 +4,54 @@ with lib.rr-sv;
 let
   cfg = config.rr-sv.containers.webdev;
   domain = "wp-dev.rr-sv.win";
-
-  # Auxiliary functions
-  fetchPackage = { name, version, hash, isTheme }:
-    pkgs.stdenv.mkDerivation rec {
-      inherit name version hash;
-      src = let type = if isTheme then "theme" else "plugin";
-      in pkgs.fetchzip {
-        inherit name version hash;
-        url = "https://downloads.wordpress.org/${type}/${name}.${version}.zip";
-      };
-      installPhase = "mkdir -p $out; cp -R * $out/";
-    };
-
-  fetchPlugin = { name, version, hash }:
-    (fetchPackage {
-      name = name;
-      version = version;
-      hash = hash;
-      isTheme = false;
-    });
-
-  fetchTheme = { name, version, hash }:
-    (fetchPackage {
-      name = name;
-      version = version;
-      hash = hash;
-      isTheme = true;
-    });
-
-  # Plugins
-  google-site-kit = (fetchPlugin {
-    name = "google-site-kit";
-    version = "1.103.0";
-    hash = "sha256-8QZ4XTCKVdIVtbTV7Ka4HVMiUGkBYkxsw8ctWDV8gxs=";
-  });
-
-  # Themes
-  astra = (fetchTheme {
-    name = "astra";
-    version = "4.1.5";
-    hash = "sha256-X3Jv2kn0FCCOPgrID0ZU8CuSjm/Ia/d+om/ShP5IBgA=";
-  });
-
 in {
   options.rr-sv.containers.webdev = with types; {
     enable = mkBoolOpt false "Whether or not to enable webdev";
   };
 
   config = mkIf cfg.enable {
+    users.users.www-wordpress = {
+      isNormalUser = true;
+      group = "www-wordpress";
+      packages = with pkgs; [
+        git # maybe you want or need this
+        php82 # specify whatever version you want
+        php82.packages.composer
+      ];
+    };
+
+    users.groups.www-wordpress = { };
+
+    services.phpfpm.pools.wordpress = {
+      phpPackage = pkgs.php82;
+      user = "www-wordpress";
+      group = "www-wordpress";
+      settings = {
+        "listen.owner" = config.services.nginx.user; # or nginx, httpd, etc...
+        "listen.group" = config.services.nginx.group;
+        "pm" =
+          "dynamic"; # tweak the below options as needed, though the can be a decent start depending on your work load
+        "pm.max_children" = 16;
+        "pm.start_servers" = 4;
+        "pm.min_spare_servers" = 2;
+        "pm.max_spare_servers" = 4;
+        "pm.max_requests" = 2000;
+      };
+    };
+
+    services.mysql.enable = true;
+    services.mysql.package = pkgs.mariadb;
+    services.mysql.ensureDatabases = [ "wordpress" ];
+    services.mysql.ensureUsers = [{
+      name = "www-wordpress";
+      ensurePermissions = { "*.*" = "SELECT, INSERT, UPDATE, DELETE"; };
+    }];
+
     services = {
       nginx.virtualHosts.${domain} = {
         enableACME = true;
         forceSSL = true;
-      };
-
-      wordpress = {
-        webserver = "nginx";
-        sites."${domain}" = {
-          plugins = { inherit google-site-kit; };
-          themes = { inherit astra; };
-          settings = { WP_DEFAULT_THEME = "astra"; };
-        };
+        root = "/var/www/wp-dev";
       };
     };
   };
