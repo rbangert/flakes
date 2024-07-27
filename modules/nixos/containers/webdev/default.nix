@@ -51,7 +51,7 @@ in {
       nginx.virtualHosts.${domain} = {
         enableACME = true;
         forceSSL = true;
-        root = "/var/www/wp-dev";
+        root = "/srv/www/wp-dev";
       };
     };
   };
