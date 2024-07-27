@@ -1,13 +1,7 @@
-inputs @ {
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+inputs@{ options, config, lib, pkgs, ... }:
 with lib;
-with lib.rr-sv; let
-  cfg = config.rr-sv.containers.wp-dev;
+with lib.rr-sv;
+let cfg = config.rr-sv.containers.wp-dev;
 in {
   options.rr-sv.containers.wp-dev = with types; {
     enable = mkBoolOpt false "Whether or not to enable wp-dev";
@@ -18,10 +12,8 @@ in {
       containers = {
         "wp-dev" = {
           image = "wordpress:latest";
-          ports = ["8099:80"];
-          volumes = [
-            "wp-dev-data:/var/www/html"
-          ];
+          ports = [ "8099:80" ];
+          volumes = [ "/srv/www/wp-dev:/var/www/html" ];
           environment = {
             WORDPRESS_DB_HOST = "wp-dev-db:3306";
             WORDPRESS_DB_USER = "wordpress";
@@ -31,10 +23,8 @@ in {
         };
         "wp-dev-db" = {
           image = "mariadb:10.6.16-focal";
-          ports = ["3307:3306"];
-          volumes = [
-            "wp-dev-db_data:/var/lib/mysql"
-          ];
+          ports = [ "3307:3306" ];
+          volumes = [ "wp-dev-db_data:/var/lib/mysql" ];
           environment = {
             MYSQL_ROOT_PASSWORD = "rootpress";
             MYSQL_DATABASE = "wordpress";
@@ -49,9 +39,7 @@ in {
       "wp-dev.rr-sv.win" = {
         forceSSL = true;
         enableACME = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8099";
-        };
+        locations."/" = { proxyPass = "http://127.0.0.1:8099"; };
       };
     };
 
