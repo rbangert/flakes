@@ -24,7 +24,7 @@ with lib.rr-sv; {
     containers = {
       gotify = enabled;
       itflow = enabled;
-      # gitea = enabled;
+      webdev = enabled;
       # deploy-webhook = enabled;
       wp-dev = enabled;
       # mattermost = enabled;

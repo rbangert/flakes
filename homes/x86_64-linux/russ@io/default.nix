@@ -106,8 +106,11 @@ with lib.${namespace}; {
       firefox-devedition
       awscli2
       upwork
+      flameshot
+      mitmproxy
       fh
 
+      php
       perl
       pwgen
     ];
