@@ -164,6 +164,10 @@ with lib.${namespace}; {
     hyprland.enable = true;
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ php ];
+    };
   };
 
   security.pam.services = {

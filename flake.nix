@@ -65,10 +65,6 @@
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
     nix-search-cli.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Run unpatched dynamically compiled binaries
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "unstable";
-
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 

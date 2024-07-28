@@ -91,7 +91,6 @@ with lib.${namespace}; {
 
       xxh
       # dev
-      vscode
       go
       hugo
       nodePackages.prettier
@@ -110,10 +109,22 @@ with lib.${namespace}; {
       mitmproxy
       fh
 
-      php
       perl
       pwgen
     ];
+  };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhsWithPackages (ps:
+      with ps; [
+        php
+        php82Packages.composer
+        rustup
+        zlib
+        openssl.dev
+        pkg-config
+      ]);
   };
 
   services.nextcloud-client = {
